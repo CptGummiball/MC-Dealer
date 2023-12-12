@@ -1,6 +1,7 @@
 package org.mcdealer.mcdealer;
-import org.mcdealer.mcdealer.commands.RestartWebServerCommand;
+
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcdealer.mcdealer.commands.RestartWebServerCommand;
 
 import java.util.Objects;
 
