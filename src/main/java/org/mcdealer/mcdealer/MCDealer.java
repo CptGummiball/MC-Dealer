@@ -1,10 +1,13 @@
 package org.mcdealer.mcdealer;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class MCDealer extends JavaPlugin {
     private boolean pluginEnabled = false;
+
+    int delayTicks = 300;
+    int UpdateInterval = 300;
 
     @Override
     public void onEnable() {
@@ -24,14 +27,19 @@ public class MCDealer extends JavaPlugin {
         webServer.RunWebServer();
 
         this.getLogger().info(" [MCDealer] by CptGummiball and Vollmondheuler enabled! ");
-
-        // Schedule the recurring task with a delay after the server has loaded
-        Bukkit.getScheduler().runTaskLater(this, () -> {
-            if (pluginEnabled) {
-                new TaskScheduler(this).loadConfig();
-                new TaskScheduler(this).scheduleRepeatingTask();
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (pluginEnabled) {
+                    try {
+                        // Your existing code here
+                        ShopDataConverter.main(new String[]{});
+                    } catch (Exception e) {
+                        getLogger().info(" Converter failed! ");
+                    }
+                }
             }
-        }, 20L); // 20 ticks delay (1 second = 20 ticks)
+        }.runTaskTimer(this, delayTicks, UpdateInterval);
     }
 
     @Override
