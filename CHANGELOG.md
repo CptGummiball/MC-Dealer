@@ -11,6 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- added ResourceUtils class
+- added resource lists for ResourceUtils
+- added plugin Enable checker
+- added ResourceUtils features to ResourceUpdater
+
+### Removed
+
+- removed unnecessary prefixes
+- removed josh-more-foods python script (not needed in plugin version)
+
+## [0.1.4] - 2023-12-12
+
+### Changed
+
 - Changed loading order ResourceUpdater
 - Rebuild script for resources
 - changed the console prefix to [MCDealer]
