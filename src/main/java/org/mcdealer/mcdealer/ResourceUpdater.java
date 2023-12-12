@@ -7,6 +7,8 @@ import java.nio.file.*;
 import java.util.Objects;
 import java.util.logging.Level;
 
+import static org.mcdealer.mcdealer.ResourceUtils.copyResources;
+
 public class ResourceUpdater extends MCDealer {
 
     private final MCDealer plugin;
@@ -22,7 +24,7 @@ public class ResourceUpdater extends MCDealer {
 
         if (newConfigVersion > currentConfigVersion) {
             // Version difference, update configuration file
-            this.getLogger().info(" [MCDealer] updating config.yml... ");
+            this.getLogger().info("updating config.yml... ");
             plugin.saveResource("config.yml", true);
         }
     }
@@ -35,22 +37,13 @@ public class ResourceUpdater extends MCDealer {
 
         if (newWebFilesVersion > currentWebFilesVersion) {
             // Version difference, update web files
-            this.getLogger().info(" [MCDealer] updating webfiles... ");
-            plugin.saveResource("web/index.html", true);
-            plugin.saveResource("web/assets/background.jpg", true);
-            plugin.saveResource("web/assets/logo.png", true);
-            plugin.saveResource("web/assets/Minecraftia-Regular.woff", true);
-            plugin.saveResource("web/assets/Minecraftia-Regular.woff2", true);
-            plugin.saveResource("web/assets/script.js", true);
-            plugin.saveResource("web/assets/style.css", true);
-            plugin.saveResource("web/assets/favicon/*.png", true);
-            plugin.saveResource("web/assets/favicon/browserconfig.xml", true);
-            plugin.saveResource("web/assets/favicon/favicon.ico", true);
-            plugin.saveResource("web/assets/favicon/site.webmanifest", true);
-            plugin.saveResource("web/assets/items/*.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/*.png", true);
-            plugin.saveResource("web/assets/translations/*.svg", true);
-            plugin.saveResource("web/assets/translations/*.json", true);
+            this.getLogger().info("updating webfiles... ");
+            copyResources("web/resource_list.txt", "/path/to/destination");
+            copyResources("web/assets", "/path/to/destination");
+            copyResources("web/assets/favicon/resource_list.txt", "/path/to/destination");
+            copyResources("web/assets/items/resource_list.txt", "/path/to/destination");
+            copyResources("web/assets/items/joshs-more-foods/resource_list.txt", "/path/to/destination");
+            copyResources("web/assets/translations/resource_list.txt", "/path/to/destination");
             // Update the config with the new version
             getConfig().set("webfilesversion", newWebFilesVersion);
             saveConfig();
@@ -67,7 +60,7 @@ public class ResourceUpdater extends MCDealer {
 
             if (newPyScriptVersion > currentPyScriptVersion) {
                 // Version difference, update configuration file
-                this.getLogger().info(" [MCDealer] updating script... ");
+                this.getLogger().info("updating script... ");
                 plugin.saveResource("data-yml2json.py", true);
                 // Update the config with the new version
                 getConfig().set("pyscriptversion", newPyScriptVersion);
@@ -82,7 +75,7 @@ public class ResourceUpdater extends MCDealer {
 
         // Check if the resource is null
         if (resource == null) {
-            plugin.getLogger().severe("[MCDealer] Unable to find config.yml in the JAR file.");
+            plugin.getLogger().severe("Unable to find config.yml in the JAR file.");
             return null;
         }
 
@@ -93,7 +86,7 @@ public class ResourceUpdater extends MCDealer {
             Files.copy(resource, tempConfigFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             resource.close();
         } catch (IOException e) {
-            getLogger().log(Level.SEVERE, "[MCDealer] An error occurred while copying config.yml from JAR to temporary directory", e);
+            getLogger().log(Level.SEVERE, "An error occurred while copying config.yml from JAR to temporary directory", e);
             return null;
         }
 
