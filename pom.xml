@@ -6,7 +6,7 @@
 
   <groupId>org.mcdealer</groupId>
   <artifactId>MCDealer</artifactId>
-  <version>0.1.4</version>
+  <version>0.1.5</version>
   <packaging>jar</packaging>
 
   <name>MCDealer</name>
