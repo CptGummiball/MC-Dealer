@@ -1,0 +1,347 @@
+@font-face {
+    font-family: 'Minecraftia';
+    src: url('Minecraftia-Regular.woff2') format('woff2'),
+        url('Minecraftia-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('background.jpg');
+    background-repeat: repeat;
+    color: #eee;
+    margin: 0;
+    padding: 1.25rem;
+}
+
+#logo {
+    text-align: center;
+}
+
+#logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.item-image {
+    display: block;
+    float: left;
+    height: 1rem;
+    padding-right: .5rem;
+    width: 1rem;
+}
+
+.item-image img {
+    max-width: 1rem;
+    max-height: 1rem;
+}
+
+.item-name {
+    display: block;
+    float: left;
+}
+
+.item-enchantments {
+    color: #AA00AA;
+    float: right;
+    font-style: italic;
+    margin-right: 5px;
+}
+
+#languages-container {
+    float: right;
+}
+
+#languages-container select {
+    background-color: #333;
+    color: #333;
+    border: 1px solid #555;
+    padding: 8px;
+    width: 4rem;
+    border-radius: 4px;
+    outline: none;
+    position: relative;
+    text-shadow: .25rem .25rem .125rem rgb(255, 255, 255, 0.75);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#languages-container select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+#languages-container select:hover {
+    background-color: #444;
+}
+
+#output-container-metadata,
+#output-container-poweredby {
+    font-size: 14px;
+    margin-top: 1rem;
+    text-align: right;
+    width: 100%;
+}
+
+#output-playerIndexContainer{
+    background-color: #111;
+    border: 2px solid #333;
+    border-radius: .75rem;
+    margin-top: 1.25rem;
+    padding: .75rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#output-playerIndexContainer h2 {
+    font-family: 'Minecraftia', sans-serif;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    display: block;
+    width: 100%;
+    color: #0000aa;
+}
+
+#output-adminIndexContainer{
+    background-color: #111;
+    border: 2px solid #333;
+    border-radius: .75rem;
+    margin-top: 1.25rem;
+    padding: .75rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#output-adminIndexContainer h2 {
+    font-family: 'Minecraftia', sans-serif;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    display: block;
+    width: 100%;
+    color: #0000aa;
+}
+
+#item-search-input {
+    padding: .25rem .25rem .25rem 1rem;
+    width: calc(25% - 36px);
+    background-color: #111;
+    border: 2px solid #333;
+    border-radius: .75rem;
+    color: white;
+}
+
+.search-container {
+    margin-top: .5rem;
+    position: relative;
+}
+
+.search-suggestions {
+    display: none;
+    padding: .25rem .25rem .25rem 1rem;
+    width: calc(25% - 36px);
+    background-color: #111;
+    border: 2px solid #333;
+    max-height: 150px;
+    border-radius: .75rem;
+    overflow-y: auto;
+}
+
+.search-suggestions a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.search-suggestions a:hover {
+    background-color: #808080;
+    font-weight: bold;
+    color: black;
+}
+
+.search-highlight {
+    background-color: orange;
+    font-weight: bold;
+    color: black;
+    border-radius: .15rem;
+}
+
+.item-name.highlight {
+    background-color: #ffaa00;
+    font-weight: bold;
+    color: black;
+}
+
+.shop-index-entry {
+    width: 25%;
+    display: inline-block;
+    position: relative;
+}
+
+.shop-index-entry a {
+    color: #aaa;
+    line-height: 1.25rem;
+    font-family: 'Minecraftia', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.index-shop-owner {
+    display: none;
+}
+
+.shop-container {
+    background-color: #111;
+    border: 2px solid #333;
+    border-radius: .75rem;
+    margin-top: 1.25rem;
+    padding: .75rem;
+}
+
+.shop-info {
+    margin-bottom: .75rem;
+}
+
+.shop-info .shop-name {
+    color: #ffb046;
+    display: block;
+    font-family: 'Minecraftia', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.5rem;
+}
+
+.shop-info .shop-owner {
+    color: #808080;
+}
+
+.shop-info .shop-location {
+    float: right;
+    font-size: 12px;
+}
+
+.selling-title,
+.buying-title {
+    color: #ffffff;
+    display: block;
+    font-family: 'Minecraftia', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.5rem;
+}
+
+.table-container {
+    margin-top: .75rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: .75rem;
+}
+
+th,
+td {
+    border: 1px solid #444;
+    padding: .5rem;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: #eee;
+    font-family: 'Minecraftia', sans-serif;
+    font-size: 16px;
+    line-height: .75rem;
+    padding-left: .75rem;
+}
+
+tr th:not(:first-child) {
+    width: 12.5%;
+}
+
+tr td:not(:first-child) {
+    text-align: right;
+}
+
+tr:nth-child(2n+1) {
+    background-color: #1a1a1a;
+}
+
+.price img {
+    margin-left: .5rem;
+    vertical-align: bottom;
+    margin-bottom: .125rem;
+}
+
+.discount-percentage,
+.bestprice-tag {
+    color: #5FF;
+    vertical-align: super;
+    display: inline;
+    font-size: 12px;
+    padding-right: .5rem;
+}
+
+.low-stock {
+    color: red;
+}
+
+.sold-out {
+    color: red;
+}
+
+#btnScroll2Top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #666;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.5s ease-in-out;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+@media only screen and (max-width: 1024px) {
+    #item-search-input {
+        width: calc(33% - 36px);
+    }
+
+    .shop-index-entry {
+        width: 33.33%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    #item-search-input {
+        width: calc(100% - 36px);
+    }
+
+    .shop-index-entry {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+
+
+    .shop-index-entry {
+        width: 100%;
+    }
+}

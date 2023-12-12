@@ -1,0 +1,19 @@
+#MCDealer Plugin Settings
+
+
+#Port of the Web Server
+web-server-port: 8080
+#Currency symbol that is displayed on the website
+currencySymbol: ʗ
+#Position of the Currency Symbol (before/after)
+currencySymbolPosition: after
+#Default language of the website
+defaultLanguage: de
+#Interval in seconds in which the data should be updated
+Update-Interval: 300
+
+
+#Don't change anything below!
+configversion: 1
+pyscriptversion: 0.7.0
+webfilesversion: 0.7.0

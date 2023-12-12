@@ -1,0 +1,9 @@
+name: MCDealer
+author: CaptainGummiball, Vollmondheuler
+version: '${project.version}'
+main: org.mcdealer.mcdealer.MCDealer
+api-version: '1.20'
+commands:
+  restartwebserver:
+    description: Restarts the web server
+    usage: /mcdealerreload
