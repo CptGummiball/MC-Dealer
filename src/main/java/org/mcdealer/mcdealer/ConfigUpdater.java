@@ -40,7 +40,7 @@ public class ConfigUpdater extends MCDealer {
         try {
             jsonConfig.save(configFile);
         } catch (IOException e) {
-            this.getLogger().info(" [MCDealer] Json could not be saved ");
+            this.getLogger().info(" Json could not be saved ");
         }
     }
 }
