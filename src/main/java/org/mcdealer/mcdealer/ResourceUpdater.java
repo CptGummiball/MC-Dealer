@@ -50,25 +50,6 @@ public class ResourceUpdater extends MCDealer {
         }
     }
 
-    void updatePyScript() {
-        //Loading the current configuration file
-        int currentPyScriptVersion = getConfig().getInt("pyscriptversion", 0);
-        int newPyScriptVersion = YamlConfiguration.loadConfiguration(Objects.requireNonNull(getConfigFromJar())).getInt("pyscriptversion", 0);
-
-        if (!plugin.getDataFolder().exists() || !new File(plugin.getDataFolder(), "data-yml2json.py").exists()) {
-            plugin.saveResource("data-yml2json.py", false);
-
-            if (newPyScriptVersion > currentPyScriptVersion) {
-                // Version difference, update configuration file
-                this.getLogger().info("updating script... ");
-                plugin.saveResource("data-yml2json.py", true);
-                // Update the config with the new version
-                getConfig().set("pyscriptversion", newPyScriptVersion);
-                saveConfig();
-            }
-        }
-    }
-
     private File getConfigFromJar() {
         // Loading the "config.yml" from the JAR file
         InputStream resource = getResource("config.yml");

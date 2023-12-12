@@ -17,7 +17,6 @@ public class MCDealer extends JavaPlugin {
         // Extracts necessary resources from the JAR file
         this.getLogger().info(" Check resources... ");
         new ResourceUpdater(this).updateConfig();
-        new ResourceUpdater(this).updatePyScript();
         new ResourceUpdater(this).updateWebFolder();
 
         // Run Webserver
