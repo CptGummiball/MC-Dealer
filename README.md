@@ -9,9 +9,9 @@ See [mc-dealer-yml2json](https://github.com/wolf128058/mc-dealer-yml2json)
 ## Installation:
 Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spigot, or Paper server.
 
-## Commands and Permissions:
-### /mcdealerreload | mcdealer.reload
-Reloads the MCDealer plugin configuration and restarts the web server.
+## ~~Commands and Permissions:~~
+### ~~/mcdealerreload | mcdealer.reload~~
+~~Reloads the MCDealer plugin configuration and restarts the web server.~~
 
 ## Config.yml:
 ### MCDealer Plugin Settings
@@ -38,6 +38,7 @@ Reloads the MCDealer plugin configuration and restarts the web server.
 
 ## Important Notes:
 Make sure to configure the settings in the config.yml file according to your preferences before starting the server.
+**Currently you have to restart the server to load changes in config.**
 
 ## Support and Issues:
 

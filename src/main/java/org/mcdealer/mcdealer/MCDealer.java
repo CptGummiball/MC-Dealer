@@ -1,9 +1,6 @@
 package org.mcdealer.mcdealer;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcdealer.mcdealer.commands.RestartWebServerCommand;
-
-import java.util.Objects;
 
 public class MCDealer extends JavaPlugin {
 
@@ -11,22 +8,23 @@ public class MCDealer extends JavaPlugin {
     public void onEnable() {
 
         // Extracts necessary resources from the JAR file
-        this.getLogger().info(" MCDealer: Check resources... ");
+        this.getLogger().info(" [MCDealer] Check resources... ");
         new ResourceUpdater(this).updateConfig();
-        new ResourceUpdater(this).updateWebFolder();
         new ResourceUpdater(this).updatePyScript();
-        new ConfigUpdater(this).webConfigUpdater();
+        new ResourceUpdater(this).updateWebFolder();
 
         // Run Webserver
-        this.getLogger().info(" MCDealer: Starting Webserver ");
+        new ConfigUpdater(this).webConfigUpdater();
+        this.getLogger().info(" [MCDealer] Starting Webserver ");
         WebServer webServer = new WebServer(this);
         webServer.RunWebServer();
-        Objects.requireNonNull(getCommand("restartwebserver")).setExecutor(new RestartWebServerCommand(webServer));
 
-        this.getLogger().info(" MCDealer by CptGummiball and Vollmondheuler enabled! ");
+        this.getLogger().info(" [MCDealer] by CptGummiball and Vollmondheuler enabled! ");
 
         // Schedule the recurring task based on the interval
         new TaskScheduler(this).loadConfig();
+        int delay = 300;
+        getServer().getScheduler().runTaskLater(this, new TaskScheduler(this).scheduleRepeatingTask(), delay);
         new TaskScheduler(this).scheduleRepeatingTask();
     }
 
@@ -34,7 +32,7 @@ public class MCDealer extends JavaPlugin {
     public void onDisable() {
 
         new WebServer(this).stopWebServer();
-        this.getLogger().info(" MCDealer by CptGummiball and Vollmondheuler disabled! ");
+        this.getLogger().info(" [MCDealer] by CptGummiball and Vollmondheuler disabled! ");
 
     }
 }

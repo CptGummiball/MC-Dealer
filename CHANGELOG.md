@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.4] - 2023-12-12
+
+### Changed
+
+- Changed loading order ResourceUpdater
+- Rebuild script for resources
+- changed the console prefix to [MCDealer]
+- deleted reload command (add it later)
+
+### Removed
+
+- deleted reload command (re-add it later)
+
 ## [0.1.3] - 2023-12-12
 
 ### Changed

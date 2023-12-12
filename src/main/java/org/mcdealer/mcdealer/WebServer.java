@@ -39,16 +39,16 @@ public class WebServer extends MCDealer {
             // Start the web server
             server.start();
 
-            getLogger().info(" MCDealer: Webserver started at port " + port);
+            getLogger().info(" [MCDealer] Webserver started at port " + port);
         } catch (IOException e) {
-            getLogger().log(Level.SEVERE, "An error occurred while starting the web server", e);
+            getLogger().log(Level.SEVERE, " [MCDealer]An error occurred while starting the web server", e);
         }
     }
 
     public void stopWebServer() {
         if (server != null) {
             server.stop(0);  // Stop the server with a delay of 0 seconds
-            getLogger().info("MCDealer: Webserver stopped");
+            getLogger().info("[MCDealer] Webserver stopped");
         }
     }
 

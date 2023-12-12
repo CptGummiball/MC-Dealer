@@ -24,9 +24,10 @@ public class TaskScheduler extends MCDealer {
         UpdateInterval = config.getInt("Update-Interval", 300);
     }
 
-    void scheduleRepeatingTask() {
+    Runnable scheduleRepeatingTask() {
         RepeatingTask repeatingTask = new RepeatingTask();
         repeatingTask.runTaskTimer(this, 0L, UpdateInterval * 20L);
+        return null;
     }
 
     // Inner class for the recurring task
@@ -35,7 +36,7 @@ public class TaskScheduler extends MCDealer {
 
         public void run() {
             // Code to run every 'UpdateInterval'
-            getLogger().info(" MCDealer: Collect data for MCDealer ");
+            getLogger().info(" [MCDealer] Collect data for MCDealer ");
             getLogger().info("Jython running...");
 
             // Path to Python script
@@ -47,10 +48,10 @@ public class TaskScheduler extends MCDealer {
                     // Do nothing here; the script is already executed in the constructor
                 }
             } catch (IOException e) {
-                getLogger().log(Level.SEVERE, "An error occurred while executing the Python script", e);
+                getLogger().log(Level.SEVERE, "[MCDealer] An error occurred while executing the Python script", e);
             }
 
-            getLogger().info(" MCDealer: Data collected");
+            getLogger().info(" [MCDealer] Data collected");
         }
 
         private static class PythonScriptExecutor implements AutoCloseable {

@@ -2,11 +2,8 @@ package org.mcdealer.mcdealer;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import java.io.*;
+import java.nio.file.*;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -25,22 +22,38 @@ public class ResourceUpdater extends MCDealer {
 
         if (newConfigVersion > currentConfigVersion) {
             // Version difference, update configuration file
-            this.getLogger().info(" MCDealer: updating config.yml... ");
+            this.getLogger().info(" [MCDealer] updating config.yml... ");
             plugin.saveResource("config.yml", true);
         }
     }
 
     void updateWebFolder() {
         // Check and update the "web" folder
-        File webFolder = new File(getDataFolder(), "web");
 
         int currentWebFilesVersion = getConfig().getInt("webfilesversion", 0);
         int newWebFilesVersion = YamlConfiguration.loadConfiguration(Objects.requireNonNull(getConfigFromJar())).getInt("webfilesversion", 0);
 
         if (newWebFilesVersion > currentWebFilesVersion) {
-            // Version difference, update contents of the "web" folder
-            this.getLogger().info(" MCDealer: updating web files... ");
-            updateFolderFromJar(webFolder);
+            // Version difference, update web files
+            this.getLogger().info(" [MCDealer] updating webfiles... ");
+            plugin.saveResource("web/index.html", true);
+            plugin.saveResource("web/assets/background.jpg", true);
+            plugin.saveResource("web/assets/logo.png", true);
+            plugin.saveResource("web/assets/Minecraftia-Regular.woff", true);
+            plugin.saveResource("web/assets/Minecraftia-Regular.woff2", true);
+            plugin.saveResource("web/assets/script.js", true);
+            plugin.saveResource("web/assets/style.css", true);
+            plugin.saveResource("web/assets/favicon/*.png", true);
+            plugin.saveResource("web/assets/favicon/browserconfig.xml", true);
+            plugin.saveResource("web/assets/favicon/favicon.ico", true);
+            plugin.saveResource("web/assets/favicon/site.webmanifest", true);
+            plugin.saveResource("web/assets/items/*.png", true);
+            plugin.saveResource("web/assets/items/joshs-more-foods/*.png", true);
+            plugin.saveResource("web/assets/translations/*.svg", true);
+            plugin.saveResource("web/assets/translations/*.json", true);
+            // Update the config with the new version
+            getConfig().set("webfilesversion", newWebFilesVersion);
+            saveConfig();
         }
     }
 
@@ -49,10 +62,17 @@ public class ResourceUpdater extends MCDealer {
         int currentPyScriptVersion = getConfig().getInt("pyscriptversion", 0);
         int newPyScriptVersion = YamlConfiguration.loadConfiguration(Objects.requireNonNull(getConfigFromJar())).getInt("pyscriptversion", 0);
 
-        if (newPyScriptVersion > currentPyScriptVersion) {
-            // Version difference, update configuration file
-            this.getLogger().info(" MCDealer: updating script... ");
-            plugin.saveResource("data-yml2json.py", true);
+        if (!plugin.getDataFolder().exists() || !new File(plugin.getDataFolder(), "data-yml2json.py").exists()) {
+            plugin.saveResource("data-yml2json.py", false);
+
+            if (newPyScriptVersion > currentPyScriptVersion) {
+                // Version difference, update configuration file
+                this.getLogger().info(" [MCDealer] updating script... ");
+                plugin.saveResource("data-yml2json.py", true);
+                // Update the config with the new version
+                getConfig().set("pyscriptversion", newPyScriptVersion);
+                saveConfig();
+            }
         }
     }
 
@@ -62,7 +82,7 @@ public class ResourceUpdater extends MCDealer {
 
         // Check if the resource is null
         if (resource == null) {
-            plugin.getLogger().severe("Unable to find config.yml in the JAR file.");
+            plugin.getLogger().severe("[MCDealer] Unable to find config.yml in the JAR file.");
             return null;
         }
 
@@ -73,51 +93,11 @@ public class ResourceUpdater extends MCDealer {
             Files.copy(resource, tempConfigFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             resource.close();
         } catch (IOException e) {
-            getLogger().log(Level.SEVERE, "An error occurred while copying config.yml from JAR to temporary directory", e);
+            getLogger().log(Level.SEVERE, "[MCDealer] An error occurred while copying config.yml from JAR to temporary directory", e);
             return null;
         }
 
         // Load the "config.yml" from the temporary directory
         return tempConfigFile;
     }
-
-    private void updateFolderFromJar(File destinationFolder) {
-        // Load the resources from the JAR folder "web" and copy them to the target directory
-        File jarFolder = new File(getDataFolder(), "web");
-
-        if (jarFolder.exists() && jarFolder.isDirectory()) {
-            // Delete the existing target directory
-            deleteFolder(destinationFolder);
-        }
-        if (!destinationFolder.mkdirs()) {
-            // Handle the case where directory creation failed
-            System.err.println("Failed to create the target directory: " + destinationFolder.getAbsolutePath());
-        } else {
-            // Directory created successfully, proceed with copying resources
-            plugin.saveResource("web" + "/", false);
-        }
-    }
-
-    private void deleteFolder(File folder) {
-        // Deleting a directory and all of its subdirectories and files
-        if (folder.exists()) {
-            File[] files = folder.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    if (file.isDirectory()) {
-                        deleteFolder(file);
-                    } else {
-                        if (!file.delete()) {
-                            System.err.println("Failed to delete file: " + file.getAbsolutePath());
-                        }
-                    }
-                }
-            }
-
-            if (!folder.delete()) {
-                System.err.println("Failed to delete folder: " + folder.getAbsolutePath());
-            }
-        }
-    }
-
 }
