@@ -1,5 +1,10 @@
 # MCDealer Plugin Readme
 This is the Plugin Version of [mc-dealer-yml2json](https://github.com/wolf128058/mc-dealer-yml2json)
+It provides an WebServer + Website that comprehensively displays offers and demands from players and admin shops
+of the Plugin [Villager Market](https://www.spigotmc.org/resources/villager-market-the-ultimate-shop-plugin.82965/) ([GitHub](https://github.com/Bestem0r/VillagerMarket))
+
+## Features:
+See [mc-dealer-yml2json](https://github.com/wolf128058/mc-dealer-yml2json)
 
 ## Installation:
 Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spigot, or Paper server.
