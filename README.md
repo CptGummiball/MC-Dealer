@@ -1,5 +1,5 @@
 # MCDealer Plugin Readme
-This is the Plugin Version of mc-dealer-yml2json
+This is the Plugin Version of [mc-dealer-yml2json](https://github.com/wolf128058/mc-dealer-yml2json)
 
 ## Installation:
 Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spigot, or Paper server.
@@ -36,9 +36,9 @@ Make sure to configure the settings in the config.yml file according to your pre
 
 ## Support and Issues:
 
-For support or reporting issues, please visit the MCDealer GitHub repository and open a new issue.
+For support or reporting issues, please visit the [MCDealer GitHub repository](https://github.com/CptGummiball/MC-Dealer/) and open a new [issue.](https://github.com/CptGummiball/MC-Dealer/issues)
 
 ## License:
-This plugin is released under the MIT License. See the LICENSE file for details.
+This plugin is released under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 Enjoy using MCDealer!
