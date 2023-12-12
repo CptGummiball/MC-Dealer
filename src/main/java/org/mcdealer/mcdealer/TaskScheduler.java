@@ -27,17 +27,16 @@ public class TaskScheduler extends MCDealer {
     Runnable scheduleRepeatingTask() {
         RepeatingTask repeatingTask = new RepeatingTask();
         repeatingTask.runTaskTimer(this, 0L, UpdateInterval * 20L);
-        return null;
+        return repeatingTask;
     }
 
     // Inner class for the recurring task
     private class RepeatingTask extends BukkitRunnable {
 
-
         public void run() {
             // Code to run every 'UpdateInterval'
-            getLogger().info(" [MCDealer] Collect data for MCDealer ");
-            getLogger().info("Jython running...");
+            getLogger().info(" Collect data for MCDealer ");
+            getLogger().info(" Jython running... ");
 
             // Path to Python script
             String pythonScriptPath = getDataFolder() + File.separator + "plugins" + File.separator + "MCDealer" + File.separator + "data-yml2json.py";
@@ -48,10 +47,10 @@ public class TaskScheduler extends MCDealer {
                     // Do nothing here; the script is already executed in the constructor
                 }
             } catch (IOException e) {
-                getLogger().log(Level.SEVERE, "[MCDealer] An error occurred while executing the Python script", e);
+                getLogger().log(Level.SEVERE, " An error occurred while executing the Python script", e);
             }
 
-            getLogger().info(" [MCDealer] Data collected");
+            getLogger().info(" Data collected ");
         }
 
         private static class PythonScriptExecutor implements AutoCloseable {
