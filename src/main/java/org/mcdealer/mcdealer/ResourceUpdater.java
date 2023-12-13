@@ -13,7 +13,7 @@ import static org.mcdealer.mcdealer.ResourceUtils.copyResources;
 
 public class ResourceUpdater extends MCDealer {
 
-    private static final Logger logger = LoggerFactory.getLogger("MC Dealer");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
     private final MCDealer plugin;
 
@@ -22,9 +22,14 @@ public class ResourceUpdater extends MCDealer {
     }
 
     void updateConfig() {
+
+        logger.info("Checking config.yml...");
+
         //Loading the current configuration file
         int currentConfigVersion = getConfig().getInt("configversion", 0);
         int newConfigVersion = YamlConfiguration.loadConfiguration(Objects.requireNonNull(getConfigFromJar())).getInt("configversion", 0);
+        logger.info("Current config version: {}", currentConfigVersion);
+        logger.info("New config version: {}", newConfigVersion);
 
         if (newConfigVersion > currentConfigVersion) {
             // Version difference, update configuration file
@@ -34,38 +39,19 @@ public class ResourceUpdater extends MCDealer {
     }
 
     void updateWebFolder() {
-        // Check and update the "web" folder
-
+        getLogger().info("Checking and updating web folder...");
         int currentWebFilesVersion = getConfig().getInt("webfilesversion", 0);
-        int newWebFilesVersion = YamlConfiguration.loadConfiguration(Objects.requireNonNull(getConfigFromJar())).getInt("webfilesversion", 0);
+        int newWebFilesVersion = YamlConfiguration.loadConfiguration(getConfigFromJar()).getInt("webfilesversion", 0);
+        logger.info("Current web files version: {}", currentWebFilesVersion);
+        logger.info("New web files version: {}", newWebFilesVersion);
 
-        // Check if the web directory exists in the plugin folder
         File webFolder = new File(getDataFolder(), "web");
-
         if (!webFolder.exists() || !webFolder.isDirectory()) {
-            // Web directory not found, transfer all files
-            logger.info("Transferring all web files...");
-            copyResources("web/resource_list.txt", "web");
-            copyResources("web/assets/resource_list.txt", "web/assets");
-            copyResources("web/assets/favicon/resource_list.txt", "web/assets/favicon");
-            copyResources("web/assets/items/resource_list.txt", "web/assets/items");
-            copyResources("web/assets/items/joshs-more-foods/resource_list.txt", "web/assets/items/joshs-more-foods");
-            copyResources("web/assets/translations/resource_list.txt", "web/assets/translations");
-
-            // Update the config with the new version
-            getConfig().set("webfilesversion", newWebFilesVersion);
-            saveConfig();
+            getLogger().info("Transferring all web files...");
+            extractFolderFromJar("web");
         } else if (newWebFilesVersion > currentWebFilesVersion) {
-            // Version difference, update web files
-            logger.info("Updating web files... ");
-            copyResources("web/resource_list.txt", "web");
-            copyResources("web/assets/resource_list.txt", "web/assets");
-            copyResources("web/assets/favicon/resource_list.txt", "web/assets/favicon");
-            copyResources("web/assets/items/resource_list.txt", "web/assets/items");
-            copyResources("web/assets/items/joshs-more-foods/resource_list.txt", "web/assets/items/joshs-more-foods");
-            copyResources("web/assets/translations/resource_list.txt", "web/assets/translations");
-
-            // Update the config with the new version
+            getLogger().info("Updating web files... ");
+            extractFolderFromJar("web");
             getConfig().set("webfilesversion", newWebFilesVersion);
             saveConfig();
         }
@@ -94,5 +80,31 @@ public class ResourceUpdater extends MCDealer {
 
         // Load the "config.yml" from the temporary directory
         return tempConfigFile;
+    }
+
+    public void extractFolderFromJar(String folderName) {
+        // Get the plugin folder
+        File pluginFolder = getDataFolder();
+
+        // Create the target folder in the plugin directory
+        File targetFolder = new File(pluginFolder, folderName);
+        targetFolder.mkdirs();
+
+        // Get the input stream of the JAR file
+        try {
+            InputStream jarInputStream = getResource(folderName);
+
+            // Check if the folder exists in the JAR
+            if (jarInputStream == null) {
+                getLogger().warning("Folder not found in JAR: " + folderName);
+                return;
+            }
+
+            // Copy the contents of the folder from the JAR to the plugin folder
+            Files.copy(jarInputStream, targetFolder.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
