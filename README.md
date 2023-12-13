@@ -32,10 +32,6 @@ Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spi
   - Default language of the website.
 
 
-- Update-Interval: 300
-  - Interval in seconds in which the data should be updated.
-
-
 ## Important Notes:
 Make sure to configure the settings in the config.yml file according to your preferences before starting the server.
 **Currently you have to restart the server to load changes in config.**
