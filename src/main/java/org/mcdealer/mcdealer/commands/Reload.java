@@ -4,12 +4,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.mcdealer.mcdealer.MCDealer;
+import org.jetbrains.annotations.NotNull;
 
 public class Reload implements CommandExecutor {
 
-    private final MCDealer plugin;
+    private final @NotNull MCDealer plugin;
 
-    public Reload (MCDealer plugin) {
+    public Reload(MCDealer plugin) {
         this.plugin = plugin;
     }
 

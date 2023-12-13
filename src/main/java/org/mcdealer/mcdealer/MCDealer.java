@@ -6,6 +6,8 @@ import org.mcdealer.mcdealer.commands.Reload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 public class MCDealer extends JavaPlugin {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
@@ -31,9 +33,9 @@ public class MCDealer extends JavaPlugin {
         WebServer webServer = new WebServer(this);
         webServer.RunWebServer();
         logger.info(" [MCDealer] by CptGummiball and Vollmondheuler enabled! ");
-        
-        getCommand("reload").setExecutor(new Reload(this));
-        
+
+        Objects.requireNonNull(getCommand("reload")).setExecutor(new Reload(this));
+
         initScheduler();
     }
 
