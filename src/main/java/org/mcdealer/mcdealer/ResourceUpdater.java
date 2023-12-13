@@ -39,15 +39,32 @@ public class ResourceUpdater extends MCDealer {
         int currentWebFilesVersion = getConfig().getInt("webfilesversion", 0);
         int newWebFilesVersion = YamlConfiguration.loadConfiguration(Objects.requireNonNull(getConfigFromJar())).getInt("webfilesversion", 0);
 
-        if (newWebFilesVersion > currentWebFilesVersion) {
-            // Version difference, update web files
-            logger.info("updating webfiles... ");
+        // Check if the web directory exists in the plugin folder
+        File webFolder = new File(getDataFolder(), "web");
+
+        if (!webFolder.exists() || !webFolder.isDirectory()) {
+            // Web directory not found, transfer all files
+            logger.info("Transferring all web files...");
             copyResources("web/resource_list.txt", "/path/to/destination");
             copyResources("web/assets", "/path/to/destination");
             copyResources("web/assets/favicon/resource_list.txt", "/path/to/destination");
             copyResources("web/assets/items/resource_list.txt", "/path/to/destination");
             copyResources("web/assets/items/joshs-more-foods/resource_list.txt", "/path/to/destination");
             copyResources("web/assets/translations/resource_list.txt", "/path/to/destination");
+
+            // Update the config with the new version
+            getConfig().set("webfilesversion", newWebFilesVersion);
+            saveConfig();
+        } else if (newWebFilesVersion > currentWebFilesVersion) {
+            // Version difference, update web files
+            logger.info("Updating web files... ");
+            copyResources("web/resource_list.txt", "/path/to/destination");
+            copyResources("web/assets", "/path/to/destination");
+            copyResources("web/assets/favicon/resource_list.txt", "/path/to/destination");
+            copyResources("web/assets/items/resource_list.txt", "/path/to/destination");
+            copyResources("web/assets/items/joshs-more-foods/resource_list.txt", "/path/to/destination");
+            copyResources("web/assets/translations/resource_list.txt", "/path/to/destination");
+
             // Update the config with the new version
             getConfig().set("webfilesversion", newWebFilesVersion);
             saveConfig();
