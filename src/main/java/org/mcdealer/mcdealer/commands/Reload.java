@@ -16,13 +16,11 @@ public class Reload implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (label.equalsIgnoreCase("reload")) {
-            // Überprüfe, ob der Absender die erforderlichen Berechtigungen hat (falls erforderlich)
             if (!sender.hasPermission("mcdealer.reload")) {
                 sender.sendMessage("You do not have the required permissions to run this command.");
                 return true;
             }
 
-            // Führe den Befehl aus
             plugin.ConfigUpdater.webConfigUpdater();
             plugin.WebServer.restartWebServer();
             sender.sendMessage("Webserver restarted");
