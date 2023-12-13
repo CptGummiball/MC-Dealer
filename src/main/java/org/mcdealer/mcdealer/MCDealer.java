@@ -20,17 +20,17 @@ public class MCDealer extends JavaPlugin {
         pluginEnabled = true;
 
         // Extracts necessary resources from the JAR file
-        logger.info(" Check resources... ");
         new ResourceUpdater(this).updateConfig();
         new ResourceUpdater(this).updateWebFolder();
 
         // Run Webserver
         new ConfigUpdater(this).webConfigUpdater();
-        logger.info(" Starting Webserver ");
+        logger.info("Starting Webserver");
         WebServer webServer = new WebServer(this);
         webServer.RunWebServer();
-        logger.info(" [MCDealer] by CptGummiball and Vollmondheuler enabled! ");
+        logger.info("[MCDealer] by CptGummiball and Vollmondheuler enabled!");
 
+        // Initialize the scheduler
         initScheduler();
     }
 
@@ -43,7 +43,7 @@ public class MCDealer extends JavaPlugin {
                         // Your existing code here
                         new executePython(this).executePythonScript();
                     } catch (Exception e) {
-                        logger.info(" Converter failed! ");
+                        logger.info("Converter failed!");
                     }
                 }
             }
@@ -55,7 +55,7 @@ public class MCDealer extends JavaPlugin {
 
         new WebServer(this).stopWebServer();
         pluginEnabled = false;
-        logger.info(" [MCDealer] by CptGummiball and Vollmondheuler disabled! ");
+        logger.info("[MCDealer] by CptGummiball and Vollmondheuler disabled!");
 
     }
 }
