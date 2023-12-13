@@ -32,7 +32,7 @@ public class MCDealer extends JavaPlugin {
                 if (pluginEnabled) {
                     try {
                         // Your existing code here
-                        ShopDataConverter.main(new String[]{});
+                        new executePython(this).executePythonScript();
                     } catch (Exception e) {
                         getLogger().info(" Converter failed! ");
                     }
