@@ -1,14 +1,16 @@
 package org.mcdealer.mcdealer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.mcdealer.mcdealer.commands.Reload;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MCDealer extends JavaPlugin {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
+    public org.mcdealer.mcdealer.WebServer WebServer;
+    public org.mcdealer.mcdealer.ConfigUpdater ConfigUpdater;
     private boolean pluginEnabled = false;
     int delayTicks = 300;
     int UpdateInterval = 300;
@@ -29,7 +31,9 @@ public class MCDealer extends JavaPlugin {
         WebServer webServer = new WebServer(this);
         webServer.RunWebServer();
         logger.info(" [MCDealer] by CptGummiball and Vollmondheuler enabled! ");
-
+        
+        getCommand("reload").setExecutor(new Reload(this));
+        
         initScheduler();
     }
 
