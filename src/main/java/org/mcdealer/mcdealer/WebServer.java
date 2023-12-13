@@ -1,5 +1,8 @@
 package org.mcdealer.mcdealer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -10,9 +13,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.file.Files;
-import java.util.logging.Level;
 
 public class WebServer extends MCDealer {
+
+    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
 
     private HttpServer server;
     private final MCDealer plugin;
@@ -39,16 +43,16 @@ public class WebServer extends MCDealer {
             // Start the web server
             server.start();
 
-            getLogger().info(" Webserver started at port " + port);
+            logger.info(" Webserver started at port " + port);
         } catch (IOException e) {
-            getLogger().log(Level.SEVERE, " An error occurred while starting the web server", e);
+            logger.error(" An error occurred while starting the web server", e);
         }
     }
 
     public void stopWebServer() {
         if (server != null) {
             server.stop(0);  // Stop the server with a delay of 0 seconds
-            getLogger().info(" Webserver stopped");
+            logger.info(" Webserver stopped");
         }
     }
 

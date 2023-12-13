@@ -1,9 +1,14 @@
 package org.mcdealer.mcdealer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class MCDealer extends JavaPlugin {
+
+    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
     private boolean pluginEnabled = false;
 
     int delayTicks = 300;
@@ -15,17 +20,17 @@ public class MCDealer extends JavaPlugin {
         pluginEnabled = true;
 
         // Extracts necessary resources from the JAR file
-        this.getLogger().info(" Check resources... ");
+        logger.info(" Check resources... ");
         new ResourceUpdater(this).updateConfig();
         new ResourceUpdater(this).updateWebFolder();
 
         // Run Webserver
         new ConfigUpdater(this).webConfigUpdater();
-        this.getLogger().info(" Starting Webserver ");
+        logger.info(" Starting Webserver ");
         WebServer webServer = new WebServer(this);
         webServer.RunWebServer();
+        logger.info(" [MCDealer] by CptGummiball and Vollmondheuler enabled! ");
 
-        this.getLogger().info(" [MCDealer] by CptGummiball and Vollmondheuler enabled! ");
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -34,7 +39,7 @@ public class MCDealer extends JavaPlugin {
                         // Your existing code here
                         new executePython(this).executePythonScript();
                     } catch (Exception e) {
-                        getLogger().info(" Converter failed! ");
+                        logger.info(" Converter failed! ");
                     }
                 }
             }
@@ -46,7 +51,7 @@ public class MCDealer extends JavaPlugin {
 
         new WebServer(this).stopWebServer();
         pluginEnabled = false;
-        this.getLogger().info(" [MCDealer] by CptGummiball and Vollmondheuler disabled! ");
+        logger.info(" [MCDealer] by CptGummiball and Vollmondheuler disabled! ");
 
     }
 }

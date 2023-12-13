@@ -1,5 +1,8 @@
 package org.mcdealer.mcdealer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -8,6 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 public class ResourceUtils {
+
+    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
 
     public static void copyResources(String sourcePath, String destinationPath) {
         try {
@@ -31,15 +36,15 @@ public class ResourceUtils {
                             Files.createDirectories(destination.getParent());
                             Files.copy(resourceStream, destination, StandardCopyOption.REPLACE_EXISTING);
                         } else {
-                            System.err.println("Resource not found: " + resourceName);
+                            logger.warn("Resource not found: {}", resourceName);
                         }
                     }
                 }
             } else {
-                System.err.println("Resource list not found: " + sourcePath);
+                logger.error("Resource list not found: {}", sourcePath);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error copying resources", e);
         }
     }
 }

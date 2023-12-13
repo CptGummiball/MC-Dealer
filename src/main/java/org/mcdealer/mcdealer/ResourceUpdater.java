@@ -1,15 +1,19 @@
 package org.mcdealer.mcdealer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.Objects;
-import java.util.logging.Level;
 
 import static org.mcdealer.mcdealer.ResourceUtils.copyResources;
 
 public class ResourceUpdater extends MCDealer {
+
+    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
 
     private final MCDealer plugin;
 
@@ -24,7 +28,7 @@ public class ResourceUpdater extends MCDealer {
 
         if (newConfigVersion > currentConfigVersion) {
             // Version difference, update configuration file
-            this.getLogger().info("updating config.yml... ");
+            logger.info("updating config.yml... ");
             plugin.saveResource("config.yml", true);
         }
     }
@@ -37,7 +41,7 @@ public class ResourceUpdater extends MCDealer {
 
         if (newWebFilesVersion > currentWebFilesVersion) {
             // Version difference, update web files
-            this.getLogger().info("updating webfiles... ");
+            logger.info("updating webfiles... ");
             copyResources("web/resource_list.txt", "/path/to/destination");
             copyResources("web/assets", "/path/to/destination");
             copyResources("web/assets/favicon/resource_list.txt", "/path/to/destination");
@@ -56,7 +60,7 @@ public class ResourceUpdater extends MCDealer {
 
         // Check if the resource is null
         if (resource == null) {
-            plugin.getLogger().severe("Unable to find config.yml in the JAR file.");
+            logger.error("Unable to find config.yml in the JAR file.");
             return null;
         }
 
@@ -67,7 +71,7 @@ public class ResourceUpdater extends MCDealer {
             Files.copy(resource, tempConfigFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             resource.close();
         } catch (IOException e) {
-            getLogger().log(Level.SEVERE, "An error occurred while copying config.yml from JAR to temporary directory", e);
+            logger.error("An error occurred while copying config.yml from JAR to temporary directory", e);
             return null;
         }
 

@@ -1,10 +1,17 @@
 package org.mcdealer.mcdealer;
+
 import org.bukkit.scheduler.BukkitRunnable;
+
 import org.python.util.PythonInterpreter;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 
 public class executePython extends MCDealer {
+
+    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
 
     public executePython(BukkitRunnable executePython) {
         super();
@@ -16,7 +23,7 @@ public class executePython extends MCDealer {
 
         try (InputStream scriptStream = getResource(scriptPath)) {
             if (scriptStream == null) {
-                getLogger().warning("\n" + "Python script not found: " + scriptPath);
+                logger.warn("\n" + "Python script not found: " + scriptPath);
                 return;
             }
 
@@ -26,7 +33,7 @@ public class executePython extends MCDealer {
                 pythonInterpreter.execfile(scriptStream);
             }
         } catch (Exception e) {
-            getLogger().warning("Error executing Python script: " + e.getMessage());
+            logger.warn("Error executing Python script: " + e.getMessage());
         }
     }
 }

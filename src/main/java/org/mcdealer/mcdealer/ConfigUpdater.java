@@ -3,10 +3,15 @@ package org.mcdealer.mcdealer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 
 public class ConfigUpdater extends MCDealer {
+
+    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
 
     public ConfigUpdater(MCDealer plugin) {
     }
@@ -40,7 +45,7 @@ public class ConfigUpdater extends MCDealer {
         try {
             jsonConfig.save(configFile);
         } catch (IOException e) {
-            this.getLogger().info(" Json could not be saved ");
+            logger.warn(" Json could not be saved ");
         }
     }
 }
