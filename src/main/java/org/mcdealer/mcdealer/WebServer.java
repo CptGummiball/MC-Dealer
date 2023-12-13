@@ -100,6 +100,5 @@ public class WebServer extends MCDealer {
                 os.write(response.getBytes());
             }
         }
-
     }
 }
