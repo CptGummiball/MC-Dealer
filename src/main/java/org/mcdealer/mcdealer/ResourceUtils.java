@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,21 +14,16 @@ import java.util.Scanner;
 
 public class ResourceUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger("MC Dealer");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
     public static void copyResources(String sourcePath, String destinationPath) {
         try {
             // Get a list of resources with the specified name/pattern
             InputStream resourceListStream = ResourceUtils.class.getClassLoader().getResourceAsStream(sourcePath);
             if (resourceListStream != null) {
-                String[] resourceNames = new String[0];
+                String[] resourceNames;
                 try (Scanner scanner = new Scanner(resourceListStream, StandardCharsets.UTF_8)) {
-                    String resourceListContent = scanner.useDelimiter("\\A").next();
-                    if (!resourceListContent.trim().isEmpty()) {
-                        resourceNames = resourceListContent.split("\n");
-                    } else {
-                        logger.warn("Resource list is empty");
-                    }
+                    resourceNames = scanner.useDelimiter("\\A").next().split("\n");
                 }
 
                 // Copy each resource to the destination path
