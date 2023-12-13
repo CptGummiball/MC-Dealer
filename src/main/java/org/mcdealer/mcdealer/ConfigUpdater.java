@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ConfigUpdater {
 
-    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
     private final MCDealer plugin;
 

@@ -12,7 +12,7 @@ import java.nio.file.StandardCopyOption;
 
 public class ResourceUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger("MC Dealer");
 
     public static void copyResources(String sourcePath, String destinationPath) {
         try {

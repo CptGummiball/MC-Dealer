@@ -13,7 +13,7 @@ import static org.mcdealer.mcdealer.ResourceUtils.copyResources;
 
 public class ResourceUpdater extends MCDealer {
 
-    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger("MC Dealer");
 
     private final MCDealer plugin;
 

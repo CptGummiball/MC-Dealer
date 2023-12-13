@@ -16,7 +16,7 @@ import java.nio.file.Files;
 
 public class WebServer extends MCDealer {
 
-    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
     private HttpServer server;
     private final MCDealer plugin;

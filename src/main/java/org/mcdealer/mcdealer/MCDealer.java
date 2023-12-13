@@ -2,15 +2,12 @@ package org.mcdealer.mcdealer;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.mcdealer.mcdealer.commands.Reload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Objects;
-
 public class MCDealer extends JavaPlugin {
 
-    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
     public org.mcdealer.mcdealer.WebServer WebServer;
     public org.mcdealer.mcdealer.ConfigUpdater ConfigUpdater;
     private boolean pluginEnabled = false;
@@ -33,8 +30,6 @@ public class MCDealer extends JavaPlugin {
         WebServer webServer = new WebServer(this);
         webServer.RunWebServer();
         logger.info(" [MCDealer] by CptGummiball and Vollmondheuler enabled! ");
-
-        Objects.requireNonNull(getCommand("reload")).setExecutor(new Reload(this));
 
         initScheduler();
     }

@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 public class executePython extends MCDealer {
 
-    private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
     public executePython(BukkitRunnable executePython) {
         super();
