@@ -13,4 +13,5 @@ defaultLanguage: de
 
 #Don't change anything below!
 configversion: 1
+pyscriptversion: 0.7.0
 webfilesversion: 0.7.0
