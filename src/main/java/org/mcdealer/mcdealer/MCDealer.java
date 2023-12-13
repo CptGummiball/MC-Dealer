@@ -31,6 +31,10 @@ public class MCDealer extends JavaPlugin {
         webServer.RunWebServer();
         logger.info(" [MCDealer] by CptGummiball and Vollmondheuler enabled! ");
 
+        initScheduler();
+    }
+
+    private void initScheduler() {
         new BukkitRunnable() {
             @Override
             public void run() {
