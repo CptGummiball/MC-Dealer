@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
 
 public class ResourceUtils {
 
@@ -19,9 +20,14 @@ public class ResourceUtils {
             // Get a list of resources with the specified name/pattern
             InputStream resourceListStream = ResourceUtils.class.getClassLoader().getResourceAsStream(sourcePath);
             if (resourceListStream != null) {
-                String[] resourceNames;
-                try (java.util.Scanner scanner = new java.util.Scanner(resourceListStream, StandardCharsets.UTF_8)) {
-                    resourceNames = scanner.useDelimiter("\\A").next().split("\n");
+                String[] resourceNames = new String[0];
+                try (Scanner scanner = new Scanner(resourceListStream, StandardCharsets.UTF_8)) {
+                    String resourceListContent = scanner.useDelimiter("\\A").next();
+                    if (!resourceListContent.trim().isEmpty()) {
+                        resourceNames = resourceListContent.split("\n");
+                    } else {
+                        logger.warn("Resource list is empty");
+                    }
                 }
 
                 // Copy each resource to the destination path

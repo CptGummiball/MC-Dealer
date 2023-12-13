@@ -45,12 +45,12 @@ public class ResourceUpdater extends MCDealer {
         if (!webFolder.exists() || !webFolder.isDirectory()) {
             // Web directory not found, transfer all files
             logger.info("Transferring all web files...");
-            copyResources("web/resource_list.txt", "/path/to/destination");
-            copyResources("web/assets", "/path/to/destination");
-            copyResources("web/assets/favicon/resource_list.txt", "/path/to/destination");
-            copyResources("web/assets/items/resource_list.txt", "/path/to/destination");
-            copyResources("web/assets/items/joshs-more-foods/resource_list.txt", "/path/to/destination");
-            copyResources("web/assets/translations/resource_list.txt", "/path/to/destination");
+            copyResources("web/resource_list.txt", "web");
+            copyResources("web/assets/resource_list.txt", "web/assets");
+            copyResources("web/assets/favicon/resource_list.txt", "web/assets/favicon");
+            copyResources("web/assets/items/resource_list.txt", "web/assets/items");
+            copyResources("web/assets/items/joshs-more-foods/resource_list.txt", "web/assets/items/joshs-more-foods");
+            copyResources("web/assets/translations/resource_list.txt", "web/assets/translations");
 
             // Update the config with the new version
             getConfig().set("webfilesversion", newWebFilesVersion);
@@ -58,12 +58,12 @@ public class ResourceUpdater extends MCDealer {
         } else if (newWebFilesVersion > currentWebFilesVersion) {
             // Version difference, update web files
             logger.info("Updating web files... ");
-            copyResources("web/resource_list.txt", "/path/to/destination");
-            copyResources("web/assets", "/path/to/destination");
-            copyResources("web/assets/favicon/resource_list.txt", "/path/to/destination");
-            copyResources("web/assets/items/resource_list.txt", "/path/to/destination");
-            copyResources("web/assets/items/joshs-more-foods/resource_list.txt", "/path/to/destination");
-            copyResources("web/assets/translations/resource_list.txt", "/path/to/destination");
+            copyResources("web/resource_list.txt", "web");
+            copyResources("web/assets/resource_list.txt", "web/assets");
+            copyResources("web/assets/favicon/resource_list.txt", "web/assets/favicon");
+            copyResources("web/assets/items/resource_list.txt", "web/assets/items");
+            copyResources("web/assets/items/joshs-more-foods/resource_list.txt", "web/assets/items/joshs-more-foods");
+            copyResources("web/assets/translations/resource_list.txt", "web/assets/translations");
 
             // Update the config with the new version
             getConfig().set("webfilesversion", newWebFilesVersion);
