@@ -9,11 +9,14 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 
-public class ConfigUpdater extends MCDealer {
+public class ConfigUpdater {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceUtils.class);
 
+    private final MCDealer plugin;
+
     public ConfigUpdater(MCDealer plugin) {
+        this.plugin = plugin;
     }
 
     public void webConfigUpdater() {
@@ -29,7 +32,7 @@ public class ConfigUpdater extends MCDealer {
     }
 
     private FileConfiguration loadJsonConfig() {
-        File configFile = new File(getDataFolder(), "/web/assets/config.json");
+        File configFile = new File(plugin.getDataFolder(), "/web/assets/config.json");
         return YamlConfiguration.loadConfiguration(configFile);
     }
 
@@ -41,11 +44,15 @@ public class ConfigUpdater extends MCDealer {
     }
 
     private void saveJsonConfig(FileConfiguration jsonConfig) {
-        File configFile = new File(getDataFolder(), "/web/assets/config.json");
+        File configFile = new File(plugin.getDataFolder(), "/web/assets/config.json");
         try {
             jsonConfig.save(configFile);
         } catch (IOException e) {
             logger.warn(" Json could not be saved ");
         }
+    }
+
+    private FileConfiguration getConfig() {
+        return plugin.getConfig();
     }
 }
