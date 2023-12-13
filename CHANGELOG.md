@@ -10,10 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.0] - 2023-12-12
 
 ### Changed
+- replaced java utils logger with slf4j logger
 - replaced 'author' with 'authors' in plugin.yml
 - replaced 'ShopDataConverter' with 'pythonExecutor' in main class
 - changed version to 0.2.0
 ### Added
+- added dependencies for slf4j logger
 - re-added python script with shorter interpreter
   - python version in config not needed, script is now loaded out of jar
 - added softdepend 'VillagerMarket'
