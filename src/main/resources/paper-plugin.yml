@@ -1,8 +1,13 @@
 name: MCDealer
 authors: [CaptainGummiball, Vollmondheuler]
 description: MCDealer hosts an internal web server to display Villagermarket's shop data
-version: 0.2.0
+version: 0.2.1
 main: org.mcdealer.mcdealer.MCDealer
 softdepend: [VillagerMarket]
 api-version: '1.20'
 load: POSTWORLD
+commands:
+  Reload:
+    description: restarts the webserver
+    usage: /reload
+    permission: mcdealer.reload
