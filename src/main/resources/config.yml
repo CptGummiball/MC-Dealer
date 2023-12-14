@@ -3,6 +3,8 @@
 
 #Port of the Web Server
 web-server-port: 8080
+#How often should the shop data be updated? (in ticks: 20T = 1 second)
+UpdateInterval: 300
 #Currency symbol that is displayed on the website
 currencySymbol: ʗ
 #Position of the Currency Symbol (before/after)

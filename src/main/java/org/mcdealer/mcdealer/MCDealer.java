@@ -10,7 +10,7 @@ public class MCDealer extends JavaPlugin {
     private static final Logger logger = LoggerFactory.getLogger("MCDealer");
     private boolean pluginEnabled = false;
     int delayTicks = 300;
-    int UpdateInterval = 300;
+    private int UpdateInterval;
 
     @Override
     public void onEnable() {
@@ -29,7 +29,17 @@ public class MCDealer extends JavaPlugin {
         logger.info("[MCDealer] by CptGummiball and Vollmondheuler enabled!");
 
         // Initialize the scheduler
+        loadConfig();
         initScheduler();
+    }
+
+    private void loadConfig() {
+        // Load config for UpdateInterval
+        getConfig().options().copyDefaults(true);
+        saveConfig();
+
+        // Lies den Wert von UpdateInterval aus der Konfiguration
+        UpdateInterval = getConfig().getInt("UpdateInterval", 300;
     }
 
     private void initScheduler() {
