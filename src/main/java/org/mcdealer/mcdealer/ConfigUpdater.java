@@ -2,6 +2,7 @@ package org.mcdealer.mcdealer;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
+import org.bukkit.scheduler.BukkitRunnable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
