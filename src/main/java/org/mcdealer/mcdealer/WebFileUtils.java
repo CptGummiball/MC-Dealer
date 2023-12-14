@@ -1514,7 +1514,7 @@ public class WebFileUtils {
             plugin.saveResource("web/assets/favicon/safari-pinned-tab.svg", true);
             plugin.saveResource("web/assets/favicon/site.webmanifest", true);
 
-            logger.info("web files updated");
+            logger.info(ColorUtils.format("&FFE800web files updated"));
         }
     }
 }

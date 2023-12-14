@@ -23,10 +23,10 @@ public class MCDealer extends JavaPlugin {
 
         // Run Webserver
         new ConfigUpdater(this).webConfigUpdater();
-        logger.info("Starting Webserver");
+        logger.info(ColorUtils.format("&#FFE800Starting Webserver"));
         WebServer webServer = new WebServer(this);
         webServer.RunWebServer();
-        logger.info("[MCDealer] by CptGummiball and Vollmondheuler enabled!");
+        logger.info(ColorUtils.format("&#CC00FF[MCDealer] by CptGummiball and Vollmondheuler enabled!"));
 
         // Initialize the scheduler
         loadConfig();
@@ -52,7 +52,7 @@ public class MCDealer extends JavaPlugin {
                         setNewWebSettings();
                         new executePython(this).executePythonScript();
                     } catch (Exception e) {
-                        logger.info("Converter failed!");
+                        logger.error("Converter failed!");
                     }
                 }
             }
@@ -68,7 +68,7 @@ public class MCDealer extends JavaPlugin {
 
         new WebServer(this).stopWebServer();
         pluginEnabled = false;
-        logger.info("[MCDealer] by CptGummiball and Vollmondheuler disabled!");
+        logger.info(ColorUtils.format("&#CC00FF[MCDealer] by CptGummiball and Vollmondheuler disabled!"));
 
     }
 }
