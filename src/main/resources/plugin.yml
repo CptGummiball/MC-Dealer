@@ -6,8 +6,3 @@ main: org.mcdealer.mcdealer.MCDealer
 softdepend: [VillagerMarket]
 api-version: '1.20'
 load: POSTWORLD
-commands:
-  Reload:
-    description: restarts the webserver
-    usage: /reload
-    permission: mcdealer.reload
