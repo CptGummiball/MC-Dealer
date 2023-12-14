@@ -1,4 +1,3 @@
-//TODO fix ConfigSynchronization
 package org.mcdealer.mcdealer;
 
 import org.bukkit.configuration.file.FileConfiguration;
