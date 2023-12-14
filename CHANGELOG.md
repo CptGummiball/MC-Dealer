@@ -6,9 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-## [0.2.1] - 2023-12-13
+## [0.2.4] - 2023-12-14
 
+### Known Issues
+- "Error executing Python script: SyntaxError: no viable alternative at input '\n'"
+  - Working on bugfix
 ### Changed
+- replaced the resource updating method (WebFileUtils)
+  - kept 'ResourceUtils' for later usage
+### Added
+- added yaml lib
+### Removed
+- temporary removed the reload command (caused loading issue)
+### Fixed
+- fixed plugin prefix
+- fixed python utf-8
+
+### TODO
+- take a look at the webserver
+- fix Python
+----------------------------------------------------------------
+## [0.2.1] - 2023-12-13
 
 ### Added
 - added initScheduler void to main class
