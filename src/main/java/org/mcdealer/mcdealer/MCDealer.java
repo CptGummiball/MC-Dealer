@@ -48,6 +48,7 @@ public class MCDealer extends JavaPlugin {
             public void run() {
                 if (pluginEnabled) {
                     try {
+                        loadConfig();
                         new executePython(this).executePythonScript();
                     } catch (Exception e) {
                         logger.info("Converter failed!");
