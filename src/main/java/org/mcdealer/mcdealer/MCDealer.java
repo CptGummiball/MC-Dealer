@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.yaml.snakeyaml.Yaml;
 
 public class MCDealer extends JavaPlugin {
 
@@ -50,7 +51,6 @@ public class MCDealer extends JavaPlugin {
                     try {
                         loadConfig();
                         setNewWebSettings();
-                        new executeShopData(this).run();
                     } catch (Exception e) {
                         logger.error("Converter failed!");
                     }
