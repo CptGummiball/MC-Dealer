@@ -9,10 +9,6 @@ See [mc-dealer-yml2json](https://github.com/wolf128058/mc-dealer-yml2json)
 ## Installation:
 Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spigot, or Paper server.
 
-## ~~Commands and Permissions:~~
-### ~~/mcdealerreload | mcdealer.reload~~
-~~Reloads the MCDealer plugin configuration and restarts the web server.~~
-
 ## Config.yml:
 ### MCDealer Plugin Settings
 
@@ -28,13 +24,16 @@ Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spi
   - Position of the currency symbol (before/after).
 
 
-- defaultLanguage: de 
+- defaultLanguage: 
   - Default language of the website.
 
 
+- UpdateInterval:
+  - How often should the shop data be updated? (in ticks: 20T = 1 second) 
+
+
 ## Important Notes:
-Make sure to configure the settings in the config.yml file according to your preferences before starting the server.
-**Currently you have to restart the server to load changes in config.**
+**Make sure the defined port is open for the server**
 
 ## Support and Issues:
 
