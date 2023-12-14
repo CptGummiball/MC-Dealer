@@ -2,24 +2,27 @@ package org.mcdealer.mcdealer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.Objects;
 
-import static org.mcdealer.mcdealer.ResourceUtils.copyResources;
+import java.io.IOException;
+import java.io.InputStream;
 
-public class ResourceUpdater extends MCDealer {
+public class ResourceUpdater extends MCDealer{
+
+    private final Plugin plugin;
+
+    public ResourceUpdater(JavaPlugin plugin) {
+        this.plugin = plugin;
+    }
 
     private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
-    private final MCDealer plugin;
-
-    public ResourceUpdater(MCDealer plugin) {
-        this.plugin = plugin;
-    }
 
     void updateConfig() {
 
@@ -39,7 +42,8 @@ public class ResourceUpdater extends MCDealer {
     }
 
     void updateWebFolder() {
-        getLogger().info("Checking and updating web folder...");
+        WebFileUtils webFileUtils = new WebFileUtils(this);
+        logger.info("Checking and updating web folder...");
         int currentWebFilesVersion = getConfig().getInt("webfilesversion", 0);
         int newWebFilesVersion = YamlConfiguration.loadConfiguration(getConfigFromJar()).getInt("webfilesversion", 0);
         logger.info("Current web files version: {}", currentWebFilesVersion);
@@ -48,10 +52,10 @@ public class ResourceUpdater extends MCDealer {
         File webFolder = new File(getDataFolder(), "web");
         if (!webFolder.exists() || !webFolder.isDirectory()) {
             getLogger().info("Transferring all web files...");
-            extractFolderFromJar("web");
+            webFileUtils.copy();
         } else if (newWebFilesVersion > currentWebFilesVersion) {
             getLogger().info("Updating web files... ");
-            extractFolderFromJar("web");
+            webFileUtils.copy();
             getConfig().set("webfilesversion", newWebFilesVersion);
             saveConfig();
         }
@@ -82,29 +86,4 @@ public class ResourceUpdater extends MCDealer {
         return tempConfigFile;
     }
 
-    public void extractFolderFromJar(String folderName) {
-        // Get the plugin folder
-        File pluginFolder = getDataFolder();
-
-        // Create the target folder in the plugin directory
-        File targetFolder = new File(pluginFolder, folderName);
-        targetFolder.mkdirs();
-
-        // Get the input stream of the JAR file
-        try {
-            InputStream jarInputStream = getResource(folderName);
-
-            // Check if the folder exists in the JAR
-            if (jarInputStream == null) {
-                getLogger().warning("Folder not found in JAR: " + folderName);
-                return;
-            }
-
-            // Copy the contents of the folder from the JAR to the plugin folder
-            Files.copy(jarInputStream, targetFolder.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
