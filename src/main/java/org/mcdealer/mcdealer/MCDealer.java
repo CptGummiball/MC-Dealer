@@ -50,7 +50,7 @@ public class MCDealer extends JavaPlugin {
                     try {
                         loadConfig();
                         setNewWebSettings();
-                        new executePython(this).executePythonScript();
+                        new executeShopData(this).run();
                     } catch (Exception e) {
                         logger.error("Converter failed!");
                     }
