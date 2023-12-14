@@ -38,7 +38,7 @@ public class MCDealer extends JavaPlugin {
         getConfig().options().copyDefaults(true);
         saveConfig();
 
-        // Lies den Wert von UpdateInterval aus der Konfiguration
+        // Read the value of UpdateInterval from the configuration
         UpdateInterval = getConfig().getInt("UpdateInterval", 300);
     }
 
@@ -48,7 +48,6 @@ public class MCDealer extends JavaPlugin {
             public void run() {
                 if (pluginEnabled) {
                     try {
-                        // Your existing code here
                         new executePython(this).executePythonScript();
                     } catch (Exception e) {
                         logger.info("Converter failed!");
