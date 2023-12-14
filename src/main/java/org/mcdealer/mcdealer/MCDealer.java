@@ -8,8 +8,6 @@ import org.slf4j.LoggerFactory;
 public class MCDealer extends JavaPlugin {
 
     private static final Logger logger = LoggerFactory.getLogger("MCDealer");
-    public org.mcdealer.mcdealer.WebServer WebServer;
-    public org.mcdealer.mcdealer.ConfigUpdater ConfigUpdater;
     private boolean pluginEnabled = false;
     int delayTicks = 300;
     int UpdateInterval = 300;
@@ -20,8 +18,8 @@ public class MCDealer extends JavaPlugin {
         pluginEnabled = true;
 
         // Extracts necessary resources from the JAR file
-        new ResourceUpdater(this).updateConfig();
         new ResourceUpdater(this).updateWebFolder();
+        new ResourceUpdater(this).updateConfig();
 
         // Run Webserver
         new ConfigUpdater(this).webConfigUpdater();
