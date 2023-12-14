@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.5] - 2023-12-14
+## [dev0.2.5] - 2023-12-14
 
 ### Known Issues
 - "Error executing Python script: SyntaxError: no viable alternative at input '\n'"
@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - redone the webconfig updater
   - no longer reformatting the config.json when sync
 -----------------------------------------------------------------
-## [0.2.4] - 2023-12-14
+## [dev0.2.4] - 2023-12-14
 
 ### Known Issues
 - "Error executing Python script: SyntaxError: no viable alternative at input '\n'"
@@ -48,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - take a look at the webserver
 - fix Python
 ----------------------------------------------------------------
-## [0.2.1] - 2023-12-13
+## [dev0.2.1] - 2023-12-13
 
 ### Added
 - added initScheduler void to main class
@@ -57,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ----------------------------------------------------------------
-## [0.2.0] - 2023-12-13
+## [dev0.2.0] - 2023-12-13
 
 ### Changed
 - replaced java utils logger with slf4j logger
@@ -75,7 +75,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - removed ShopDataConverter class (going back to the python way)
 ----------------------------------------------------------------
-## [0.1.6] - 2023-12-12
+## [dev0.1.6] - 2023-12-12
 
 ### Changed
 
@@ -83,7 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - replaced old scheduler
 - removed 'updateinterval' from config (its now 5 minutes and no longer can be changed)
 ----------------------------------------------------------------
-## [0.1.5] - 2023-12-12
+## [dev0.1.5] - 2023-12-12
 
 ### Changed
 
@@ -97,7 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - removed unnecessary prefixes
 - removed josh-more-foods python script (not needed in plugin version)
 ----------------------------------------------------------------
-## [0.1.4] - 2023-12-12
+## [dev0.1.4] - 2023-12-12
 
 ### Changed
 
@@ -110,20 +110,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - deleted reload command (re-add it later)
 ----------------------------------------------------------------
-## [0.1.3] - 2023-12-12
+## [dev0.1.3] - 2023-12-12
 
 ### Changed
 
 - Switched to Spigot for better compatibility
 ----------------------------------------------------------------
-## [0.1.2] - 2023-12-10
+## [dev0.1.2] - 2023-12-10
 
 ### Changed
 
 - reorganized classes
 - reworked everything
 ----------------------------------------------------------------
-## [0.1.1] - 2023-12-10
+## [dev0.1.1] - 2023-12-10
 
 ### Changed
 
@@ -137,7 +137,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - shorten the scheduler
 
 ----------------------------------------------------------------
-## [0.1] - 2023-12-10
+## [dev0.1] - 2023-12-10
 
 ### Added
 
