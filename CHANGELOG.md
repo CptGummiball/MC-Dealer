@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.2.5] - 2023-12-14
+
+### Known Issues
+- "Error executing Python script: SyntaxError: no viable alternative at input '\n'"
+  - Working on bugfix
+### Changed
+- configLoader and WebConfigUpdater are now added to the scheduler
+  - restart or reload no longer needed for configuration changes take place
+### Added
+- re added the UpdateInterval option to config.yml
+  - you can now set the update interval of the shop data
+### Removed
+- removed unnecessary resource lists
+  - they are no longer needed
+- removed 'ResourceUtils'
+- removed reload command from plugin.yml
+  - removed this command temporarily in the last update. Now its complete removed and no longer needed. Config changes now take place when the scheduler runs.
+### Fixed
+- redone the webconfig updater
+  - no longer reformatting the config.json when sync
+-----------------------------------------------------------------
 ## [0.2.4] - 2023-12-14
 
 ### Known Issues

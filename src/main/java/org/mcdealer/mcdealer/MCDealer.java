@@ -49,6 +49,7 @@ public class MCDealer extends JavaPlugin {
                 if (pluginEnabled) {
                     try {
                         loadConfig();
+                        setNewWebSettings();
                         new executePython(this).executePythonScript();
                     } catch (Exception e) {
                         logger.info("Converter failed!");
@@ -56,6 +57,10 @@ public class MCDealer extends JavaPlugin {
                 }
             }
         }.runTaskTimer(this, delayTicks, UpdateInterval);
+    }
+
+    public void setNewWebSettings() {
+        new ConfigUpdater(this).webConfigUpdater();
     }
 
     @Override
