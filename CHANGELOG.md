@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [dev0.2.6] - 2023-12-14
+
+### added
+- added placeholder class for future DataConverter
+### Removed
+- removed jython and python script
+  - jython don't support python3 
+----------------------------------------------------------------
 ## [dev0.2.5] - 2023-12-14
 
 ### Known Issues
