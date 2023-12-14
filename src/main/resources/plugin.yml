@@ -1,7 +1,7 @@
 name: MCDealer
 authors: [CaptainGummiball, Vollmondheuler]
 description: MCDealer hosts an internal web server to display Villagermarket's shop data
-version: 0.2.5
+version: 0.2.6
 main: org.mcdealer.mcdealer.MCDealer
 softdepend: [VillagerMarket]
 api-version: '1.20'
