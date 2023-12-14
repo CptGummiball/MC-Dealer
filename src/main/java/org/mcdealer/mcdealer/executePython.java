@@ -31,7 +31,7 @@ public class executePython extends MCDealer {
             try (PythonInterpreter pythonInterpreter = new PythonInterpreter()) {
                 //Run the Python script
                 pythonInterpreter.exec("import sys");
-                pythonInterpreter.exec("sys.path.append('lib/pyyaml-6.0.1/yaml)");
+                pythonInterpreter.exec("sys.path.append('lib/pyyaml-6.0.1/yaml')");
                 pythonInterpreter.execfile(scriptStream);
             }
         } catch (Exception e) {
