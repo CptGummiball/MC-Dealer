@@ -43,7 +43,7 @@ public class WebServer extends MCDealer {
             // Start the web server
             server.start();
 
-            logger.info(ColorUtils.format("&FFE800Webserver started at port " + port));
+            logger.info("Webserver started at port " + port);
         } catch (IOException e) {
             logger.error(" An error occurred while starting the web server", e);
         }
@@ -52,13 +52,8 @@ public class WebServer extends MCDealer {
     public void stopWebServer() {
         if (server != null) {
             server.stop(0);  // Stop the server with a delay of 0 seconds
-            logger.info(ColorUtils.format("&FFE800Webserver stopped"));
+            logger.info("Webserver stopped");
         }
-    }
-
-    public void restartWebServer() {
-        stopWebServer();
-        RunWebServer();
     }
 
     static class WebHandler implements HttpHandler {

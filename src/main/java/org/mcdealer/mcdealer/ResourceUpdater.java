@@ -26,7 +26,7 @@ public class ResourceUpdater extends MCDealer{
 
     void updateConfig() {
 
-        logger.info(ColorUtils.format("&FFE800Checking config.yml..."));
+        logger.info("Checking config.yml...");
 
         //Loading the current configuration file
         int currentConfigVersion = getConfig().getInt("configversion", 0);
@@ -36,14 +36,14 @@ public class ResourceUpdater extends MCDealer{
 
         if (newConfigVersion > currentConfigVersion) {
             // Version difference, update configuration file
-            logger.info(ColorUtils.format("&FFE800updating config.yml... "));
+            logger.info("updating config.yml... ");
             plugin.saveResource("config.yml", true);
         }
     }
 
     void updateWebFolder() {
         WebFileUtils webFileUtils = new WebFileUtils(this);
-        logger.info(ColorUtils.format("&FFE800Checking and updating web folder..."));
+        logger.info("Checking and updating web folder...");
         int currentWebFilesVersion = getConfig().getInt("webfilesversion", 0);
         int newWebFilesVersion = YamlConfiguration.loadConfiguration(getConfigFromJar()).getInt("webfilesversion", 0);
         logger.info("Current web files version: {}", currentWebFilesVersion);
@@ -51,10 +51,10 @@ public class ResourceUpdater extends MCDealer{
 
         File webFolder = new File(getDataFolder(), "web");
         if (!webFolder.exists() || !webFolder.isDirectory()) {
-            logger.info(ColorUtils.format("&FFE800Transferring all web files..."));
+            logger.info("Transferring all web files...");
             webFileUtils.copy();
         } else if (newWebFilesVersion > currentWebFilesVersion) {
-            logger.info(ColorUtils.format("&FFE800Updating web files... "));
+            logger.info("Updating web files... ");
             webFileUtils.copy();
             getConfig().set("webfilesversion", newWebFilesVersion);
             saveConfig();

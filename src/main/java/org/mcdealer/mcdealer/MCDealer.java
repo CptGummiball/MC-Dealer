@@ -23,10 +23,10 @@ public class MCDealer extends JavaPlugin {
 
         // Run Webserver
         new ConfigUpdater(this).webConfigUpdater();
-        logger.info(ColorUtils.format("&#FFE800Starting Webserver"));
+        logger.info("Starting Webserver");
         WebServer webServer = new WebServer(this);
         webServer.RunWebServer();
-        logger.info(ColorUtils.format("&#CC00FF[MCDealer] by CptGummiball and Vollmondheuler enabled!"));
+        logger.info("[MCDealer] by CptGummiball and Vollmondheuler enabled!");
 
         // Initialize the scheduler
         loadConfig();
@@ -68,7 +68,7 @@ public class MCDealer extends JavaPlugin {
 
         new WebServer(this).stopWebServer();
         pluginEnabled = false;
-        logger.info(ColorUtils.format("&#CC00FF[MCDealer] by CptGummiball and Vollmondheuler disabled!"));
+        logger.info("[MCDealer] by CptGummiball and Vollmondheuler disabled!");
 
     }
 }

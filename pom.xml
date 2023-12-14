@@ -6,7 +6,7 @@
 
   <groupId>org.mcdealer</groupId>
   <artifactId>MCDealer</artifactId>
-  <version>0.2.5</version>
+  <version>0.2.6</version>
   <packaging>jar</packaging>
 
   <name>MCDealer</name>
@@ -103,21 +103,6 @@
           <groupId>org.json</groupId>
           <artifactId>json</artifactId>
           <version>20231013</version>
-      </dependency>
-      <dependency>
-          <groupId>net.kyori</groupId>
-          <artifactId>adventure-api</artifactId>
-          <version>4.14.0</version>
-      </dependency>
-      <dependency>
-          <groupId>net.kyori</groupId>
-          <artifactId>adventure-text-minimessage</artifactId>
-          <version>4.14.0</version>
-      </dependency>
-      <dependency>
-          <groupId>net.kyori</groupId>
-          <artifactId>adventure-text-serializer-legacy</artifactId>
-          <version>4.14.0</version>
       </dependency>
   </dependencies>
 </project>
