@@ -39,7 +39,7 @@ public class MCDealer extends JavaPlugin {
         saveConfig();
 
         // Lies den Wert von UpdateInterval aus der Konfiguration
-        UpdateInterval = getConfig().getInt("UpdateInterval", 300;
+        UpdateInterval = getConfig().getInt("UpdateInterval", 300);
     }
 
     private void initScheduler() {
