@@ -10,7 +10,7 @@ public class LoggerColor extends LayoutBase<ILoggingEvent> {
     public String doLayout(ILoggingEvent event) {
         Level level = event.getLevel();
         String color = switch (level.toInt()) {
-            case Level.INFO_INT -> "\u001B[32m"; // Green fpr INFO
+            case Level.INFO_INT -> "\u001B[32m"; // Green for INFO
             case Level.WARN_INT -> "\u001B[33m"; // Yellow for WARN
             case Level.ERROR_INT -> "\u001B[31m"; // RED for ERROR
             default -> "\u001B[0m"; // Default color
