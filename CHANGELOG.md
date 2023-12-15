@@ -5,8 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Released]
+
+## [1.0.0] - 2023-12-15
+
+- First release
+
 ## [Unreleased]
 
+## [dev0.3.0] - 2023-12-15
+
+### Changed
+- replaced java http with jetty
+### added
+- re added Jython
+- re added Python script
+  - Converted from Python 3 to Python 2
+----------------------------------------------------------------
 ## [dev0.2.7] - 2023-12-15
 
 ### Changed
