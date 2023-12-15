@@ -7,6 +7,7 @@ import org.mcdealer.mcdealer.Utils.HTTP.JettyServer;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import org.mcdealer.mcdealer.Utils.JythonScriptRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,6 +61,7 @@ public class MCDealer extends JavaPlugin {
                     try {
                         loadConfig();
                         setNewWebSettings();
+                        JythonScriptRunner.runPythonScript();
                     } catch (Exception e) {
                         logger.error("Scheduler failed!");
                     }
