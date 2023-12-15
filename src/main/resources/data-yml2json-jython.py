@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# This Python file uses the following encoding: utf-8
 """
 Minecraft Händler-YML zu JSON-Konverter
 
@@ -17,13 +15,8 @@ import traceback
 from datetime import datetime
 import yaml
 
-global LATEST_FILEMODDATE
 LATEST_FILEMODDATE = None
-
-global BEST_OFFERS
 BEST_OFFERS = {}
-
-global BEST_DEMANDS
 BEST_DEMANDS = {}
 
 def clean_minecraft_string(text):
@@ -36,7 +29,7 @@ def read_yaml_files(directory):
     data_dict = {}
     for filename in os.listdir(directory):
         if filename.endswith(".yml"):
-            with open(os.path.join(directory, filename), "r", encoding="utf-8") as file:
+            with open(os.path.join(directory, filename), "rb") as file:
                 data = yaml.safe_load(file)
                 base_filename = os.path.splitext(os.path.basename(filename))[0]
                 uuid = data.get("ownerUUID")
@@ -112,14 +105,14 @@ if __name__ == "__main__":
 
                         elif item_type == "ENCHANTED_BOOK":
                             item_type = (
-                                "ENCHANTED_BOOK_"
-                                + list(offer_data["item"]["meta"]["stored-enchants"])[0]
+                                    "ENCHANTED_BOOK_"
+                                    + list(offer_data["item"]["meta"]["stored-enchants"])[0]
                             )
                             item_index = item_type
 
                         if (
-                            "meta" in offer_data["item"]
-                            and "display-name" in offer_data["item"]["meta"]
+                                "meta" in offer_data["item"]
+                                and "display-name" in offer_data["item"]["meta"]
                         ):
                             json_displayname = json.loads(
                                 offer_data["item"]["meta"]["display-name"]
@@ -150,22 +143,22 @@ if __name__ == "__main__":
 
                         player_offer["price_discount"] = 0
                         if (
-                            "discount" in offer_data
-                            and "amount" in offer_data["discount"]
+                                "discount" in offer_data
+                                and "amount" in offer_data["discount"]
                         ):
                             player_offer["price_discount"] = offer_data["discount"][
                                 "amount"
                             ]
 
                         player_offer["unit_price"] = (
-                            player_offer["price"] / offer_data["amount"]
+                                player_offer["price"] / offer_data["amount"]
                         )
                         player_offer["stock"] = 0
                         player_offer["is_best_price"] = None
 
                         if (
-                            "meta" in offer_data["item"]
-                            and "enchants" in offer_data["item"]["meta"]
+                                "meta" in offer_data["item"]
+                                and "enchants" in offer_data["item"]["meta"]
                         ):
                             player_offer["enchants"] = []
                             for enchantment in offer_data["item"]["meta"]["enchants"]:
@@ -179,16 +172,16 @@ if __name__ == "__main__":
                                 )
 
                         if (
-                            player_shop["shop_type"] == "ADMIN"
-                            and player_offer["exchange_item"] == "money"
+                                player_shop["shop_type"] == "ADMIN"
+                                and player_offer["exchange_item"] == "money"
                         ):
                             discounted_unitprice = player_offer["unit_price"] * (
-                                1 - (player_offer["price_discount"] / 100)
+                                    1 - (player_offer["price_discount"] / 100)
                             )
                             if (
-                                player_offer["item"] not in BEST_OFFERS
-                                or BEST_OFFERS[player_offer["item"]]
-                                > discounted_unitprice
+                                    player_offer["item"] not in BEST_OFFERS
+                                    or BEST_OFFERS[player_offer["item"]]
+                                    > discounted_unitprice
                             ):
                                 BEST_OFFERS[player_offer["item"]] = discounted_unitprice
 
@@ -213,7 +206,7 @@ if __name__ == "__main__":
                             player_demand["price"] = offer_data["price"]["amount"]
 
                         player_demand["unit_price"] = (
-                            player_demand["price"] / offer_data["amount"]
+                                player_demand["price"] / offer_data["amount"]
                         )
                         player_demand["buy_limit"] = offer_data["buy_limit"]
                         player_demand["is_best_price"] = None
@@ -222,10 +215,10 @@ if __name__ == "__main__":
                         player_demands[item_index] = player_demand
 
                         if (
-                            player_demand["exchange_item"] == "money"
-                            and player_demand["item"] not in BEST_DEMANDS
-                            or BEST_DEMANDS[player_demand["item"]]
-                            < player_demand["unit_price"]
+                                player_demand["exchange_item"] == "money"
+                                and player_demand["item"] not in BEST_DEMANDS
+                                or BEST_DEMANDS[player_demand["item"]]
+                                < player_demand["unit_price"]
                         ):
                             BEST_DEMANDS[player_demand["item"]] = player_demand[
                                 "unit_price"
@@ -248,8 +241,8 @@ if __name__ == "__main__":
 
                     elif item_type == "ENCHANTED_BOOK":
                         item_type = (
-                            "ENCHANTED_BOOK_"
-                            + list(stock["meta"]["stored-enchants"])[0]
+                                "ENCHANTED_BOOK_"
+                                + list(stock["meta"]["stored-enchants"])[0]
                         )
                         item_index = item_type
 
@@ -275,20 +268,20 @@ if __name__ == "__main__":
                         best_offers_key = player_offers[stock_key]["item"]
                         player_offers[stock_key]["stock"] = player_stocks[stock_key]
                         discounted_unitprice = player_offers[stock_key][
-                            "unit_price"
-                        ] * (1 - (player_offers[stock_key]["price_discount"] / 100))
+                                                   "unit_price"
+                                               ] * (1 - (player_offers[stock_key]["price_discount"] / 100))
 
                         if (
-                            player_offers[stock_key]["exchange_item"] == "money"
-                            and player_stocks[stock_key] > 0
-                            and best_offers_key not in BEST_OFFERS
-                            or BEST_OFFERS[best_offers_key] > discounted_unitprice
+                                player_offers[stock_key]["exchange_item"] == "money"
+                                and player_stocks[stock_key] > 0
+                                and best_offers_key not in BEST_OFFERS
+                                or BEST_OFFERS[best_offers_key] > discounted_unitprice
                         ):
                             BEST_OFFERS[best_offers_key] = discounted_unitprice
                     if (
-                        stock_key in player_demands
-                        and "buy_limit" in player_demands[stock_key]
-                        and player_shop["shop_type"] == "PLAYER"
+                            stock_key in player_demands
+                            and "buy_limit" in player_demands[stock_key]
+                            and player_shop["shop_type"] == "PLAYER"
                     ):
                         player_demands[stock_key]["buy_limit"] -= player_stocks[
                             stock_key
@@ -307,16 +300,16 @@ if __name__ == "__main__":
         for shop in player_shops["shops"]:
             for offer_key in shop["offers"]:
                 discounted_unitprice = shop["offers"][offer_key]["unit_price"] * (
-                    1 - (shop["offers"][offer_key]["price_discount"] / 100)
+                        1 - (shop["offers"][offer_key]["price_discount"] / 100)
                 )
                 best_offers_key = shop["offers"][offer_key]["item"]
                 if (
-                    (
-                        shop["shop_type"] == "ADMIN"
-                        or shop["offers"][offer_key]["stock"] > 0
-                    )
-                    and best_offers_key in BEST_OFFERS
-                    and discounted_unitprice == BEST_OFFERS[best_offers_key]
+                        (
+                                shop["shop_type"] == "ADMIN"
+                                or shop["offers"][offer_key]["stock"] > 0
+                        )
+                        and best_offers_key in BEST_OFFERS
+                        and discounted_unitprice == BEST_OFFERS[best_offers_key]
                 ):
                     shop["offers"][offer_key]["is_best_price"] = True
                 else:
@@ -325,8 +318,8 @@ if __name__ == "__main__":
             for demand_key in shop["demands"]:
                 best_demands_key = shop["demands"][demand_key]["item"]
                 if (
-                    shop["demands"][best_demands_key]["unit_price"]
-                    == BEST_DEMANDS[best_demands_key]
+                        shop["demands"][best_demands_key]["unit_price"]
+                        == BEST_DEMANDS[best_demands_key]
                 ):
                     shop["demands"][best_demands_key]["is_best_price"] = True
                 else:
