@@ -62,6 +62,7 @@ public class MCDealer extends JavaPlugin {
                         loadConfig();
                         setNewWebSettings();
                         JythonScriptRunner.runPythonScript();
+                        logger.info("Shopdata updated!");
                     } catch (Exception e) {
                         logger.error("Scheduler failed!");
                     }

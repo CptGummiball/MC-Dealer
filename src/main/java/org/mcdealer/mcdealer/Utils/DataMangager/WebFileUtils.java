@@ -43,15 +43,6 @@ public class WebFileUtils {
             plugin.saveResource("web/assets/translations/it.json", true);
             plugin.saveResource("web/assets/translations/pl.json", true);
             plugin.saveResource("web/assets/translations/pt.json", true);
-            plugin.saveResource("web/assets/translations/translations_cn.json", true);
-            plugin.saveResource("web/assets/translations/translations_de.json", true);
-            plugin.saveResource("web/assets/translations/translations_en.json", true);
-            plugin.saveResource("web/assets/translations/translations_es.json", true);
-            plugin.saveResource("web/assets/translations/translations_fr.json", true);
-            plugin.saveResource("web/assets/translations/translations_it.json", true);
-            plugin.saveResource("web/assets/translations/translations_pl.json", true);
-            plugin.saveResource("web/assets/translations/translations_pt.json", true);
-            plugin.saveResource("web/assets/translations/translations_ua.json", true);
             plugin.saveResource("web/assets/translations/ua.json", true);
             plugin.saveResource("web/assets/items/acacia_boat.png", true);
             plugin.saveResource("web/assets/items/acacia_button.png", true);
