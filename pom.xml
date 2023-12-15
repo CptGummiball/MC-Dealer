@@ -6,7 +6,7 @@
 
   <groupId>org.mcdealer</groupId>
   <artifactId>MCDealer</artifactId>
-  <version>0.2.6</version>
+  <version>0.2.7</version>
   <packaging>jar</packaging>
 
   <name>MCDealer</name>
@@ -103,6 +103,21 @@
           <groupId>org.json</groupId>
           <artifactId>json</artifactId>
           <version>20231013</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
+          <version>2.13.0</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.13.4.1</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+          <version>2.13.0</version>
       </dependency>
   </dependencies>
 </project>
