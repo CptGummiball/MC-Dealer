@@ -1,19 +1,20 @@
-package org.mcdealer.mcdealer;
+package org.mcdealer.mcdealer.Utils.DataMangager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.mcdealer.mcdealer.MCDealer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.Objects;
-
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 
-public class ResourceUpdater extends MCDealer{
+public class ResourceUpdater extends MCDealer {
 
     private final Plugin plugin;
 
@@ -24,7 +25,7 @@ public class ResourceUpdater extends MCDealer{
     private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
 
-    void updateConfig() {
+    public void updateConfig() {
 
         logger.info("Checking config.yml...");
 
@@ -41,7 +42,7 @@ public class ResourceUpdater extends MCDealer{
         }
     }
 
-    void updateWebFolder() {
+    public void updateWebFolder() {
         WebFileUtils webFileUtils = new WebFileUtils(this);
         logger.info("Checking and updating web folder...");
         int currentWebFilesVersion = getConfig().getInt("webfilesversion", 0);

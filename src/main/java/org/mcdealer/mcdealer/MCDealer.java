@@ -1,17 +1,22 @@
 package org.mcdealer.mcdealer;
 
+import org.mcdealer.mcdealer.Utils.DataMangager.ResourceUpdater;
+import org.mcdealer.mcdealer.Utils.DataMangager.ConfigUpdater;
+import org.mcdealer.mcdealer.Utils.HTTP.WebServer;
+
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yaml.snakeyaml.Yaml;
 
 public class MCDealer extends JavaPlugin {
 
     private static final Logger logger = LoggerFactory.getLogger("MCDealer");
+
     private boolean pluginEnabled = false;
     int delayTicks = 300;
-    private int UpdateInterval;
+    protected int UpdateInterval;
 
     @Override
     public void onEnable() {
@@ -26,7 +31,7 @@ public class MCDealer extends JavaPlugin {
         new ConfigUpdater(this).webConfigUpdater();
         logger.info("Starting Webserver");
         WebServer webServer = new WebServer(this);
-        webServer.RunWebServer();
+        webServer.runWebServer();
         logger.info("[MCDealer] by CptGummiball and Vollmondheuler enabled!");
 
         // Initialize the scheduler
@@ -52,7 +57,7 @@ public class MCDealer extends JavaPlugin {
                         loadConfig();
                         setNewWebSettings();
                     } catch (Exception e) {
-                        logger.error("Converter failed!");
+                        logger.error("Scheduler failed!");
                     }
                 }
             }

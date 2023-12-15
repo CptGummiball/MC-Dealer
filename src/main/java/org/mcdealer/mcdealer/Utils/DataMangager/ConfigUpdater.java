@@ -1,7 +1,8 @@
-package org.mcdealer.mcdealer;
+package org.mcdealer.mcdealer.Utils.DataMangager;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
+import org.mcdealer.mcdealer.MCDealer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
