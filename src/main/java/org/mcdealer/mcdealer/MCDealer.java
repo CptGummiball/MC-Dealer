@@ -1,6 +1,5 @@
 package org.mcdealer.mcdealer;
 
-import org.bukkit.ChatColor;
 import org.mcdealer.mcdealer.Utils.DataMangager.ResourceUpdater;
 import org.mcdealer.mcdealer.Utils.DataMangager.ConfigUpdater;
 import org.mcdealer.mcdealer.Utils.HTTP.JettyServer;
@@ -10,8 +9,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.logging.Level;
 
 public class MCDealer extends JavaPlugin {
 
