@@ -13,7 +13,7 @@ public class LoggerColor extends LayoutBase<ILoggingEvent> {
             case Level.INFO_INT -> "\u001B[32m"; // Green fpr INFO
             case Level.WARN_INT -> "\u001B[33m"; // Yellow for WARN
             case Level.ERROR_INT -> "\u001B[31m"; // RED for ERROR
-            default -> "\u001B[0m"; // Standardfarbe
+            default -> "\u001B[0m"; // Default color
         };
 
         // Set colors based on log level
