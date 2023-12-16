@@ -10,9 +10,9 @@ currencySymbol: ʗ
 #Position of the Currency Symbol (before/after)
 currencySymbolPosition: after
 #Default language of the website
-defaultLanguage: de
+defaultLanguage: en
 
 
 #Don't change anything below!
 configversion: 1
-webfilesversion: 1
+webfilesversion: 2
