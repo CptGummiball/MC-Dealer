@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [1.0.1] - 2023-12-16
+
+### Added to html front-end
+- Sold out items are highlighted table-rows now.
+- You can toggle hiding this rows.
+
 ## [1.0.0] - 2023-12-15
 
 - First release
