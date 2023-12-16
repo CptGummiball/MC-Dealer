@@ -90,7 +90,7 @@ body {
     width: 100%;
 }
 
-#output-playerIndexContainer{
+#output-playerIndexContainer {
     background-color: #111;
     border: 2px solid #333;
     border-radius: .75rem;
@@ -110,7 +110,7 @@ body {
     color: #0000aa;
 }
 
-#output-adminIndexContainer{
+#output-adminIndexContainer {
     background-color: #111;
     border: 2px solid #333;
     border-radius: .75rem;
@@ -208,6 +208,14 @@ body {
     padding: .75rem;
 }
 
+.shop-container.zero-stock {
+    display: none;
+}
+
+#hideZeroStock {
+    margin-left: 10px;
+}
+
 .shop-info {
     margin-bottom: .75rem;
 }
@@ -278,6 +286,15 @@ tr:nth-child(2n+1) {
     background-color: #1a1a1a;
 }
 
+
+tr.sold-out {
+    background-color: #340e0b;
+}
+
+body.enabled-zero-stock-hiding tr.sold-out {
+    display: none;
+}
+
 .price img {
     margin-left: .5rem;
     vertical-align: bottom;
@@ -297,7 +314,7 @@ tr:nth-child(2n+1) {
     color: red;
 }
 
-.sold-out {
+td.sold-out {
     color: red;
 }
 
