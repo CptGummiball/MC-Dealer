@@ -1,31 +1,34 @@
 name: MCDealer
-authors: [CaptainGummiball, Vollmondheuler]
-description: MCDealer hosts an internal web server to display Villagermarket's shop data
 version: dev1.0.3
 main: org.mcdealer.mcdealer.MCDealer
-softdepend: [VillagerMarket]
 api-version: '1.20'
+description: 'MCDealer hosts an internal web server to display Villagermarket''s shop data'
+authors:
+  - CaptainGummiball
+  - Vollmondheuler
+softdepend:
+  - VillagerMarket
 load: POSTWORLD
 
 commands:
   mcdealer:
-    description: Hauptcommand für den MCDealer.
-    usage: /mcdealer <hideshop|showshop|restart>
+    description: 'Manage MCDealer functionalities'
+    usage: /mcdealer <hideshop|showshop|listhidden|restart>
     permission: mcdealer.use
 
 permissions:
   mcdealer.use:
-    description: Allows access to the /mcdealer command.
+    description: 'Allows access to the /mcdealer command.'
     default: op
   mcdealer.hideshop:
-    description: Allows hiding shops with /mcdealer hideshop.
+    description: 'Allows hiding shops with /mcdealer hideshop.'
     default: op
   mcdealer.showshop:
-    description: Show shops again with /mcdealer showshop.
+    description: 'Show shops again with /mcdealer showshop.'
     default: op
   mcdealer.list:
-    description: Show list of hidden Shops with /mcdealer listhidden.
+    description: 'Show list of hidden Shops with /mcdealer listhidden.'
     default: op
   mcdealer.restart:
-    description: Allows restarting the web server with /mcdealer restart.
+    description: 'Allows restarting the web server with /mcdealer restart.'
     default: op
