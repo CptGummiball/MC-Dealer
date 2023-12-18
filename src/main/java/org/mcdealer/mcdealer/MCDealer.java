@@ -16,7 +16,7 @@ public class MCDealer extends JavaPlugin {
     private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
     private boolean pluginEnabled = false;
-    int delayTicks = 300;
+    int delayTicks = 2400;
     protected int UpdateInterval;
 
     @Override
