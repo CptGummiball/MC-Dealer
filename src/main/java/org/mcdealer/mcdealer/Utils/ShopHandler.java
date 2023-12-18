@@ -1,6 +1,7 @@
 package org.mcdealer.mcdealer.Utils;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -11,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,9 +34,9 @@ public class ShopHandler implements Listener {
         if (villager != null) {
             UUID shopUUID = villager.getUniqueId();
             writeUUIDToFile(shopUUID);
-            player.sendMessage("Shop UUID erfolgreich in die Datei geschrieben.");
+            player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.YELLOW + "Shop is no longer displayed in the shop overview.");
         } else {
-            player.sendMessage("Du schaust nicht auf einen Shop.");
+            player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.YELLOW + "You're not looking at a shop.");
         }
     }
 
@@ -43,9 +45,40 @@ public class ShopHandler implements Listener {
         if (villager != null) {
             UUID shopUUID = villager.getUniqueId();
             removeUUIDFromFile(shopUUID);
-            player.sendMessage("Shop UUID erfolgreich aus der Datei entfernt.");
+            player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.YELLOW + "Shop is now displayed again in the shop overview.");
         } else {
-            player.sendMessage("Du schaust nicht auf einen Shop.");
+            player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.YELLOW + "You're not looking at a shop.");
+        }
+    }
+
+    public void handleCheckHiddenShops(Player player) {
+        File hiddenShopsFile = new File(plugin.getDataFolder(), "web/hidden_shops.json");
+        File outputShopsFile = new File(plugin.getDataFolder(), "web/output.json");
+
+        try (FileReader hiddenReader = new FileReader(hiddenShopsFile);
+             FileReader outputReader = new FileReader(outputShopsFile)) {
+
+            JSONArray hiddenArray = new JSONArray(new JSONTokener(hiddenReader));
+            JSONArray outputArray = new JSONArray(new JSONTokener(outputReader));
+
+            for (int i = 0; i < hiddenArray.length(); i++) {
+                JSONObject hiddenObject = hiddenArray.getJSONObject(i);
+                String hiddenUUID = hiddenObject.getString("shop_uuid");
+
+                for (int j = 0; j < outputArray.length(); j++) {
+                    JSONObject outputObject = outputArray.getJSONObject(j);
+                    String outputUUID = outputObject.getString("shop_uuid");
+
+                    if (hiddenUUID.equals(outputUUID)) {
+                        String shopName = outputObject.getString("shop_name");
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.YELLOW + "Hidden Shops: " + shopName);
+                        break;
+                    }
+                }
+            }
+
+        } catch (IOException | JSONException e) {
+            logger.error("Error checking hidden shops", e);
         }
     }
 
@@ -68,7 +101,7 @@ public class ShopHandler implements Listener {
     }
 
     private void writeUUIDToFile(UUID shopUUID) {
-        File file = new File(plugin.getDataFolder(), "shop_uuids.json");
+        File file = new File(plugin.getDataFolder(), "web/hidden_shops.json");
 
         try (FileReader reader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(reader);
@@ -88,7 +121,7 @@ public class ShopHandler implements Listener {
             } else {
                 Player player = Bukkit.getPlayer(shopUUID);
                 if (player != null) {
-                    player.sendMessage("Dieser Shop ist bereits versteckt.");
+                    player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.YELLOW + "This shop is already hidden in the shop overview.");
                 }
             }
 
@@ -109,7 +142,7 @@ public class ShopHandler implements Listener {
     }
 
     private void removeUUIDFromFile(UUID shopUUID) {
-        File file = new File(plugin.getDataFolder(), "shop_uuids.json");
+        File file = new File(plugin.getDataFolder(), "web/hidden_shops.json");
 
         try (FileReader reader = new FileReader(file);
              BufferedReader bufferedReader = new BufferedReader(reader);

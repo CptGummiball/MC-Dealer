@@ -23,6 +23,9 @@ permissions:
   mcdealer.showshop:
     description: Show shops again with /mcdealer showshop.
     default: op
+  mcdealer.list:
+    description: Show list of hidden Shops with /mcdealer listhidden.
+    default: op
   mcdealer.restart:
     description: Allows restarting the web server with /mcdealer restart.
     default: op
