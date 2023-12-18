@@ -124,6 +124,13 @@ public class MCDealer extends JavaPlugin {
                         player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command.");
                     }
                     break;
+                case "listhidden":
+                    if (player.hasPermission("mcdealer.list")) {
+                        shopHandler.handleCheckHiddenShops(player);
+                    } else {
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command.");
+                    }
+                    break;
                 case "restart":
                     if (player.hasPermission("mcdealer.restart")) {
                         webServerManager.JettyRestart();
