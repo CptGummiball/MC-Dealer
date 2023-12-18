@@ -1,8 +1,28 @@
 name: MCDealer
 authors: [CaptainGummiball, Vollmondheuler]
 description: MCDealer hosts an internal web server to display Villagermarket's shop data
-version: dev1.0.2
+version: dev1.0.3
 main: org.mcdealer.mcdealer.MCDealer
 softdepend: [VillagerMarket]
 api-version: '1.20'
 load: POSTWORLD
+
+commands:
+  mcdealer:
+    description: Hauptcommand für den MCDealer.
+    usage: /mcdealer <hideshop|showshop|restart>
+    permission: mcdealer.use
+
+permissions:
+  mcdealer.use:
+    description: Erlaubt den Zugriff auf den /mcdealer-Command.
+    default: op
+  mcdealer.hideshop:
+    description: Erlaubt das Abrufen von Shop-UUIDs mit /mcdealer hideshop.
+    default: op
+  mcdealer.showshop:
+    description: Erlaubt das Entfernen von Shop-UUIDs mit /mcdealer showshop.
+    default: op
+  mcdealer.restart:
+    description: Erlaubt das Neustarten des Webservers mit /mcdealer restart.
+    default: op
