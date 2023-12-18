@@ -15,14 +15,14 @@ commands:
 
 permissions:
   mcdealer.use:
-    description: Erlaubt den Zugriff auf den /mcdealer-Command.
+    description: Allows access to the /mcdealer command.
     default: op
   mcdealer.hideshop:
-    description: Erlaubt das Abrufen von Shop-UUIDs mit /mcdealer hideshop.
+    description: Allows hiding shops with /mcdealer hideshop.
     default: op
   mcdealer.showshop:
-    description: Erlaubt das Entfernen von Shop-UUIDs mit /mcdealer showshop.
+    description: Show shops again with /mcdealer showshop.
     default: op
   mcdealer.restart:
-    description: Erlaubt das Neustarten des Webservers mit /mcdealer restart.
+    description: Allows restarting the web server with /mcdealer restart.
     default: op
