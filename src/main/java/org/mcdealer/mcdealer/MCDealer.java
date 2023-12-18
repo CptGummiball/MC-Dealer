@@ -1,6 +1,7 @@
 package org.mcdealer.mcdealer;
 
 import org.bukkit.ChatColor;
+import org.jetbrains.annotations.NotNull;
 import org.mcdealer.mcdealer.Utils.HTTP.WebServerManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,9 +33,8 @@ public class MCDealer extends JavaPlugin {
     public void onEnable() {
 
         pluginEnabled = true;
-        ShopHandler ShopHandler = new ShopHandler(this);
-        getServer().getPluginManager().registerEvents(ShopHandler, this);
-
+        shopHandler = new ShopHandler(this);
+        getServer().getPluginManager().registerEvents(shopHandler, this);
 
         // Extracts necessary resources from the JAR file
         new ResourceUpdater(this).updateWebFolder();
@@ -47,6 +47,7 @@ public class MCDealer extends JavaPlugin {
         webServerManager.JettyStart();
         // Register Commands
         getCommand("mcdealer").setExecutor(new MCDealerCommand());
+        // Initialize the scheduler
         logger.info("[MCDealer] by CptGummiball and Vollmondheuler enabled!");
         // Initialize the scheduler
         loadConfig();
@@ -88,8 +89,9 @@ public class MCDealer extends JavaPlugin {
     }
 
     private class MCDealerCommand implements CommandExecutor {
+
         @Override
-        public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
             if (!(sender instanceof Player)) {
                 sender.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "This command can only be used by players.");
                 return true;
