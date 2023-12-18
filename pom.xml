@@ -58,6 +58,10 @@
           <id>sonatype</id>
           <url>https://oss.sonatype.org/content/groups/public/</url>
       </repository>
+      <repository>
+          <id>jitpack.io</id>
+          <url>https://jitpack.io</url>
+      </repository>
   </repositories>
 
   <dependencies>
@@ -133,6 +137,16 @@
           <groupId>org.python</groupId>
           <artifactId>jython-standalone</artifactId>
           <version>2.7.3</version>
+      </dependency>
+      <dependency>
+          <groupId>org.mcdealer</groupId>
+          <artifactId>MCDealer</artifactId>
+          <version>0.1.2</version>
+      </dependency>
+      <dependency>
+          <groupId>com.github.Bestem0r</groupId>
+          <artifactId>VillagerMarket</artifactId>
+          <version>1.10.5</version>
       </dependency>
   </dependencies>
 </project>
