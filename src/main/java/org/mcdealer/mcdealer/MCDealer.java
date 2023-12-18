@@ -1,5 +1,6 @@
 package org.mcdealer.mcdealer;
 
+import org.bukkit.ChatColor;
 import org.mcdealer.mcdealer.Utils.HTTP.WebServerManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,6 +21,7 @@ public class MCDealer extends JavaPlugin {
 
     private static final Logger logger = LoggerFactory.getLogger("MCDealer");
     private WebServerManager webServerManager;
+    private ShopHandler shopHandler;
     private ConfigUpdater configUpdater;
     private boolean pluginEnabled = false;
     int delayTicks = 2400;
@@ -89,48 +91,48 @@ public class MCDealer extends JavaPlugin {
         @Override
         public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
             if (!(sender instanceof Player)) {
-                sender.sendMessage("Dieser Befehl kann nur von Spielern verwendet werden.");
+                sender.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "This command can only be used by players.");
                 return true;
             }
 
             Player player = (Player) sender;
 
-            // Überprüfe die Hauptberechtigung
+            // Check the main permission
             if (!player.hasPermission("mcdealer.use")) {
-                player.sendMessage("Du hast keine Berechtigung für diesen Befehl.");
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command.");
                 return true;
             }
 
             if (args.length == 0) {
-                player.sendMessage("Verwendung: /mcdealer <getshopuuid|removeshopuuid>");
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.YELLOW + "Usage: /mcdealer <getshopuuid|removeshopuuid|restart>");
                 return true;
             }
 
-            // Überprüfe das erste Argument (Suffix) und rufe die entsprechende Methode auf
+            // Check the first argument (suffix) and call the corresponding method
             switch (args[0].toLowerCase()) {
                 case "hideshop":
                     if (player.hasPermission("mcdealer.hideshop")) {
                         shopHandler.handleGetShopUUID(player);
                     } else {
-                        player.sendMessage("Du hast keine Berechtigung, Shop-UUIDs abzurufen.");
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command.");
                     }
                     break;
                 case "showshop":
                     if (player.hasPermission("mcdealer.showshop")) {
                         shopHandler.handleRemoveShopUUID(player);
                     } else {
-                        player.sendMessage("Du hast keine Berechtigung, Shop-UUIDs zu entfernen.");
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command.");
                     }
                     break;
                 case "restart":
                     if (player.hasPermission("mcdealer.restart")) {
                         webServerManager.JettyRestart();
                     } else {
-                        player.sendMessage("Du hast keine Berechtigung, Shop-UUIDs zu entfernen.");
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command");
                     }
                     break;
                 default:
-                    player.sendMessage("Unbekanntes Argument: " + args[0]);
+                    player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "Unknown argument: " + args[0]);
                     break;
             }
 
