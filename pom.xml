@@ -143,10 +143,5 @@
           <artifactId>MCDealer</artifactId>
           <version>0.1.2</version>
       </dependency>
-      <dependency>
-          <groupId>com.github.Bestem0r</groupId>
-          <artifactId>VillagerMarket</artifactId>
-          <version>1.10.5</version>
-      </dependency>
   </dependencies>
 </project>
