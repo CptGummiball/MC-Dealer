@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [dev1.0.4] - 2023-12-19
+
+### Changed
+- rebuild ShopHandler
+- reordered onEnable methode
+- hidden_shops.json will now be generated during hideshop command
+### Fixed
+- commands working now with permissions
+### Removed
+- unused Player Event
+- unused imports
+
+----------------------------------------------------------------
 
 ## [dev1.0.3] - 2023-12-18
 
