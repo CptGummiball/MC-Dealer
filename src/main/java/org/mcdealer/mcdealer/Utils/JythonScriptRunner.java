@@ -1,7 +1,6 @@
 package org.mcdealer.mcdealer.Utils;
 
 import org.python.core.PyException;
-import org.python.core.PySystemState;
 import org.python.util.PythonInterpreter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +12,7 @@ import java.io.InputStreamReader;
 
 public class JythonScriptRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer (JythonScriptRunner)");
     public static void main(String[] args) {
         runPythonScript();
     }
@@ -48,7 +47,7 @@ public class JythonScriptRunner {
             interpreter.exec("if 'main' in globals():\n    main()");
 
         } catch (PyException | IOException e) {
-            logger.error("Failed to run Python Script" + e.getMessage());
+            logger.error("Failed to run Python Script. Error details: {}", e.getMessage());
         } finally {
             // Call cleanup() in the finally block to ensure resources are properly released
             interpreter.cleanup();

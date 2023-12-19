@@ -1,4 +1,4 @@
-package org.mcdealer.mcdealer.Utils.DataMangager;
+package org.mcdealer.mcdealer.Utils.DataManager;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class ConfigUpdater {
 
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer (ConfigUpdater)");
 
     private final MCDealer plugin;
 

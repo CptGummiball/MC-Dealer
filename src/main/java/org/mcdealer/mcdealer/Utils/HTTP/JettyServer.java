@@ -1,17 +1,14 @@
 package org.mcdealer.mcdealer.Utils.HTTP;
 
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
-import org.mcdealer.mcdealer.MCDealer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class JettyServer {
     private static Server server;
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer (Webserver)");
     public static void start(int port) throws Exception {
         server = new Server(port);
 
@@ -39,4 +36,3 @@ public class JettyServer {
         }
     }
 }
-

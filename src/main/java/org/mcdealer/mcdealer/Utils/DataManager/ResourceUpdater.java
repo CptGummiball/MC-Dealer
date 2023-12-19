@@ -1,8 +1,6 @@
-package org.mcdealer.mcdealer.Utils.DataMangager;
+package org.mcdealer.mcdealer.Utils.DataManager;
 
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.mcdealer.mcdealer.MCDealer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,46 +12,49 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 
-public class ResourceUpdater extends MCDealer {
+public class ResourceUpdater {
 
-    private final Plugin plugin;
-    public ResourceUpdater(JavaPlugin plugin) {
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer (ResourceUpdater)");
+    private final MCDealer plugin;
+
+    public ResourceUpdater(MCDealer plugin) {
         this.plugin = plugin;
     }
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
     public void updateConfig() {
-        //Loading the current configuration file
-        int currentConfigVersion = getConfig().getInt("configversion", 0);
+        // Loading the current configuration file
+        int currentConfigVersion = plugin.getConfig().getInt("configversion", 0);
         int newConfigVersion = YamlConfiguration.loadConfiguration(Objects.requireNonNull(getConfigFromJar())).getInt("configversion", 0);
         logger.info("Current config version: {}", currentConfigVersion);
         logger.info("New config version: {}", newConfigVersion);
         // Version difference, update configuration file
         if (newConfigVersion > currentConfigVersion) {
-            logger.info("updating config.yml... ");
+            logger.info("Updating config.yml... ");
             plugin.saveResource("config.yml", true);
         }
     }
+
     public void updateWebFolder() {
-        WebFileUtils webFileUtils = new WebFileUtils(this);
-        int currentWebFilesVersion = getConfig().getInt("webfilesversion", 0);
+        WebFileUtils webFileUtils = new WebFileUtils(plugin);
+        int currentWebFilesVersion = plugin.getConfig().getInt("webfilesversion", 0);
         int newWebFilesVersion = YamlConfiguration.loadConfiguration(getConfigFromJar()).getInt("webfilesversion", 0);
         logger.info("Current web files version: {}", currentWebFilesVersion);
         logger.info("New web files version: {}", newWebFilesVersion);
-        File webFolder = new File(getDataFolder(), "web");
+        File webFolder = new File(plugin.getDataFolder(), "web");
         if (!webFolder.exists() || !webFolder.isDirectory()) {
             logger.info("Transferring all web files...");
             webFileUtils.copy();
         } else if (newWebFilesVersion > currentWebFilesVersion) {
             logger.info("Updating web files... ");
             webFileUtils.copy();
-            getConfig().set("webfilesversion", newWebFilesVersion);
-            saveConfig();
+            plugin.getConfig().set("webfilesversion", newWebFilesVersion);
+            plugin.saveConfig();
         }
     }
+
     private File getConfigFromJar() {
         // Loading the "config.yml" from the JAR file
-        InputStream resource = getResource("config.yml");
+        InputStream resource = plugin.getResource("config.yml");
         // Check if the resource is null
         if (resource == null) {
             logger.error("Unable to find config.yml in the JAR file.");
@@ -66,7 +67,7 @@ public class ResourceUpdater extends MCDealer {
             Files.copy(resource, tempConfigFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             resource.close();
         } catch (IOException e) {
-            logger.error("An error occurred while copying config.yml from JAR to temporary directory", e);
+            logger.error("An error occurred while copying config.yml from JAR to a temporary directory", e);
             return null;
         }
         // Load the "config.yml" from the temporary directory

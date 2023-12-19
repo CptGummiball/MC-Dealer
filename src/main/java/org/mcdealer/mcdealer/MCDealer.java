@@ -10,8 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import org.mcdealer.mcdealer.Utils.DataMangager.ResourceUpdater;
-import org.mcdealer.mcdealer.Utils.DataMangager.ConfigUpdater;
+import org.mcdealer.mcdealer.Utils.DataManager.ResourceUpdater;
+import org.mcdealer.mcdealer.Utils.DataManager.ConfigUpdater;
 import org.mcdealer.mcdealer.Utils.JythonScriptRunner;
 import org.mcdealer.mcdealer.Utils.ShopHandler;
 
@@ -28,37 +28,44 @@ public class MCDealer extends JavaPlugin {
     int delayTicks = 2400;
     protected int UpdateInterval;
 
-
     @Override
     public void onEnable() {
-
         pluginEnabled = true;
-        shopHandler = new ShopHandler(this);
-        getServer().getPluginManager().registerEvents(shopHandler, this);
 
+        // Load config
+        loadConfig();
         // Extracts necessary resources from the JAR file
         new ResourceUpdater(this).updateWebFolder();
         new ResourceUpdater(this).updateConfig();
+
+        // Initialize other components
+        shopHandler = new ShopHandler(this);
+        getServer().getPluginManager().registerEvents(shopHandler, this);
+        webServerManager = new WebServerManager(this);
+
         // Run Webserver
         logger.info("Starting Webserver");
         configUpdater = new ConfigUpdater(this);
         configUpdater.webConfigUpdater();
-        webServerManager = new WebServerManager(this);
-        webServerManager.JettyStart();
+        webServerManager.jettyStart();
+
         // Register Commands
-        getCommand("mcdealer").setExecutor(new MCDealerCommand());
-        // Initialize the scheduler
+        registerCommands();
+
         logger.info("[MCDealer] by CptGummiball and Vollmondheuler enabled!");
         // Initialize the scheduler
         loadConfig();
         initScheduler();
     }
 
+
     @Override
     public void onDisable() {
 
         pluginEnabled = false;
-        webServerManager.JettyStop();
+        if (webServerManager != null) {
+            webServerManager.jettyStop();
+        }
         logger.info("[MCDealer] by CptGummiball and Vollmondheuler disabled!");
     }
 
@@ -85,7 +92,7 @@ public class MCDealer extends JavaPlugin {
                     }
                 }
             }
-        }.runTaskTimer(this, delayTicks, UpdateInterval);
+        }.runTaskTimerAsynchronously(this, delayTicks, UpdateInterval);
     }
 
     private class MCDealerCommand implements CommandExecutor {
@@ -101,12 +108,12 @@ public class MCDealer extends JavaPlugin {
 
             // Check the main permission
             if (!player.hasPermission("mcdealer.use")) {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command.");
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "You do not have permission for this command.");
                 return true;
             }
 
             if (args.length == 0) {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.YELLOW + "Usage: /mcdealer <getshopuuid|removeshopuuid|restart>");
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.YELLOW + "Usage: /mcdealer <hideshop|showshop|listhidden|restart>");
                 return true;
             }
 
@@ -116,36 +123,42 @@ public class MCDealer extends JavaPlugin {
                     if (player.hasPermission("mcdealer.hideshop")) {
                         shopHandler.handleGetShopUUID(player);
                     } else {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command.");
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "You do not have permission for this command.");
                     }
                     break;
                 case "showshop":
                     if (player.hasPermission("mcdealer.showshop")) {
                         shopHandler.handleRemoveShopUUID(player);
                     } else {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command.");
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "You do not have permission for this command.");
                     }
                     break;
                 case "listhidden":
                     if (player.hasPermission("mcdealer.list")) {
                         shopHandler.handleCheckHiddenShops(player);
                     } else {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command.");
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "You do not have permission for this command.");
                     }
                     break;
                 case "restart":
                     if (player.hasPermission("mcdealer.restart")) {
-                        webServerManager.JettyRestart();
+                        webServerManager.jettyRestart();
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.YELLOW + "Restarting Webserver...");
                     } else {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "You do not have permission for this command");
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "You do not have permission for this command");
                     }
                     break;
                 default:
-                    player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "Unknown argument: " + args[0]);
+                    player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "Unknown argument: " + args[0]);
                     break;
             }
 
             return true;
         }
     }
+
+    private void registerCommands() {
+        getCommand("mcdealer").setExecutor(new MCDealerCommand());
+    }
 }
+
