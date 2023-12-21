@@ -5,37 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [dev1.0.4] - 2023-12-19
 
-### Changed
-- rebuild ShopHandler
-- reordered onEnable methode
-- hidden_shops.json will now be generated during hideshop command
-### Fixed
-- commands working now with permissions
-### Removed
-- unused Player Event
-- unused imports
-
-----------------------------------------------------------------
-
-## [dev1.0.3] - 2023-12-18
+## [dev1.1.0] - 2023-12-18 - 2023-12-19
 
 ### Changed
 - cleaned up code
 ### Added
+- Translator (For ingame messages)
+- Translation Files
+- rebuild ShopHandler
+- reordered onEnable methode
+- hidden_shops.json will now be generated during hideshop command
 - added Commands (hideshop/showshop/restart)
 - added new Classes (ShopHandler/WebServerManager)
 - added restart script
-### Fixed
-- reformatted plugin.ymls
-
-----------------------------------------------------------------
-## [dev1.0.2] - 2023-12-18
-
-### Changed
-
 - extend the delay for starting first script run
+### Fixed
+- config comments
+- commands working now with permissions
+- reformatted plugin.ymls
+### Removed
+- unused Player Event
+- unused imports
 
 ----------------------------------------------------------------
 
