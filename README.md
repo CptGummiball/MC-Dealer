@@ -40,24 +40,12 @@ Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spi
 
 
 ## Permissions:
-- mcdealer.use:
-  description: 'Allows general access to the /mcdealer command.'
-  default: op
-- mcdealer.hideshop:
-  description: 'Allows hiding your shops with /mcdealer hideshop.'
-  default: op
-- mcdealer.showshop:
-  description: 'Show your shops again with /mcdealer showshop.'
-  default: op
-- mcdealer.list:
-  description: 'Show list of all hidden Shops with /mcdealer listhidden.'
-  default: op
-- mcdealer.restart:
-  description: 'Allows restarting the web server with /mcdealer restart.'
-  default: op
-- mcdealer.admin:
-  description: 'Allows to use every command.'
-  default: op
+- **mcdealer.use:** 'Allows general access to the /mcdealer command.'
+- **mcdealer.hideshop:** 'Allows hiding your shops with /mcdealer hideshop.'
+- **mcdealer.showshop:** 'Show your shops again with /mcdealer showshop.'
+- **mcdealer.list:** 'Show list of all hidden Shops with /mcdealer listhidden.'
+- **mcdealer.restart:** 'Allows restarting the web server with /mcdealer restart.'
+- **mcdealer.admin:** 'Allows to use every command.'
 
 ## Important Notes:
 **Make sure the defined port is open for the server**
