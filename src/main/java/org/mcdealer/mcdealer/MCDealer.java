@@ -1,6 +1,6 @@
 package org.mcdealer.mcdealer;
 
-import org.bukkit.ChatColor;
+import org.bukkit.entity.Villager;
 import org.jetbrains.annotations.NotNull;
 import org.mcdealer.mcdealer.Utils.HTTP.WebServerManager;
 import org.bukkit.command.Command;
@@ -14,6 +14,7 @@ import org.mcdealer.mcdealer.Utils.DataManager.ResourceUpdater;
 import org.mcdealer.mcdealer.Utils.DataManager.ConfigUpdater;
 import org.mcdealer.mcdealer.Utils.JythonScriptRunner;
 import org.mcdealer.mcdealer.Utils.ShopHandler;
+import org.mcdealer.mcdealer.Utils.Translator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,11 @@ public class MCDealer extends JavaPlugin {
 
         // Load config
         loadConfig();
+
+        // Load languages
+        Translator translator = Translator.getInstance();
+        translator.loadLanguages(this);
+
         // Extracts necessary resources from the JAR file
         new ResourceUpdater(this).updateWebFolder();
         new ResourceUpdater(this).updateConfig();
@@ -72,9 +78,9 @@ public class MCDealer extends JavaPlugin {
     private void loadConfig() {
         // Load config for UpdateInterval
         getConfig().options().copyDefaults(true);
-        saveConfig();
+        saveDefaultConfig();
         // Read the value of UpdateInterval from the configuration
-        UpdateInterval = getConfig().getInt("UpdateInterval", 300);
+        UpdateInterval = getConfig().getInt("UpdateInterval", 6000);
     }
 
     private void initScheduler() {
@@ -99,8 +105,9 @@ public class MCDealer extends JavaPlugin {
 
         @Override
         public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
+            Translator translator = Translator.getInstance();
             if (!(sender instanceof Player)) {
-                sender.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer]" + ChatColor.RED + "This command can only be used by players.");
+                sender.sendMessage(translator.translate("Commands.onlyplayer"));
                 return true;
             }
 
@@ -108,48 +115,68 @@ public class MCDealer extends JavaPlugin {
 
             // Check the main permission
             if (!player.hasPermission("mcdealer.use")) {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "You do not have permission for this command.");
+                player.sendMessage(translator.translate("Commands.nopermission"));
                 return true;
             }
 
             if (args.length == 0) {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.YELLOW + "Usage: /mcdealer <hideshop|showshop|listhidden|restart>");
+                player.sendMessage(translator.translate("Commands.args"));
                 return true;
             }
 
             // Check the first argument (suffix) and call the corresponding method
             switch (args[0].toLowerCase()) {
                 case "hideshop":
-                    if (player.hasPermission("mcdealer.hideshop")) {
-                        shopHandler.handleGetShopUUID(player);
+                    if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.hideshop")) {
+                        Villager villager = shopHandler.getTargetVillager(player);
+
+                        if (villager != null) {
+                            if (ShopHandler.isShopOwner(player, villager)) {
+                                shopHandler.handleGetShopUUID(player);
+                            } else {
+                                player.sendMessage(translator.translate("Commands.notshopowner"));
+                            }
+                        } else {
+                            player.sendMessage(translator.translate("Commands.novillagerfound"));
+                        }
                     } else {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "You do not have permission for this command.");
+                        player.sendMessage(translator.translate("Commands.nopermission"));
                     }
                     break;
                 case "showshop":
-                    if (player.hasPermission("mcdealer.showshop")) {
-                        shopHandler.handleRemoveShopUUID(player);
+                    if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.showshop")) {
+                        Villager villager = shopHandler.getTargetVillager(player);
+
+                        if (villager != null) {
+                            if (ShopHandler.isShopOwner(player, villager)) {
+                                shopHandler.handleRemoveShopUUID(player);
+                            } else {
+                                player.sendMessage(translator.translate("Commands.notshopowner"));
+                            }
+                        } else {
+                            player.sendMessage(translator.translate("Commands.novillagerfound"));
+                        }
                     } else {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "You do not have permission for this command.");
+                        player.sendMessage(translator.translate("Commands.nopermission"));
                     }
                     break;
                 case "listhidden":
-                    if (player.hasPermission("mcdealer.list")) {
+                    if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.list")) {
                         shopHandler.handleCheckHiddenShops(player);
                     } else {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "You do not have permission for this command.");
+                        player.sendMessage(translator.translate("Commands.nopermission"));
                     }
                     break;
                 case "restart":
-                    if (player.hasPermission("mcdealer.restart")) {
+                    if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.restart")) {
                         webServerManager.jettyRestart();
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.YELLOW + "Restarting Webserver...");
+                        player.sendMessage(translator.translate("Commands.restart"));
                     } else {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "You do not have permission for this command");
+                        player.sendMessage(translator.translate("Commands.nopermission"));
                     }
                     break;
                 default:
-                    player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.RED + "Unknown argument: " + args[0]);
+                    player.sendMessage(translator.translate("Commands.unknownarg") + args[0]);
                     break;
             }
 
@@ -161,4 +188,3 @@ public class MCDealer extends JavaPlugin {
         getCommand("mcdealer").setExecutor(new MCDealerCommand());
     }
 }
-

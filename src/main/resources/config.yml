@@ -2,15 +2,20 @@
 
 
 #Port of the Web Server
+#Must be an open port. Check with your server provider to find an open port. Most providers have port 8080 open
 web-server-port: 8080
 #How often should the shop data be updated? (in ticks: 20T = 1 second || Default: 6000 = 5 minutes)
+#VillagerMarket updates data every 10 minutes by default
 UpdateInterval: 6000
 #Currency symbol that is displayed on the website
-currencySymbol: ʗ
+currencySymbol: $
 #Position of the Currency Symbol (before/after)
 currencySymbolPosition: after
 #Default language of the website
 defaultLanguage: en
+#Language of the plugins internal messages (cn, de, en, es, fr, it, pl, pt, ua)
+#This only affects in-game messages. Console remains English
+internal-language: en
 
 
 #Don't change anything below!

@@ -15,7 +15,7 @@ public class WebFileUtils {
     public WebFileUtils(JavaPlugin plugin) {
         this.plugin = plugin;
     }
-
+    @SuppressWarnings("SpellCheckingInspection")
     public void copy() {
         {
             plugin.saveResource("web/index.html", true);

@@ -16,22 +16,48 @@ from datetime import datetime
 import yaml
 
 LATEST_FILEMODDATE = None
+
 BEST_OFFERS = {}
 BEST_DEMANDS = {}
+HIDDEN_SHOPS = []
+
 
 def clean_minecraft_string(text):
     # Pattern for Minecraft formatting codes
     pattern = re.compile(r"§[0-9a-fklmnor]")
     return re.sub(pattern, "", text)
 
+
+def read_uuids_from_file(file_path):
+    uuid_list = []
+
+    if os.path.exists(file_path):
+        with open(file_path, "r") as file:
+            try:
+                data = json.load(file)
+                if isinstance(data, list):
+                    uuid_list = [
+                        uuid
+                        for uuid in data
+                        if isinstance(uuid, basestring) and len(uuid) == 36
+                    ]
+            except json.JSONDecodeError:
+                pass
+
+    return uuid_list
+
+
 def read_yaml_files(directory):
     global LATEST_FILEMODDATE
+    global HIDDEN_SHOPS
     data_dict = {}
     for filename in os.listdir(directory):
         if filename.endswith(".yml"):
-            with open(os.path.join(directory, filename), "rb") as file:
+            base_filename = os.path.splitext(os.path.basename(filename))[0]
+            if base_filename in HIDDEN_SHOPS:
+                continue
+            with open(os.path.join(directory, filename), "r") as file:
                 data = yaml.safe_load(file)
-                base_filename = os.path.splitext(os.path.basename(filename))[0]
                 uuid = data.get("ownerUUID")
                 if not uuid:
                     uuid = base_filename
@@ -44,8 +70,10 @@ def read_yaml_files(directory):
                     # print(data)
     return data_dict
 
+
 # Specify the directory with the YAML files
 DIRECTORY_PATH = "./plugins/VillagerMarket/Shops/"
+HIDDEN_SHOPS = read_uuids_from_file("./plugins/MCDealer/web/hidden_shops.json")
 result_dict = read_yaml_files(DIRECTORY_PATH)
 
 if __name__ == "__main__":
@@ -55,6 +83,8 @@ if __name__ == "__main__":
             "shops": [],
         }
         for shop in result_dict:
+            if result_dict[shop]["shop_uuid"] in HIDDEN_SHOPS:
+                continue
             player_shop = {}
 
             # Meta data of the shop
@@ -297,6 +327,7 @@ if __name__ == "__main__":
                 "latestfilemoddate_formatted"
             ] = datetime.fromtimestamp(LATEST_FILEMODDATE).strftime("%Y-%m-%d %H:%M:%S")
 
+        # determine best-prices
         for shop in player_shops["shops"]:
             for offer_key in shop["offers"]:
                 discounted_unitprice = shop["offers"][offer_key]["unit_price"] * (

@@ -17,6 +17,7 @@ public class JythonScriptRunner {
         runPythonScript();
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     public static void runPythonScript() {
         PythonInterpreter interpreter = new PythonInterpreter();
 

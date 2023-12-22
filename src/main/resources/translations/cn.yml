@@ -1,0 +1,16 @@
+ShopHandler:
+  notdisplayed: "&d[MCDealer] &e此商店不再在商店概览中显示！"
+  isdisplayed: "&d[MCDealer] &e此商店现在在商店概览中显示！"
+  alreadyhidden: "&d[MCDealer] &c此商店已经在商店概览中隐藏！"
+  alreadydisplayed: "&d[MCDealer] &c此商店已经在商店概览中显示！"
+  notlooking: "&d[MCDealer] &c你没有看着商店！"
+  hiddenshops: "&d[MCDealer] &e隐藏的商店："
+  nohiddenshops: "&d[MCDealer] &c没有隐藏的商店！"
+Commands:
+  onlyplayer: "&d[MCDealer] &c只有玩家可以执行此命令！"
+  nopermission: "&d[MCDealer] &c您没有执行此命令的权限。"
+  restart: "&d[MCDealer] &a重新启动Web服务器..."
+  args: "&d[MCDealer] &c用法：/mcdealer <hideshop|showshop|listhidden|restart>"
+  unknownarg: "&d[MCDealer] &c未知参数："
+  notshopowner: "&d[MCDealer] &c你不是这家商店的主人！"
+  novillagerfound: "&d[MCDealer] &c商店未准备好进行交互！当前无法获取商店数据。"

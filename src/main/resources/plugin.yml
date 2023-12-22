@@ -18,17 +18,20 @@ commands:
 
 permissions:
   mcdealer.use:
-    description: 'Allows access to the /mcdealer command.'
+    description: 'Allows general access to the /mcdealer command.'
     default: op
   mcdealer.hideshop:
-    description: 'Allows hiding shops with /mcdealer hideshop.'
+    description: 'Allows hiding your shops with /mcdealer hideshop.'
     default: op
   mcdealer.showshop:
-    description: 'Show shops again with /mcdealer showshop.'
+    description: 'Show your shops again with /mcdealer showshop.'
     default: op
   mcdealer.list:
-    description: 'Show list of hidden Shops with /mcdealer listhidden.'
+    description: 'Show list of all hidden Shops with /mcdealer listhidden.'
     default: op
   mcdealer.restart:
     description: 'Allows restarting the web server with /mcdealer restart.'
+    default: op
+  mcdealer.admin:
+    description: 'Allows to use every command.'
     default: op

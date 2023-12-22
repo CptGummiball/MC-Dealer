@@ -1,0 +1,16 @@
+ShopHandler:
+  notdisplayed: "&d[MCDealer] &eDieser Laden wird nicht mehr in der Ladenübersicht angezeigt!"
+  isdisplayed: "&d[MCDealer] &eDieser Laden wird jetzt in der Ladenübersicht angezeigt!"
+  alreadyhidden: "&d[MCDealer] &cDieser Laden ist bereits in der Ladenübersicht versteckt!"
+  alreadydisplayed: "&d[MCDealer] &cDieser Laden wird bereits in der Ladenübersicht angezeigt!"
+  notlooking: "&d[MCDealer] &cDu schaust dir keinen Laden an!"
+  hiddenshops: "&d[MCDealer] &eVersteckte Läden: "
+  nohiddenshops: "&d[MCDealer] &cEs gibt keine versteckten Läden!"
+Commands:
+  onlyplayer: "&d[MCDealer] &cNur Spieler können diesen Befehl ausführen!"
+  nopermission: "&d[MCDealer] &cDu hast keine Berechtigung für diesen Befehl."
+  restart: "&d[MCDealer] &aWebserver wird neu gestartet..."
+  args: "&d[MCDealer] &cVerwendung: /mcdealer <hideshop|showshop|listhidden|restart>"
+  unknownarg: "&d[MCDealer] &cUnbekanntes Argument: "
+  notshopowner: "&d[MCDealer] &cDu bist nicht der Besitzer dieses Ladens!"
+  novillagerfound: "&d[MCDealer] &cLaden nicht bereit für Interaktion! Ladeninformationen sind momentan nicht verfügbar."

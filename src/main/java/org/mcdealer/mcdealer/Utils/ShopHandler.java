@@ -1,6 +1,6 @@
 package org.mcdealer.mcdealer.Utils;
 
-import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -17,6 +17,7 @@ import java.io.*;
 import java.util.Iterator;
 import java.util.UUID;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class ShopHandler implements Listener {
 
     private final JavaPlugin plugin;
@@ -28,38 +29,40 @@ public class ShopHandler implements Listener {
     }
 
     public void handleGetShopUUID(Player player) {
+        Translator translator = Translator.getInstance();
         Villager villager = getTargetVillager(player);
         if (villager != null) {
             UUID shopUUID = villager.getUniqueId();
             if (writeUUIDToFile(shopUUID)) {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.YELLOW + "Shop is no longer displayed in the shop overview.");
+                player.sendMessage(translator.translate("ShopHandler.notdisplayed"));
             } else {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.YELLOW + "This shop is already hidden in the shop overview.");
+                player.sendMessage(translator.translate("ShopHandler.alreadyhidden"));
             }
         } else {
-            player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.YELLOW + "You're not looking at a shop.");
+            player.sendMessage(translator.translate("ShopHandler.notlooking"));
         }
     }
 
     public void handleRemoveShopUUID(Player player) {
+        Translator translator = Translator.getInstance();
         Villager villager = getTargetVillager(player);
         if (villager != null) {
             UUID shopUUID = villager.getUniqueId();
             boolean removed = removeUUIDFromFile(shopUUID);
             if (removed) {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.YELLOW + "Shop is now displayed again in the shop overview.");
+                player.sendMessage(translator.translate("ShopHandler.isdisplayed"));
             } else {
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.YELLOW + "This shop is already visible in the shop overview.");
+                player.sendMessage(translator.translate("ShopHandler.alreadydisplayed"));
             }
         } else {
-            player.sendMessage(ChatColor.LIGHT_PURPLE + "[MCDealer] " + ChatColor.YELLOW + "You're not looking at a shop.");
+            player.sendMessage(translator.translate("ShopHandler.notlooking"));
         }
     }
 
     public void handleCheckHiddenShops(Player player) {
         File hiddenShopsFile = new File(plugin.getDataFolder(), "web/hidden_shops.json");
         File outputShopsFile = new File(plugin.getDataFolder(), "web/output.json");
-
+        Translator translator = Translator.getInstance();
         try (FileReader hiddenReader = new FileReader(hiddenShopsFile);
              FileReader outputReader = new FileReader(outputShopsFile)) {
 
@@ -68,7 +71,7 @@ public class ShopHandler implements Listener {
             JSONArray outputArray = new JSONObject(new JSONTokener(outputReader)).getJSONArray("shops");
 
             // Build the message string
-            StringBuilder message = new StringBuilder(ChatColor.LIGHT_PURPLE + "[MCDealer ]" + ChatColor.YELLOW + " Hidden Shops: ");
+            StringBuilder message = new StringBuilder(translator.translate("ShopHandler.hiddenshops"));
 
             // Iterate through the arrays and compare UUIDs
             for (int i = 0; i < hiddenArray.length(); i++) {
@@ -86,18 +89,18 @@ public class ShopHandler implements Listener {
             }
 
             // Remove the trailing comma and space if shops were found
-            if (message.length() > (ChatColor.LIGHT_PURPLE + "[MCDealer ]" + ChatColor.YELLOW + " Hidden Shops: ").length()) {
+            if (message.length() > (translator.translate("ShopHandler.hiddenshops")).length()) {
                 message.setLength(message.length() - 2);
             } else {
                 // If no shops were found, provide a different message
-                message.append("No hidden shops found.");
+                message.append(translator.translate("ShopHandler.nohiddenshops"));
             }
 
             // Send the message
             player.sendMessage(message.toString());
 
         } catch (IOException | JSONException e) {
-            logger.error("Error checking hidden shops", e);
+            logger.error("An error occurred while checking for hidden shops! ", e);
         }
     }
 
@@ -111,8 +114,8 @@ public class ShopHandler implements Listener {
         return null; // Return null if shop name is not found
     }
 
-    private Villager getTargetVillager(Player player) {
-        for (Entity entity : player.getNearbyEntities(5, 5, 5)) {
+    public Villager getTargetVillager(Player player) {
+        for (Entity entity : player.getNearbyEntities(2, 2, 2)) {
             if (entity instanceof Villager) {
                 return (Villager) entity;
             }
@@ -163,7 +166,7 @@ public class ShopHandler implements Listener {
                 return false;
             }
         } catch (IOException e) {
-            logger.error("Error writing to file", e);
+            logger.error("Error writing to file ", e);
             return false;
         }
     }
@@ -207,7 +210,7 @@ public class ShopHandler implements Listener {
             // Parse JSON array
             JSONArray jsonArray = new JSONArray(fileContent.toString());
 
-            // Überprüfen, ob die UUID gefunden und entfernt wurde
+            // Verify that the UUID was found and removed
             boolean removed = false;
             Iterator<Object> iterator = jsonArray.iterator();
             while (iterator.hasNext()) {
@@ -227,9 +230,39 @@ public class ShopHandler implements Listener {
             return removed;
 
         } catch (IOException | JSONException e) {
-            logger.error("Fehler beim Aktualisieren von hidden_shops.json", e);
+            logger.error("Failed to update hidden_shops.json", e);
         }
 
         return false;
+    }
+
+    public static boolean isShopOwner(Player player, Villager villager) {
+        // Holen des Datenverzeichnisses des "VillagerMarket"-Plugins
+        File dataFolder = new File("plugins/VillagerMarket/Shops");
+
+        // Erstellen des Verzeichnispfads zur YAML-Datei
+        File shopFile = new File(dataFolder, villager.getUniqueId().toString() + ".yml");
+
+        // Überprüfen, ob die YAML-Datei existiert
+        if (!shopFile.exists()) {
+            return false; // Der Shop existiert nicht
+        }
+
+        // Laden der YAML-Konfiguration
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(shopFile);
+
+        // Überprüfen, ob der Eintrag "type" vorhanden ist und ob es sich um einen Admin-Shop handelt
+        if (config.contains("type") && config.getString("type").equalsIgnoreCase("ADMIN")) {
+            return player.hasPermission("mcdealer.admin");
+        }
+
+        // Überprüfen, ob der Eintrag "ownerUUID" vorhanden ist
+        if (!config.contains("ownerUUID")) {
+            return false; // Der Eintrag "ownerUUID" fehlt
+        }
+
+        // Vergleich der Spieler-UUID mit der in der YAML-Datei gespeicherten UUID
+        UUID ownerUUID = UUID.fromString(config.getString("ownerUUID"));
+        return player.getUniqueId().equals(ownerUUID) || player.hasPermission("mcdealer.admin");
     }
 }

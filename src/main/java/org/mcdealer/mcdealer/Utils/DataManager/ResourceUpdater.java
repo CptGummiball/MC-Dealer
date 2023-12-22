@@ -73,4 +73,19 @@ public class ResourceUpdater {
         // Load the "config.yml" from the temporary directory
         return tempConfigFile;
     }
+
+    private void updateConfigFile() {
+        InputStream jarConfigStream = plugin.getResource("config.yml");
+
+        if (jarConfigStream != null) {
+            File configFile = new File(plugin.getDataFolder(), "config.yml");
+
+            // Manually copy the file from JAR to plugin folder
+            try {
+                Files.copy(jarConfigStream, configFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

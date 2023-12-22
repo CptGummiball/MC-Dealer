@@ -1,0 +1,16 @@
+ShopHandler:
+  notdisplayed: "&d[MCDealer] &eTen sklep nie jest już wyświetlany w przeglądzie sklepów!"
+  isdisplayed: "&d[MCDealer] &eTen sklep jest teraz wyświetlany w przeglądzie sklepów!"
+  alreadyhidden: "&d[MCDealer] &cTen sklep jest już ukryty w przeglądzie sklepów!"
+  alreadydisplayed: "&d[MCDealer] &cTen sklep jest już wyświetlany w przeglądzie sklepów!"
+  notlooking: "&d[MCDealer] &cNie patrzysz na sklep!"
+  hiddenshops: "&d[MCDealer] &eUkryte sklepy: "
+  nohiddenshops: "&d[MCDealer] &cNie ma ukrytych sklepów!"
+Commands:
+  onlyplayer: "&d[MCDealer] &cTylko gracze mogą wykonać to polecenie!"
+  nopermission: "&d[MCDealer] &cNie masz uprawnień do tego polecenia."
+  restart: "&d[MCDealer] &aUruchamianie ponowne serwera internetowego..."
+  args: "&d[MCDealer] &cUżycie: /mcdealer <hideshop|showshop|listhidden|restart>"
+  unknownarg: "&d[MCDealer] &cNieznany argument: "
+  notshopowner: "&d[MCDealer] &cNie jesteś właścicielem tego sklepu!"
+  novillagerfound: "&d[MCDealer] &cSklep nie jest gotowy do interakcji! Dane sklepu są niedostępne w tym momencie."

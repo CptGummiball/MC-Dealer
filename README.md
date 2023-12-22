@@ -14,6 +14,12 @@ Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spi
 
 - web-server-port:
   - Port of the Web Server.
+  - Must be an open port. Check with your server provider to find an open port. Most providers have port 8080 open
+
+
+- UpdateInterval:
+  - How often should the shop data be updated? (in ticks: 20T = 1 second || Default: 6000 = 5 minutes)
+  - VillagerMarket updates data every 10 minutes by default
 
 
 - currencySymbol:
@@ -25,11 +31,14 @@ Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spi
 
 
 - defaultLanguage: 
-  - Default language of the website.
+  - Default language of the website. (cn, de, en, es, fr, it, pl, pt, ua)
 
 
-- UpdateInterval:
-  - How often should the shop data be updated? (in ticks: 20T = 1 second) 
+- internal-language: en
+  - Language of the plugins internal messages (cn, de, en, es, fr, it, pl, pt, ua)
+  - This only affects in-game messages. Console remains English.
+
+
 
 
 ## Important Notes:
