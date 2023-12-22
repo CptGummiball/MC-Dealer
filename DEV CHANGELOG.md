@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - reordered onEnable methode
 - better method to get the targeted VillagerShop
 - targetVillager range set to "2" to avoid gettin the wrong UUID
+  - put click event to later plans (1.2.0?... wait for feedback)
 ### Added
 - Translator (For ingame messages)
 - Translation Files
@@ -22,12 +23,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added new Classes (ShopHandler/WebServerManager)
 - added restart script
 - extend the delay for starting first script run
+- backup configUpdater (not used now)
 ### Fixed
 - config comments
 - commands working now with permissions
 - reformatted plugin.ymls
 - fixed operator issue when using /hideshop and /showshop
   - Shop owner was false here, now there's a workaround with double permission check
+- set UpdateInterval to 6000 ticks by default if config load fails
 ### Removed
 - unused Player Event
 - unused imports
