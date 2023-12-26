@@ -1,4 +1,4 @@
-package org.mcdealer.mcdealer.Utils.DataMangager;
+package org.mcdealer.mcdealer.Utils.DataManager;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -8,14 +8,14 @@ import org.slf4j.LoggerFactory;
 
 public class WebFileUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer (WebFileUtils)");
 
     private final Plugin plugin;
 
     public WebFileUtils(JavaPlugin plugin) {
         this.plugin = plugin;
     }
-
+    @SuppressWarnings("SpellCheckingInspection")
     public void copy() {
         {
             plugin.saveResource("web/index.html", true);

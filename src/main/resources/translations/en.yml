@@ -1,0 +1,18 @@
+ShopHandler:
+  notdisplayed: "&d[MCDealer] &eThis Shop is no longer displayed in the shop overview!"
+  isdisplayed: "&d[MCDealer] &eThis shop is now displayed in the shop overview!"
+  alreadyhidden: "&d[MCDealer] &cThis Shop is already hidden in the shop overview!"
+  alreadydisplayed: "&d[MCDealer] &cThis Shop is already displayed in the shop overview!"
+  notlooking: "&d[MCDealer] &cYou're not looking at a shop!"
+  hiddenshops: "&d[MCDealer] &eHidden Shops: "
+  nohiddenshops: "&d[MCDealer] &cThere are no hidden shops!"
+Commands:
+  onlyplayer: "&d[MCDealer] &cOnly players can execute this command!"
+  nopermission: "&d[MCDealer] &cYou do not have permission for this command."
+  restart: "&d[MCDealer] &aRestarting Webserver..."
+  args: "&d[MCDealer] &cUsage: /mcdealer <hideshop|showshop|listhidden|restart>"
+  unknownarg: "&d[MCDealer] &cUnknown argument: "
+  notshopowner: "&d[MCDealer] &cYou are not the owner of this Shop!"
+  novillagerfound: "&d[MCDealer] &cShop not ready to interact! Shop data is unavailable at this moment."
+  refresh: "&d[MCDealer] &aWebfiles refreshed!"
+  clickhere: "&d[MCDealer] &9Click here to go to the shop overview!"

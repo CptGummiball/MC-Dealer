@@ -1,0 +1,18 @@
+ShopHandler:
+  notdisplayed: "&d[MCDealer] &eЦей магазин більше не відображається в загальному вигляді магазинів!"
+  isdisplayed: "&d[MCDealer] &eЦей магазин тепер відображається в загальному вигляді магазинів!"
+  alreadyhidden: "&d[MCDealer] &cЦей магазин вже прихований в загальному вигляді магазинів!"
+  alreadydisplayed: "&d[MCDealer] &cЦей магазин вже відображається в загальному вигляді магазинів!"
+  notlooking: "&d[MCDealer] &cВи не дивитеся на магазин!"
+  hiddenshops: "&d[MCDealer] &eПриховані магазини: "
+  nohiddenshops: "&d[MCDealer] &cНемає прихованих магазинів!"
+Commands:
+  onlyplayer: "&d[MCDealer] &cЦю команду можуть виконувати лише гравці!"
+  nopermission: "&d[MCDealer] &cУ вас немає дозволу на виконання цієї команди."
+  restart: "&d[MCDealer] &aПерезапуск веб-сервера..."
+  args: "&d[MCDealer] &cВикористання: /mcdealer <hideshop|showshop|listhidden|restart>"
+  unknownarg: "&d[MCDealer] &cНевідомий аргумент: "
+  notshopowner: "&d[MCDealer] &cВи не є власником цього магазину!"
+  novillagerfound: "&d[MCDealer] &cМагазин не готовий до взаємодії! Дані магазину недоступні в даний момент."
+  refresh: "&d[MCDealer] &aОновлено веб-файли!"
+  clickhere: "&d[MCDealer] &9Клацніть тут, щоб перейти до перегляду магазину!"

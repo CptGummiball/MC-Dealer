@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class JettyServer {
     private static Server server;
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer (Webserver)");
     public static void start(int port) throws Exception {
         server = new Server(port);
 

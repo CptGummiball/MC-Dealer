@@ -1,0 +1,18 @@
+ShopHandler:
+  notdisplayed: "&d[MCDealer] &eQuesto negozio non viene più visualizzato nella panoramica del negozio!"
+  isdisplayed: "&d[MCDealer] &eQuesto negozio è ora visualizzato nella panoramica del negozio!"
+  alreadyhidden: "&d[MCDealer] &cQuesto negozio è già nascosto nella panoramica del negozio!"
+  alreadydisplayed: "&d[MCDealer] &cQuesto negozio è già visualizzato nella panoramica del negozio!"
+  notlooking: "&d[MCDealer] &cNon stai guardando un negozio!"
+  hiddenshops: "&d[MCDealer] &eNegozi nascosti: "
+  nohiddenshops: "&d[MCDealer] &cNon ci sono negozi nascosti!"
+Commands:
+  onlyplayer: "&d[MCDealer] &cSolo i giocatori possono eseguire questo comando!"
+  nopermission: "&d[MCDealer] &cNon hai il permesso per questo comando."
+  restart: "&d[MCDealer] &aRiavvio del server web..."
+  args: "&d[MCDealer] &cUtilizzo: /mcdealer <hideshop|showshop|listhidden|restart>"
+  unknownarg: "&d[MCDealer] &cArgomento sconosciuto: "
+  notshopowner: "&d[MCDealer] &cNon sei il proprietario di questo negozio!"
+  novillagerfound: "&d[MCDealer] &cNegozio non pronto per l'interazione! I dati del negozio non sono disponibili in questo momento."
+  refresh: "&d[MCDealer] &aFile Web aggiornati!"
+  clickhere: "&d[MCDealer] &9Clicca qui per andare alla panoramica del negozio!"

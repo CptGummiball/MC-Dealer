@@ -1,0 +1,18 @@
+ShopHandler:
+  notdisplayed: "&d[MCDealer] &eCette boutique n'est plus affichée dans l'aperçu des boutiques !"
+  isdisplayed: "&d[MCDealer] &eCette boutique est maintenant affichée dans l'aperçu des boutiques !"
+  alreadyhidden: "&d[MCDealer] &cCette boutique est déjà masquée dans l'aperçu des boutiques !"
+  alreadydisplayed: "&d[MCDealer] &cCette boutique est déjà affichée dans l'aperçu des boutiques !"
+  notlooking: "&d[MCDealer] &cVous ne regardez pas une boutique !"
+  hiddenshops: "&d[MCDealer] &eBoutiques cachées : "
+  nohiddenshops: "&d[MCDealer] &cIl n'y a pas de boutiques cachées !"
+Commands:
+  onlyplayer: "&d[MCDealer] &cSeuls les joueurs peuvent exécuter cette commande !"
+  nopermission: "&d[MCDealer] &cVous n'avez pas la permission pour cette commande."
+  restart: "&d[MCDealer] &aRedémarrage du serveur web..."
+  args: "&d[MCDealer] &cUtilisation : /mcdealer <hideshop|showshop|listhidden|restart>"
+  unknownarg: "&d[MCDealer] &cArgument inconnu : "
+  notshopowner: "&d[MCDealer] &cVous n'êtes pas le propriétaire de ce magasin !"
+  novillagerfound: "&d[MCDealer] &cMagasin non prêt à interagir ! Les données du magasin ne sont pas disponibles pour le moment."
+  refresh: "&d[MCDealer] &aFichiers Web actualisés !"
+  clickhere: "&d[MCDealer] &9Cliquez ici pour accéder à la vue d'ensemble du magasin !"
