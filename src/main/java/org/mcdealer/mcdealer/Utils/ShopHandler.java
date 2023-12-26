@@ -173,7 +173,7 @@ public class ShopHandler implements Listener {
 
 
     private boolean isUUIDInList(UUID uuid, JSONArray jsonArray) {
-        // Konvertiere die UUID zu einem String, da die JSON-Liste Strings enthält
+        // Convert the UUID to a string since the JSON list contains strings
         String uuidString = uuid.toString();
 
         for (int i = 0; i < jsonArray.length(); i++) {
@@ -194,7 +194,7 @@ public class ShopHandler implements Listener {
 
         try {
             if (!file.exists()) {
-                // Wenn die Datei nicht existiert, gibt es nichts zu entfernen
+                // If the file doesn't exist, there is nothing to remove
                 return false;
             }
 
@@ -237,31 +237,31 @@ public class ShopHandler implements Listener {
     }
 
     public static boolean isShopOwner(Player player, Villager villager) {
-        // Holen des Datenverzeichnisses des "VillagerMarket"-Plugins
+        // Get the data directory of the "VillagerMarket" plugin
         File dataFolder = new File("plugins/VillagerMarket/Shops");
 
-        // Erstellen des Verzeichnispfads zur YAML-Datei
+        // Creating the directory path to the YAML file
         File shopFile = new File(dataFolder, villager.getUniqueId().toString() + ".yml");
 
-        // Überprüfen, ob die YAML-Datei existiert
+        // Check if the YAML file exists
         if (!shopFile.exists()) {
-            return false; // Der Shop existiert nicht
+            return false; // The shop does not exist
         }
 
-        // Laden der YAML-Konfiguration
+        // Loading the YAML configuration
         YamlConfiguration config = YamlConfiguration.loadConfiguration(shopFile);
 
-        // Überprüfen, ob der Eintrag "type" vorhanden ist und ob es sich um einen Admin-Shop handelt
+        // Check whether the entry "type" exists and whether it is an admin shop
         if (config.contains("type") && config.getString("type").equalsIgnoreCase("ADMIN")) {
             return player.hasPermission("mcdealer.admin");
         }
 
-        // Überprüfen, ob der Eintrag "ownerUUID" vorhanden ist
+        // Check if the "ownerUUID" entry exists
         if (!config.contains("ownerUUID")) {
             return false; // Der Eintrag "ownerUUID" fehlt
         }
 
-        // Vergleich der Spieler-UUID mit der in der YAML-Datei gespeicherten UUID
+        //Comparing the player UUID with the UUID stored in the YAML file
         UUID ownerUUID = UUID.fromString(config.getString("ownerUUID"));
         return player.getUniqueId().equals(ownerUUID) || player.hasPermission("mcdealer.admin");
     }

@@ -32,6 +32,12 @@ permissions:
   mcdealer.restart:
     description: 'Allows restarting the web server with /mcdealer restart.'
     default: op
+  mcdealer.refresh:
+    description: 'Allows refreshing the web server files with /mcdealer refresh.'
+    default: op
+  mcdealer.link:
+      description: 'Allows to get a clickable link to the web server address with /mcdealer link.'
+      default: op
   mcdealer.admin:
     description: 'Allows to use every command.'
     default: op

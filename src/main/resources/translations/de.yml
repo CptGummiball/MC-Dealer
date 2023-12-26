@@ -14,3 +14,4 @@ Commands:
   unknownarg: "&d[MCDealer] &cUnbekanntes Argument: "
   notshopowner: "&d[MCDealer] &cDu bist nicht der Besitzer dieses Ladens!"
   novillagerfound: "&d[MCDealer] &cLaden nicht bereit für Interaktion! Ladeninformationen sind momentan nicht verfügbar."
+  refresh: "&d[MCDealer] &aWebdateien aktualisiert!"

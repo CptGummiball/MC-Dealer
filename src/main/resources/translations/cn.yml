@@ -14,3 +14,5 @@ Commands:
   unknownarg: "&d[MCDealer] &c未知参数："
   notshopowner: "&d[MCDealer] &c你不是这家商店的主人！"
   novillagerfound: "&d[MCDealer] &c商店未准备好进行交互！当前无法获取商店数据。"
+  refresh: "&d[MCDealer] &aWeb文件已刷新！"
+  clickhere: "&d[MCDealer] &9点击这里查看商店概览！"

@@ -15,11 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - targetVillager range set to "2" to avoid gettin the wrong UUID
   - put click event to later plans (1.2.0?... wait for feedback)
 ### Added
+- TabCompleter
 - Translator (For ingame messages)
 - Translation Files
 - rebuild ShopHandler
 - hidden_shops.json will now be generated during hideshop command
-- added Commands (hideshop/showshop/restart)
+- added Commands (hideshop/listhidden/showshop/restart/refresh)
 - added new Classes (ShopHandler/WebServerManager)
 - added restart script
 - extend the delay for starting first script run

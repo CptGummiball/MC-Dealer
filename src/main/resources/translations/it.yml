@@ -14,3 +14,5 @@ Commands:
   unknownarg: "&d[MCDealer] &cArgomento sconosciuto: "
   notshopowner: "&d[MCDealer] &cNon sei il proprietario di questo negozio!"
   novillagerfound: "&d[MCDealer] &cNegozio non pronto per l'interazione! I dati del negozio non sono disponibili in questo momento."
+  refresh: "&d[MCDealer] &aFile Web aggiornati!"
+  clickhere: "&d[MCDealer] &9Clicca qui per andare alla panoramica del negozio!"

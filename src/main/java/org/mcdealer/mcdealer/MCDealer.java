@@ -1,8 +1,13 @@
 package org.mcdealer.mcdealer;
 
-import org.bukkit.entity.Villager;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+
 import org.jetbrains.annotations.NotNull;
-import org.mcdealer.mcdealer.Utils.HTTP.WebServerManager;
+
+import org.bukkit.Bukkit;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Villager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,9 +20,14 @@ import org.mcdealer.mcdealer.Utils.DataManager.ConfigUpdater;
 import org.mcdealer.mcdealer.Utils.JythonScriptRunner;
 import org.mcdealer.mcdealer.Utils.ShopHandler;
 import org.mcdealer.mcdealer.Utils.Translator;
+import org.mcdealer.mcdealer.Utils.DataManager.WebFileUtils;
+import org.mcdealer.mcdealer.Utils.HTTP.WebServerManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MCDealer extends JavaPlugin {
 
@@ -25,6 +35,7 @@ public class MCDealer extends JavaPlugin {
     private WebServerManager webServerManager;
     private ShopHandler shopHandler;
     private ConfigUpdater configUpdater;
+    private WebFileUtils webFileUtils;
     private boolean pluginEnabled = false;
     int delayTicks = 2400;
     protected int UpdateInterval;
@@ -32,7 +43,7 @@ public class MCDealer extends JavaPlugin {
     @Override
     public void onEnable() {
         pluginEnabled = true;
-
+        webFileUtils = new WebFileUtils(this);
         // Load config
         loadConfig();
 
@@ -101,7 +112,7 @@ public class MCDealer extends JavaPlugin {
         }.runTaskTimerAsynchronously(this, delayTicks, UpdateInterval);
     }
 
-    private class MCDealerCommand implements CommandExecutor {
+    private class MCDealerCommand implements CommandExecutor, TabCompleter {
 
         @Override
         public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
@@ -175,14 +186,62 @@ public class MCDealer extends JavaPlugin {
                         player.sendMessage(translator.translate("Commands.nopermission"));
                     }
                     break;
+                case "refresh":
+                    if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.refresh")) {
+                        webFileUtils.copy();
+                        player.sendMessage(translator.translate("Commands.refresh"));
+                    } else {
+                        player.sendMessage(translator.translate("Commands.nopermission"));
+                    }
+                    break;
                 default:
                     player.sendMessage(translator.translate("Commands.unknownarg") + args[0]);
+                    break;
+                case "link":
+                    if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.link")) {
+                        String serverIP = Bukkit.getServer().getIp();
+                        int webServerPort = getConfig().getInt("web-server-port");
+
+                        String url = "http://" + serverIP + ":" + webServerPort;
+
+                        String clickMessage = translator.translate("Commands.clickhere");
+
+                        TextComponent clickableUrl = new TextComponent(clickMessage);
+                        clickableUrl.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
+
+                        player.spigot().sendMessage(clickableUrl);
+                    } else {
+                        player.sendMessage(translator.translate("Commands.nopermission"));
+                    }
                     break;
             }
 
             return true;
         }
+        @Override
+        public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String alias, String[] args) {
+            List<String> completions = new ArrayList<>();
+
+            if (args.length == 1) {
+                // Provide tab completion for the first argument
+                String partialCommand = args[0].toLowerCase();
+
+                // Add your command names here
+                List<String> commandNames = List.of("hideshop", "showshop", "listhidden", "restart", "refresh", "link");
+
+                for (String command : commandNames) {
+                    if (command.startsWith(partialCommand)) {
+                        completions.add(command);
+                    }
+                }
+            }
+
+            // You can add more tab completion logic for additional arguments if needed
+
+            return completions;
+        }
     }
+
 
     private void registerCommands() {
         getCommand("mcdealer").setExecutor(new MCDealerCommand());
