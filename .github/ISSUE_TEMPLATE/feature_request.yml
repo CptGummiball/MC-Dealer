@@ -1,0 +1,36 @@
+name: "Bug Report"
+description: "File a bug report"
+title: "[Feature request] <title>"
+labels: ["enhancement"]
+body:
+- type: markdown
+  attributes:
+    value: "## Welcome!"
+- type: markdown
+  attributes:
+    value: |
+      Thanks for taking the time to fill out this feature request!
+- type: dropdown
+  id: typefeature
+  attributes:
+    label: Type of Feature
+    options:
+      - Web Overview
+      - Commands
+      - Language Support
+      - Something else
+  validations:
+    required: true
+- type: textarea
+  id: wanted
+  attributes:
+    label: Which feature do you want?
+  validations:
+    required: true
+- type: textarea
+  id: solution
+  attributes:
+    label: Possible solution
+    description: Do you already have an idea how to implement this feature?
+  validations:
+    required: false
