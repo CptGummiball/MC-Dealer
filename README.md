@@ -12,39 +12,39 @@ Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spi
 ## Config.yml:
 ### MCDealer Plugin Settings
 
-- web-server-port:
+- `web-server-port`:
   - Port of the Web Server.
   - Must be an open port. Check with your server provider to find an open port. Most providers have port 8080 open
 
 
-- UpdateInterval:
+- `UpdateInterval`:
   - How often should the shop data be updated? (in ticks: 20T = 1 second || Default: 6000 = 5 minutes)
   - VillagerMarket updates data every 10 minutes by default
 
 
-- currencySymbol:
+- `currencySymbol`:
   - Currency symbol displayed on the website.
 
 
-- currencySymbolPosition:
+- `currencySymbolPosition`:
   - Position of the currency symbol (before/after).
 
 
-- defaultLanguage: 
+- `defaultLanguage`: 
   - Default language of the website. (cn, de, en, es, fr, it, pl, pt, ua)
 
 
-- internal-language: en
+- `internal-language`:
   - Language of the plugins internal messages (cn, de, en, es, fr, it, pl, pt, ua)
   - This only affects in-game messages. Console remains English.
 
 
 ## Permissions:
-- **mcdealer.use:** 'Allows general access to the /mcdealer command.'
-- **mcdealer.hideshop:** 'Allows hiding your shops with /mcdealer hideshop.'
-- **mcdealer.showshop:** 'Show your shops again with /mcdealer showshop.'
-- **mcdealer.list:** 'Show list of all hidden Shops with /mcdealer listhidden.'
-- **mcdealer.restart:** 'Allows restarting the web server with /mcdealer restart.'
+- **mcdealer.use:** 'Allows general access to the' `/mcdealer` 'command.'
+- **mcdealer.hideshop:** 'Allows hiding your shops with' `/mcdealer hideshop`'.'
+- **mcdealer.showshop:** 'Show your shops again with' `/mcdealer showshop`'.'
+- **mcdealer.list:** 'Show list of all hidden Shops with' `/mcdealer listhidden`'.'
+- **mcdealer.restart:** 'Allows restarting the web server with' `/mcdealer restart`'.'
 - **mcdealer.admin:** 'Allows to use every command.'
 
 ## Important Notes:
