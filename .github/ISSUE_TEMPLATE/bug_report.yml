@@ -2,6 +2,14 @@ name: "Bug"
 description: File a bug/issue
 title: "[BUG] <title>"
 labels: ["Bug"]
+body:
+- type: markdown
+  attributes:
+    value: "## Welcome!"
+- type: markdown
+  attributes:
+    value: |
+      Thanks for taking the time to fill out this bug!
 - type: textarea
   id: behavior
   attributes:
