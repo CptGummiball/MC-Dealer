@@ -36,6 +36,14 @@ body:
       1. See error...
   validations:
     required: false
+- type: input
+  id: servertype
+  attributes:
+    label: Type of Server
+    description: "How often do you or others encounter this bug?"
+    placeholder: "PaperMC"
+  validations:
+    required: true
 - type: textarea
   id: environment
   attributes:
