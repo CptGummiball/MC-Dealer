@@ -10,6 +10,17 @@ body:
   attributes:
     value: |
       Thanks for taking the time to fill out this bug!
+- type: dropdown
+  id: typebug
+  attributes:
+    label: Type of Bug
+    options:
+      - Webfiles
+      - Console Error
+      - Commands
+      - Something else
+  validations:
+    required: true
 - type: textarea
   id: behavior
   attributes:
