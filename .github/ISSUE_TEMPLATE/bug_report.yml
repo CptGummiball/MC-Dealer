@@ -37,31 +37,55 @@ body:
   validations:
     required: false
 - type: input
+  id: pastegg
+  attributes:
+    label: paste.gg Link
+    description: "Please copy your console log to [paste.gg](https://paste.gg) and enter your link here"
+    placeholder: "Whenever I visit the user account page (1-2 times a week)"
+  validations:
+    required: true
+- type: input
   id: servertype
   attributes:
     label: Type of Server
-    description: "How often do you or others encounter this bug?"
-    placeholder: "PaperMC"
+    description: "Spigot/Bukkit/PaperMC #Build"
+    placeholder: "PaperMC #372"
   validations:
     required: true
-- type: textarea
-  id: environment
+- type: input
+  id: minecraft
   attributes:
-    label: Environment
-    description: |
-      examples:
-        - **Type of Server**: PaperMC
-        - **Server Build**: #371
-        - **Minecraft Version**: 1.20.1
-        - **MCDealer Version**: 1.1
-        - **Villager Market Version**: 1.11.6
-    value: |
-        - Type of Server:
-        - Server Build:
-        - Minecraft Version:
-        - MCDealer Version:
-        - Villager Market Version:
-    render: markdown
+    label: Minecraft Version
+    description: "The Version your Server running on"
+    placeholder: "1.20.1"
+  validations:
+    required: true
+- type: input
+  id: mcdealer
+  attributes:
+    label: MCDealer Version
+    description: "Spigot/Bukkit/PaperMC #Build"
+    placeholder: "PaperMC #372"
+  validations:
+    required: true
+- type: dropdown
+  id: villagermarket
+  attributes:
+    label: Villager Market Version
+    options:
+      - 1.11.7
+      - 1.11.6
+      - older version
+  validations:
+    required: true
+- type: dropdown
+  id: mcdealer
+  attributes:
+    label: MCDealer Version
+    options:
+      - 1.2.0
+      - 1.1.0
+      - 1.0.0
   validations:
     required: true
 - type: textarea
