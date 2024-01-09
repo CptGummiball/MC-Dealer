@@ -1,5 +1,5 @@
-name: "Bug Report"
-description: "File a bug report"
+name: "Feature request"
+description: "Request a feature"
 title: "[Feature request] <title>"
 labels: ["enhancement"]
 body:
