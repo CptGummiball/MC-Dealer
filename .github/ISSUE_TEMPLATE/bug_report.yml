@@ -60,14 +60,6 @@ body:
     placeholder: "1.20.1"
   validations:
     required: true
-- type: input
-  id: mcdealer
-  attributes:
-    label: MCDealer Version
-    description: "Spigot/Bukkit/PaperMC #Build"
-    placeholder: "PaperMC #372"
-  validations:
-    required: true
 - type: dropdown
   id: villagermarket
   attributes:
