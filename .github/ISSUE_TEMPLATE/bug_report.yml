@@ -3,18 +3,21 @@ description: File a bug/issue
 title: "[BUG] <title>"
 labels: ["Bug"]
 - type: textarea
+  id: behavior
   attributes:
     label: Current Behavior
     description: A concise description of what you're experiencing.
   validations:
     required: false
 - type: textarea
+  id: expected
   attributes:
     label: Expected Behavior
     description: A concise description of what you expected to happen.
   validations:
     required: false
 - type: textarea
+  id: reproduce
   attributes:
     label: Steps To Reproduce
     description: Steps to reproduce the behavior.
@@ -26,6 +29,7 @@ labels: ["Bug"]
   validations:
     required: false
 - type: textarea
+  id: environment
   attributes:
     label: Environment
     description: |
