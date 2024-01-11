@@ -6,46 +6,38 @@ of the Plugin [Villager Market](https://www.spigotmc.org/resources/villager-mark
 ## Features:
 See [mc-dealer-yml2json](https://github.com/wolf128058/mc-dealer-yml2json)
 
-## Installation:
-Simply place the MCDealer.jar file into the "plugins" folder of your Bukkit, Spigot, or Paper server.
+## USAGE
 
-## Config.yml:
-### MCDealer Plugin Settings
+### Installation:
+1.  Download the latest release JAR file from the  [Releases page](https://github.com/CptGummiball/MC-Dealer/releases).
+2.  Place the downloaded JAR file in the  `plugins`  folder of your Bukkit/Spigot server.
+3.  Start or restart your server.
 
-- `web-server-port`:
-  - Port of the Web Server.
-  - Must be an open port. Check with your server provider to find an open port. Most providers have port 8080 open
+### Configuration:
+1.  Navigate to the  `plugins`  folder and find the  `MCDealer`  folder.
+2.  Open the  `config.yml`  file to configure settings.
 
+#### Configuration Options
+- `web-server-port`: Port of the Web Server. Must be an open port. Check with your server provider to find an open port. Most providers have port 8080 open
 
-- `UpdateInterval`:
-  - How often should the shop data be updated? (in ticks: 20T = 1 second || Default: 6000 = 5 minutes)
-  - VillagerMarket updates data every 10 minutes by default
+- `UpdateInterval`: How often should the shop data be updated? (in ticks: 20T = 1 second || Default: 6000 = 5 minutes). VillagerMarket updates data every 10 minutes by default
 
+- `currencySymbol`: Currency symbol displayed on the website.
 
-- `currencySymbol`:
-  - Currency symbol displayed on the website.
+- `currencySymbolPosition`: Position of the currency symbol (before/after).
 
+- `defaultLanguage`: Default language of the website. (cn, de, en, es, fr, it, pl, pt, ua)
 
-- `currencySymbolPosition`:
-  - Position of the currency symbol (before/after).
+- `internal-language`: Language of the plugins internal messages (cn, de, en, es, fr, it, pl, pt, ua)
 
+### Commands:
 
-- `defaultLanguage`: 
-  - Default language of the website. (cn, de, en, es, fr, it, pl, pt, ua)
-
-
-- `internal-language`:
-  - Language of the plugins internal messages (cn, de, en, es, fr, it, pl, pt, ua)
-  - This only affects in-game messages. Console remains English.
-
-
-## Permissions:
-- **mcdealer.use:** 'Allows general access to the' `/mcdealer` 'command.'
-- **mcdealer.hideshop:** 'Allows hiding your shops with' `/mcdealer hideshop`'.'
-- **mcdealer.showshop:** 'Show your shops again with' `/mcdealer showshop`'.'
-- **mcdealer.list:** 'Show list of all hidden Shops with' `/mcdealer listhidden`'.'
-- **mcdealer.restart:** 'Allows restarting the web server with' `/mcdealer restart`'.'
-- **mcdealer.admin:** 'Allows to use every command.'
+- `/mcdealer`: Allows general access (Permission:  `mcdealer.use`)
+- `/mcdealer hideshop`: Allows hiding your shops (Permission:  `mcdealer.use`)
+- `/mcdealer showshop`: Show your shops again (Permission:  `mcdealer.use`)
+- `/mcdealer listhidden`: Show list of all hidden Shops (Permission:  `mcdealer.use`)
+- `/mcdealer restart`: Allows restarting the web server (Permission:  `mcdealer.use`)
+- The Permission `mcdealer.admin`allows to use every command.'
 
 ## Important Notes:
 **Make sure the defined port is open for the server**
