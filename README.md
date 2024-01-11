@@ -20,6 +20,17 @@ See [mc-dealer-yml2json](https://github.com/wolf128058/mc-dealer-yml2json)
 #### Configuration Options
 - `web-server-port`: Port of the Web Server. Must be an open port. Check with your server provider to find an open port. Most providers have port 8080 open
 
+- `ExternalHost`
+   - `enabled`: enable or disable external hosting
+   - `type`: FTP, FTPS or SFTP
+   - `server`: Your FTP/FTPS/SFTP adress
+   - `port`: Your FTP/FTPS/SFTP port
+   - `username`: Your FTP/FTPS/SFTP username
+   - `password`: Your FTP/FTPS/SFTP password
+   - `remote-path`: Internal Path of your web server
+   - `linktoweb`: Link that will be displayed with `/mcdealer link`
+   - `StrictHostKeyChecking`: Enable(yes) or disable(no) strict host key checking (Only for SFTP)
+
 - `UpdateInterval`: How often should the shop data be updated? (in ticks: 20T = 1 second || Default: 6000 = 5 minutes). VillagerMarket updates data every 10 minutes by default
 
 - `currencySymbol`: Currency symbol displayed on the website.

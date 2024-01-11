@@ -9,8 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [dev1.2.0] - 2024-01-09
 
 ### Changed
+- link command (Custom link in config for external host)
 
 ### Added
+- External host Settings
+- External host deployment Class and methods
 
 ### Fixed
 
