@@ -9,12 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [dev1.2.0] - 2024-01-09
 
 ### Changed
-- link command (Custom link in config for external host)
-
+- Extended link command (Custom link in config for external host)
 ### Added
-- External host Settings
-- External host deployment Class and methods
-
+- [ExternalHost](https://github.com/CptGummiball/MC-Dealer/issues/8) Settings
+- [ExternalHost](https://github.com/CptGummiball/MC-Dealer/issues/8) Deployment class and methods (Uses [SimpleFTPSync](https://github.com/CptGummiball/SimpleFTPSync) API)
+- [ExternalHost](https://github.com/CptGummiball/MC-Dealer/issues/8) Commands
+- [ExternalHost](https://github.com/CptGummiball/MC-Dealer/issues/8) Translations
 ### Fixed
-
+- now including all args in command translations
 ### Removed

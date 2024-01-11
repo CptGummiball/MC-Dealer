@@ -44,12 +44,16 @@ See [mc-dealer-yml2json](https://github.com/wolf128058/mc-dealer-yml2json)
 ### Commands:
 
 - `/mcdealer`: Allows general access (Permission:  `mcdealer.use`)
-- `/mcdealer hideshop`: Allows hiding your shops (Permission:  `mcdealer.use`)
-- `/mcdealer showshop`: Show your shops again (Permission:  `mcdealer.use`)
-- `/mcdealer listhidden`: Show list of all hidden Shops (Permission:  `mcdealer.use`)
-- `/mcdealer restart`: Allows restarting the web server (Permission:  `mcdealer.use`)
+- `/mcdealer hideshop`: Allows hiding your shops (Permission:  `mcdealer.hideshop`)
+- `/mcdealer showshop`: Show your shops again (Permission:  `mcdealer.showshop`)
+- `/mcdealer listhidden`: Show list of all hidden Shops (Permission:  `mcdealer.list`)
+- `/mcdealer restart`: Allows restarting the web server (Permission:  `mcdealer.restart`)
+- `/mcdealer refresh`Allows refreshing the internal web server files if something goes wrong (Permission: `mcdealer.refresh`)
+- `/mcdealer uploadall`: Allows to upload webfiles to external host (Permission: `mcdealer.uploadall`)
 - The Permission `mcdealer.admin`allows to use every command.'
 
+### Using external Host for Webfiles
+Make shure you set up the ExternalHost Settings correctly and run `/mcdealer uploadall` one time (after first install)
 ## Important Notes:
 **Make sure the defined port is open for the server**
 
