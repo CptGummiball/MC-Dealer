@@ -1,9 +1,22 @@
 #MCDealer Plugin Settings
 
-
-#Port of the Web Server
+#Port of the Web Server (Default: 8080)
 #Must be an open port. Check with your server provider to find an open port. Most providers have port 8080 open
+# Internal web server will be deactivated when ExternalHost is enabled
 web-server-port: 8080
+
+#Enable/Disable external host. (Default: false)
+ExternalHost:
+  enabled: false
+  type: "FTP" #FTP, FTPS or SFTP
+  server: "ftp.example.com"
+  port: 21
+  username: "your-ftp-username"
+  password: "your-ftp-password"
+  remote-path: "/path/on/ftp/server"
+  linktoweb: "" #Link that will be displayed with /mcdealer link
+  StrictHostKeyChecking: "yes" #Enable(yes) or disable(no) strict host key checking (Only for SFTP)
+
 #How often should the shop data be updated? (in ticks: 20T = 1 second || Default: 6000 = 5 minutes)
 #VillagerMarket updates data every 10 minutes by default
 UpdateInterval: 6000
@@ -19,5 +32,5 @@ internal-language: en
 
 
 #Don't change anything below!
-configversion: 2
-webfilesversion: 3
+configversion: 3
+webfilesversion: 4

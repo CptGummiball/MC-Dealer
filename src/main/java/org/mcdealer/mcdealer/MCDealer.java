@@ -1,5 +1,7 @@
 package org.mcdealer.mcdealer;
 
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.SftpException;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 
@@ -22,10 +24,12 @@ import org.mcdealer.mcdealer.Utils.ShopHandler;
 import org.mcdealer.mcdealer.Utils.Translator;
 import org.mcdealer.mcdealer.Utils.DataManager.WebFileUtils;
 import org.mcdealer.mcdealer.Utils.HTTP.WebServerManager;
+import org.mcdealer.mcdealer.Utils.ExternalHost;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +40,7 @@ public class MCDealer extends JavaPlugin {
     private ShopHandler shopHandler;
     private ConfigUpdater configUpdater;
     private WebFileUtils webFileUtils;
+    private ExternalHost externalHost;
     private boolean pluginEnabled = false;
     int delayTicks = 2400;
     protected int UpdateInterval;
@@ -59,12 +64,16 @@ public class MCDealer extends JavaPlugin {
         shopHandler = new ShopHandler(this);
         getServer().getPluginManager().registerEvents(shopHandler, this);
         webServerManager = new WebServerManager(this);
-
-        // Run Webserver
-        logger.info("Starting Webserver");
-        configUpdater = new ConfigUpdater(this);
-        configUpdater.webConfigUpdater();
-        webServerManager.jettyStart();
+        // WebServer or FTP
+        if (getConfig().getBoolean("ExternalHost.enabled", true)) {
+            logger.info("External Host enabled!");
+        }else{
+            // Run Webserver
+            logger.info("Starting Webserver");
+            configUpdater = new ConfigUpdater(this);
+            configUpdater.webConfigUpdater();
+            webServerManager.jettyStart();
+        }
 
         // Register Commands
         registerCommands();
@@ -86,7 +95,7 @@ public class MCDealer extends JavaPlugin {
         logger.info("[MCDealer] by CptGummiball and Vollmondheuler disabled!");
     }
 
-    private void loadConfig() {
+    public void loadConfig() {
         // Load config for UpdateInterval
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
@@ -103,7 +112,9 @@ public class MCDealer extends JavaPlugin {
                         loadConfig();
                         configUpdater.webConfigUpdater();
                         JythonScriptRunner.runPythonScript();
-                        logger.info("Shopdata updated!");
+                            logger.info("Shopdata updated!");
+                            externalHost = new ExternalHost(MCDealer.this);
+                            externalHost.run();
                     } catch (Exception e) {
                         logger.error("Scheduler failed!");
                     }
@@ -194,11 +205,19 @@ public class MCDealer extends JavaPlugin {
                         player.sendMessage(translator.translate("Commands.nopermission"));
                     }
                     break;
-                default:
-                    player.sendMessage(translator.translate("Commands.unknownarg") + args[0]);
-                    break;
                 case "link":
                     if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.link")) {
+                        if (getConfig().getBoolean("ExternalHost.enabled", true)) {
+
+                            String url = getConfig().getString("ExternalHost.linktoweb", "No Link definded");
+
+                            String clickMessage = translator.translate("Commands.clickhere");
+
+                            TextComponent clickableUrl = new TextComponent(clickMessage);
+                            clickableUrl.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
+
+                            player.spigot().sendMessage(clickableUrl);
+                        }else{
                         String serverIP = Bukkit.getServer().getIp();
                         int webServerPort = getConfig().getInt("web-server-port");
 
@@ -210,14 +229,30 @@ public class MCDealer extends JavaPlugin {
                         clickableUrl.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
 
                         player.spigot().sendMessage(clickableUrl);
+                        }
                     } else {
                         player.sendMessage(translator.translate("Commands.nopermission"));
                     }
+                    break;
+                case "uploadall":
+                    if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.uploadall")) {
+                        try {
+                            externalHost.uploadall();
+                        } catch (IOException | SftpException | JSchException e) {
+                            throw new RuntimeException(e);
+                        }
+                        player.sendMessage(translator.translate("Commands.externalupload"));
+                    } else {
+                        player.sendMessage(translator.translate("Commands.nopermission"));
+                    }
+                default:
+                    player.sendMessage(translator.translate("Commands.unknownarg") + args[0]);
                     break;
             }
 
             return true;
         }
+
         @Override
         public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String alias, String[] args) {
             List<String> completions = new ArrayList<>();
@@ -227,7 +262,7 @@ public class MCDealer extends JavaPlugin {
                 String partialCommand = args[0].toLowerCase();
 
                 // Add your command names here
-                List<String> commandNames = List.of("hideshop", "showshop", "listhidden", "restart", "refresh", "link");
+                List<String> commandNames = List.of("hideshop", "showshop", "listhidden", "restart", "refresh", "link", "uploadall");
 
                 for (String command : commandNames) {
                     if (command.startsWith(partialCommand)) {

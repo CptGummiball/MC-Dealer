@@ -6,7 +6,7 @@
 
   <groupId>org.mcdealer</groupId>
   <artifactId>MCDealer</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0 b1</version>
   <packaging>jar</packaging>
 
   <name>MCDealer</name>
@@ -133,6 +133,11 @@
       <groupId>org.python</groupId>
       <artifactId>jython-standalone</artifactId>
       <version>2.7.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.cptgum</groupId>
+      <artifactId>SimpleFTPSync</artifactId>
+      <version>1.1</version>
     </dependency>
   </dependencies>
 </project>
