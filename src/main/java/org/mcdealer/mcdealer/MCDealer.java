@@ -108,19 +108,31 @@ public class MCDealer extends JavaPlugin {
             @Override
             public void run() {
                 if (pluginEnabled) {
-                    try {
-                        loadConfig();
-                        configUpdater.webConfigUpdater();
-                        JythonScriptRunner.runPythonScript();
-                            logger.info("Shopdata updated!");
+                    if (getConfig().getBoolean("ExternalHost.enabled", true)) {
+                        try {
+                            loadConfig();
+                            configUpdater.webConfigUpdater();
+                            JythonScriptRunner.runPythonScript();
                             externalHost = new ExternalHost(MCDealer.this);
                             externalHost.run();
-                    } catch (Exception e) {
-                        logger.error("Scheduler failed!");
+                            logger.info("Shopdata updated!");
+                        } catch (Exception e) {
+                            logger.error("Scheduler failed!");
+                        }
+                        }else{
+                            try {
+                                loadConfig();
+                                configUpdater.webConfigUpdater();
+                                JythonScriptRunner.runPythonScript();
+                                logger.info("Shopdata updated!");
+                            } catch (Exception e) {
+                                logger.error("Scheduler failed!");
+                            }
+                        }
                     }
+
                 }
-            }
-        }.runTaskTimerAsynchronously(this, delayTicks, UpdateInterval);
+            }.runTaskTimerAsynchronously(this, delayTicks, UpdateInterval);
     }
 
     private class MCDealerCommand implements CommandExecutor, TabCompleter {
