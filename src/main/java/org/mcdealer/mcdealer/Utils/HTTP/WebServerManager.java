@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class WebServerManager {
 
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer (WebserverManager)");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
     private final JavaPlugin plugin;
     private static final int DELAY_SECONDS = 30; // 30 seconds delay
 

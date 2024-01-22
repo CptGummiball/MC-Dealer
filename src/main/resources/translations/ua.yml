@@ -17,3 +17,4 @@ Commands:
   refresh: "&d[MCDealer] &aОновлено веб-файли!"
   clickhere: "&d[MCDealer] &9Клацніть тут, щоб перейти до перегляду магазину!"
   externalupload: "&d[MCDealer] &aВеб-файли були оновлені!"
+  externaldisabled: "&d[MCDealer] &cЗаборонено зовнішнє хостингування!"

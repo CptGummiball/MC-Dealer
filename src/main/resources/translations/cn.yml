@@ -17,3 +17,4 @@ Commands:
   refresh: "&d[MCDealer] &aWeb文件已刷新！"
   clickhere: "&d[MCDealer] &9点击这里查看商店概览！"
   externalupload:  "&d[MCDealer] &aWeb文件已刷新！"
+  externaldisabled: "&d[MCDealer] &c外部主机托管已禁用！"

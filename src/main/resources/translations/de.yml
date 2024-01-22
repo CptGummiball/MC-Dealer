@@ -16,3 +16,4 @@ Commands:
   novillagerfound: "&d[MCDealer] &cLaden nicht bereit für Interaktion! Ladeninformationen sind momentan nicht verfügbar."
   refresh: "&d[MCDealer] &aWebdateien aktualisiert!"
   externalupload: "&d[MCDealer] &aWebdateien wurden aktualisiert!"
+  externaldisabled: "&d[MCDealer] &cExternal Hosting ist deaktiviert!"

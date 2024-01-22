@@ -1,5 +1,5 @@
 name: MCDealer
-version: 1.2.0 b1
+version: dev1.2.0 b4
 main: org.mcdealer.mcdealer.MCDealer
 api-version: '1.20'
 description: 'MCDealer hosts an internal web server to display Villagermarket''s shop data'

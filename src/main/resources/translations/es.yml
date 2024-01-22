@@ -17,3 +17,4 @@ Commands:
   refresh: "&d[MCDealer] &a¡Archivos web actualizados!"
   clickhere: "&d[MCDealer] &9Haz clic aquí para ir a la vista general de la tienda"
   externalupload: "&d[MCDealer] &a¡Los archivos web han sido actualizados!"
+  externaldisabled: "&d[MCDealer] &c¡La hospedaje externa está desactivada!"

@@ -7,7 +7,6 @@ import net.md_5.bungee.api.chat.TextComponent;
 
 import org.jetbrains.annotations.NotNull;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Villager;
 import org.bukkit.command.Command;
@@ -17,14 +16,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import org.mcdealer.mcdealer.Utils.*;
 import org.mcdealer.mcdealer.Utils.DataManager.ResourceUpdater;
 import org.mcdealer.mcdealer.Utils.DataManager.ConfigUpdater;
-import org.mcdealer.mcdealer.Utils.JythonScriptRunner;
-import org.mcdealer.mcdealer.Utils.ShopHandler;
-import org.mcdealer.mcdealer.Utils.Translator;
 import org.mcdealer.mcdealer.Utils.DataManager.WebFileUtils;
 import org.mcdealer.mcdealer.Utils.HTTP.WebServerManager;
-import org.mcdealer.mcdealer.Utils.ExternalHost;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +28,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.mcdealer.mcdealer.Utils.ExternalIPFetcher.getExternalIP;
 
 public class MCDealer extends JavaPlugin {
 
@@ -47,8 +45,14 @@ public class MCDealer extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        // Version Check
+        VersionCheck versioncheck  = new VersionCheck();
+        versioncheck.getVersion();
+
         pluginEnabled = true;
         webFileUtils = new WebFileUtils(this);
+
         // Load config
         loadConfig();
 
@@ -65,8 +69,9 @@ public class MCDealer extends JavaPlugin {
         getServer().getPluginManager().registerEvents(shopHandler, this);
         webServerManager = new WebServerManager(this);
         // WebServer or FTP
-        if (getConfig().getBoolean("ExternalHost.enabled", true)) {
+        if (getConfig().getBoolean("ExternalHost.enabled", false)) {
             logger.info("External Host enabled!");
+            logger.info("Internal web server is disabled!");
         }else{
             // Run Webserver
             logger.info("Starting Webserver");
@@ -108,7 +113,7 @@ public class MCDealer extends JavaPlugin {
             @Override
             public void run() {
                 if (pluginEnabled) {
-                    if (getConfig().getBoolean("ExternalHost.enabled", true)) {
+                    if (getConfig().getBoolean("ExternalHost.enabled", false)) {
                         try {
                             loadConfig();
                             configUpdater.webConfigUpdater();
@@ -219,7 +224,7 @@ public class MCDealer extends JavaPlugin {
                     break;
                 case "link":
                     if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.link")) {
-                        if (getConfig().getBoolean("ExternalHost.enabled", true)) {
+                        if (getConfig().getBoolean("ExternalHost.enabled", false)) {
 
                             String url = getConfig().getString("ExternalHost.linktoweb", "No Link definded");
 
@@ -230,7 +235,7 @@ public class MCDealer extends JavaPlugin {
 
                             player.spigot().sendMessage(clickableUrl);
                         }else{
-                        String serverIP = Bukkit.getServer().getIp();
+                        String serverIP = getExternalIP();
                         int webServerPort = getConfig().getInt("web-server-port");
 
                         String url = "http://" + serverIP + ":" + webServerPort;
@@ -247,16 +252,21 @@ public class MCDealer extends JavaPlugin {
                     }
                     break;
                 case "uploadall":
-                    if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.uploadall")) {
-                        try {
-                            externalHost.uploadall();
-                        } catch (IOException | SftpException | JSchException e) {
-                            throw new RuntimeException(e);
+                    if (getConfig().getBoolean("ExternalHost.enabled", false)) {
+                        if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.uploadall")) {
+                            try {
+                                externalHost.uploadall();
+                            } catch (IOException | SftpException | JSchException e) {
+                                throw new RuntimeException(e);
+                            }
+                            player.sendMessage(translator.translate("Commands.externalupload"));
+                        } else {
+                            player.sendMessage(translator.translate("Commands.nopermission"));
                         }
-                        player.sendMessage(translator.translate("Commands.externalupload"));
-                    } else {
-                        player.sendMessage(translator.translate("Commands.nopermission"));
+                    }else{
+                        player.sendMessage(translator.translate("Commands.externaldisabled"));
                     }
+                    break;
                 default:
                     player.sendMessage(translator.translate("Commands.unknownarg") + args[0]);
                     break;

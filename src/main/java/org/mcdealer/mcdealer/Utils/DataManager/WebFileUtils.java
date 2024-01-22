@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class WebFileUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer (WebFileUtils)");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
     private final Plugin plugin;
 
@@ -18,6 +18,7 @@ public class WebFileUtils {
     @SuppressWarnings("SpellCheckingInspection")
     public void copy() {
         {
+            //Webfiles
             plugin.saveResource("web/index.html", true);
             plugin.saveResource("web/assets/background.jpg", true);
             plugin.saveResource("web/assets/config.json", true);
@@ -44,6 +45,16 @@ public class WebFileUtils {
             plugin.saveResource("web/assets/translations/pl.json", true);
             plugin.saveResource("web/assets/translations/pt.json", true);
             plugin.saveResource("web/assets/translations/ua.json", true);
+            plugin.saveResource("web/assets/favicon/android-chrome-72x72.png", true);
+            plugin.saveResource("web/assets/favicon/apple-touch-icon.png", true);
+            plugin.saveResource("web/assets/favicon/browserconfig.xml", true);
+            plugin.saveResource("web/assets/favicon/favicon-16x16.png", true);
+            plugin.saveResource("web/assets/favicon/favicon-32x32.png", true);
+            plugin.saveResource("web/assets/favicon/favicon.ico", true);
+            plugin.saveResource("web/assets/favicon/mstile-150x150.png", true);
+            plugin.saveResource("web/assets/favicon/safari-pinned-tab.svg", true);
+            plugin.saveResource("web/assets/favicon/site.webmanifest", true);
+            //Minecraft Item Icons
             plugin.saveResource("web/assets/items/acacia_boat.png", true);
             plugin.saveResource("web/assets/items/acacia_button.png", true);
             plugin.saveResource("web/assets/items/acacia_chest_boat.png", true);
@@ -1437,6 +1448,7 @@ public class WebFileUtils {
             plugin.saveResource("web/assets/items/zombie_spawn_egg.png", true);
             plugin.saveResource("web/assets/items/zombie_villager_spawn_egg.png", true);
             plugin.saveResource("web/assets/items/zombified_piglin_spawn_egg.png", true);
+            //Josh More Foods Item Icons
             plugin.saveResource("web/assets/items/joshs-more-foods/apple_ice_cream.png", true);
             plugin.saveResource("web/assets/items/joshs-more-foods/apple_pie.png", true);
             plugin.saveResource("web/assets/items/joshs-more-foods/bagel.png", true);
@@ -1495,15 +1507,88 @@ public class WebFileUtils {
             plugin.saveResource("web/assets/items/joshs-more-foods/teacup.png", true);
             plugin.saveResource("web/assets/items/joshs-more-foods/vegetable_salad.png", true);
             plugin.saveResource("web/assets/items/joshs-more-foods/wooden_knife.png", true);
-            plugin.saveResource("web/assets/favicon/android-chrome-72x72.png", true);
-            plugin.saveResource("web/assets/favicon/apple-touch-icon.png", true);
-            plugin.saveResource("web/assets/favicon/browserconfig.xml", true);
-            plugin.saveResource("web/assets/favicon/favicon-16x16.png", true);
-            plugin.saveResource("web/assets/favicon/favicon-32x32.png", true);
-            plugin.saveResource("web/assets/favicon/favicon.ico", true);
-            plugin.saveResource("web/assets/favicon/mstile-150x150.png", true);
-            plugin.saveResource("web/assets/favicon/safari-pinned-tab.svg", true);
-            plugin.saveResource("web/assets/favicon/site.webmanifest", true);
+            //SimpleDrawer Item Icons
+            plugin.saveResource("web/assets/items/simpledrawer/compacting_new_drawer_empty.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/compacting_new_drawer_filled.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_acacia.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_bamboo.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_birch.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_cherry.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_crimson.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_dark_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_ice.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_jungle.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_mangrove.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_spruce.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_empty_warped.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_acacia.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_bamboo.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_birch.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_cherry.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_crimson.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_dark_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_ice.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_jungle.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_mangrove.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_spruce.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/double_new_drawer_filled_warped.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_acacia.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_bamboo.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_birch.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_cherry.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_crimson.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_dark_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_ice.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_jungle.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_mangrove.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_spruce.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_empty_warped.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_acacia.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_bamboo.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_birch.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_cherry.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_crimson.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_dark_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_ice.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_jungle.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_mangrove.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_spruce.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/new_drawer_filled_warped.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_acacia.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_bamboo.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_birch.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_cherry.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_crimson.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_dark_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_ice.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_jungle.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_mangrove.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_spruce.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_empty_warped.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_acacia.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_bamboo.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_birch.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_cherry.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_crimson.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_dark_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_ice.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_jungle.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_mangrove.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_oak.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_spruce.png", true);
+            plugin.saveResource("web/assets/items/simpledrawer/quadruple_new_drawer_filled_warped.png", true);
+            //Tool Trims Files
+            plugin.saveResource("web/assets/items/tooltrims/charge_tool_trim_smithing_template.png", true);
+            plugin.saveResource("web/assets/items/tooltrims/frost_tool_trim_smithing_template.png", true);
+            plugin.saveResource("web/assets/items/tooltrims/frost_tool_trim_smithing_template2.png", true);
+            plugin.saveResource("web/assets/items/tooltrims/linear_tool_trim_smithing_template.png", true);
+            plugin.saveResource("web/assets/items/tooltrims/toolsmithing_table.png", true);
+            plugin.saveResource("web/assets/items/tooltrims/tracks_tool_trim_smithing_template.png", true);
 
             logger.info("web files updated");
         }

@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class ResourceUpdater {
 
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer (ResourceUpdater)");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
     private final MCDealer plugin;
 
     public ResourceUpdater(MCDealer plugin) {
@@ -84,7 +84,7 @@ public class ResourceUpdater {
             try {
                 Files.copy(jarConfigStream, configFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Failed to copy config.yml from JAR to plugin folder", e);
             }
         }
     }

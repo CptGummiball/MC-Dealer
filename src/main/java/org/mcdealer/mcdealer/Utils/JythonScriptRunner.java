@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 
 public class JythonScriptRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer (JythonScriptRunner)");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
     public static void main(String[] args) {
         runPythonScript();
     }
@@ -28,7 +28,7 @@ public class JythonScriptRunner {
 
             // Hier wird der Pfad zum JAR-Verzeichnis gesetzt
             interpreter.exec("jar_directory = os.path.dirname(os.path.abspath(sys.argv[0]))");
-            interpreter.exec("yaml_resource_path = '/yaml'");  // Ersetzen Sie '/yaml' durch den tatsächlichen Pfad
+            interpreter.exec("yaml_resource_path = '/yaml'");
             interpreter.exec("yaml_full_path = os.path.join(jar_directory, yaml_resource_path)");
             interpreter.exec("sys.path.append(yaml_full_path)");
 

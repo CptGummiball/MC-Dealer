@@ -1,14 +1,31 @@
 <configuration>
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <layout class="org.mcdealer.mcdealer.org.mcdealer.mcdealer.Utils.LoggerColor" />
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}] [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="org.eclipse.jetty" level="OFF"/>
-    <logger name="org.eclipse.jetty.util.log" level="OFF"/>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${user.dir}/plugins/MCDealer/logs/plugin.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss}] [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.eclipse.jetty" level="TRACE" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <logger name="org.eclipse.jetty.util.log" level="TRACE" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <!-- Exclude Jetty logs from the console -->
+    <logger name="org.eclipse.jetty" level="OFF" />
 
     <root level="debug">
         <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
     </root>
 </configuration>
