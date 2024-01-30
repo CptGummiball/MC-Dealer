@@ -33,10 +33,6 @@ See [mc-dealer-yml2json](https://github.com/wolf128058/mc-dealer-yml2json)
 
 - `UpdateInterval`: How often should the shop data be updated? (in ticks: 20T = 1 second || Default: 6000 = 5 minutes). VillagerMarket updates data every 10 minutes by default
 
-- `currencySymbol`: Currency symbol displayed on the website.
-
-- `currencySymbolPosition`: Position of the currency symbol (before/after).
-
 - `defaultLanguage`: Default language of the website. (cn, de, en, es, fr, it, pl, pt, ua)
 
 - `internal-language`: Language of the plugins internal messages (cn, de, en, es, fr, it, pl, pt, ua)
