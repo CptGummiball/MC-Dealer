@@ -1,5 +1,6 @@
 package org.mcdealer.mcdealer.Utils.DataManager;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.mcdealer.mcdealer.MCDealer;
 import org.slf4j.Logger;
@@ -10,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.Objects;
 
 public class ResourceUpdater {
 
@@ -22,15 +22,28 @@ public class ResourceUpdater {
     }
 
     public void updateConfig() {
-        // Loading the current configuration file
         int currentConfigVersion = plugin.getConfig().getInt("configversion", 0);
-        int newConfigVersion = YamlConfiguration.loadConfiguration(Objects.requireNonNull(getConfigFromJar())).getInt("configversion", 0);
-        logger.info("Current config version: {}", currentConfigVersion);
-        logger.info("New config version: {}", newConfigVersion);
-        // Version difference, update configuration file
+        File newConfigFile = getConfigFromJar();
+
+        if (newConfigFile == null) {
+            logger.error("Unable to find or create the new config file.");
+            return;
+        }
+
+        FileConfiguration oldConfig = YamlConfiguration.loadConfiguration(new File(plugin.getDataFolder(), "config.yml"));
+        FileConfiguration newConfig = YamlConfiguration.loadConfiguration(newConfigFile);
+
+        int newConfigVersion = newConfig.getInt("configversion", 0);
+
+        logger.info("Current config version: " + currentConfigVersion);
+
         if (newConfigVersion > currentConfigVersion) {
+            logger.info("New config version: " + newConfigVersion);
             logger.info("Updating config.yml... ");
-            plugin.saveResource("config.yml", true);
+
+            ConfigUpdater.pluginconfigupdater(oldConfig, newConfig);
+            plugin.getConfig().set("configversion", newConfigVersion);
+            plugin.saveConfig();
         }
     }
 
@@ -39,12 +52,12 @@ public class ResourceUpdater {
         int currentWebFilesVersion = plugin.getConfig().getInt("webfilesversion", 0);
         int newWebFilesVersion = YamlConfiguration.loadConfiguration(getConfigFromJar()).getInt("webfilesversion", 0);
         logger.info("Current web files version: {}", currentWebFilesVersion);
-        logger.info("New web files version: {}", newWebFilesVersion);
         File webFolder = new File(plugin.getDataFolder(), "web");
         if (!webFolder.exists() || !webFolder.isDirectory()) {
             logger.info("Transferring all web files...");
             webFileUtils.copy();
         } else if (newWebFilesVersion > currentWebFilesVersion) {
+            logger.info("New web files version: {}", newWebFilesVersion);
             logger.info("Updating web files... ");
             webFileUtils.copy();
             plugin.getConfig().set("webfilesversion", newWebFilesVersion);
