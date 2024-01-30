@@ -293,8 +293,6 @@ public class MCDealer extends JavaPlugin {
                 }
             }
 
-            // You can add more tab completion logic for additional arguments if needed
-
             return completions;
         }
     }
