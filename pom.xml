@@ -6,7 +6,7 @@
 
   <groupId>org.mcdealer</groupId>
   <artifactId>MCDealer</artifactId>
-  <version>dev1.2.0 b4</version>
+  <version>1.2.0 beta</version>
   <packaging>jar</packaging>
 
   <name>MCDealer</name>
@@ -21,7 +21,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>3.12.1</version>
         <configuration>
           <source>14</source>
           <target>14</target>
@@ -30,7 +30,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.2.4</version>
+        <version>3.5.1</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -70,12 +70,12 @@
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-codec</artifactId>
-      <version>4.1.86.Final</version>
+      <version>4.1.106.Final</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.12.0</version>
+      <version>2.15.1</version>
     </dependency>
     <dependency>
       <groupId>org.testng</groupId>
@@ -91,7 +91,7 @@
     <dependency>
       <groupId>org.jetbrains</groupId>
       <artifactId>annotations</artifactId>
-      <version>24.0.1</version>
+      <version>24.1.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -112,17 +112,17 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
-      <version>2.13.0</version>
+      <version>2.16.1</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.14.0-rc1</version>
+      <version>2.16.1</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
-      <version>2.13.0</version>
+      <version>2.16.1</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
