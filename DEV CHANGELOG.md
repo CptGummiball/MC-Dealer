@@ -9,10 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Version Check (For later usage)
+- Config Updater
 ### Changed
-- Updated dependencys
+- Updated dependencies
 - Updated Web files
 - Updated Jython script
+- Currency Symbol and Position will now be sync with Villagermarket config
 
 ### Fixed
 - Replaced ExternalIPFetcher with a more stable function
