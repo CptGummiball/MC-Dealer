@@ -18,7 +18,7 @@ public class WebServerManager {
 
     public void jettyStart() {
         FileConfiguration config = plugin.getConfig();
-        int port = config.getInt("webServerPort", 8080);
+        int port = config.getInt("web-server-port", 8080);
         try {
             JettyServer.start(port);
         } catch (Exception e) {
