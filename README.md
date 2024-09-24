@@ -1,4 +1,11 @@
-# MCDealer Plugin Readme
+# MCDealer
+
+![Spigot](https://img.shields.io/badge/Spigot-1.20--1.20.1-yellow.svg)
+![MIT License](https://img.shields.io/badge/PaperMC-1.20--1.20.1-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.2.5-gray.svg)
+![Support](https://img.shields.io/badge/discontinued-red.svg)
+![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
+
 This is the Plugin Version of [mc-dealer-yml2json](https://github.com/wolf128058/mc-dealer-yml2json)
 It provides an WebServer + Website that comprehensively displays offers and demands from players and admin shops
 of the Plugin [Villager Market](https://www.spigotmc.org/resources/villager-market-the-ultimate-shop-plugin.82965/) ([GitHub](https://github.com/Bestem0r/VillagerMarket))
