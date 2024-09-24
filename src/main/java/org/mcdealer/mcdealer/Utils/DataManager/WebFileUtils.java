@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class WebFileUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer (WebFileUtils)");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
     private final Plugin plugin;
 
@@ -18,6 +18,7 @@ public class WebFileUtils {
     @SuppressWarnings("SpellCheckingInspection")
     public void copy() {
         {
+            //Webfiles
             plugin.saveResource("web/index.html", true);
             plugin.saveResource("web/assets/background.jpg", true);
             plugin.saveResource("web/assets/config.json", true);
@@ -44,6 +45,16 @@ public class WebFileUtils {
             plugin.saveResource("web/assets/translations/pl.json", true);
             plugin.saveResource("web/assets/translations/pt.json", true);
             plugin.saveResource("web/assets/translations/ua.json", true);
+            plugin.saveResource("web/assets/favicon/android-chrome-72x72.png", true);
+            plugin.saveResource("web/assets/favicon/apple-touch-icon.png", true);
+            plugin.saveResource("web/assets/favicon/browserconfig.xml", true);
+            plugin.saveResource("web/assets/favicon/favicon-16x16.png", true);
+            plugin.saveResource("web/assets/favicon/favicon-32x32.png", true);
+            plugin.saveResource("web/assets/favicon/favicon.ico", true);
+            plugin.saveResource("web/assets/favicon/mstile-150x150.png", true);
+            plugin.saveResource("web/assets/favicon/safari-pinned-tab.svg", true);
+            plugin.saveResource("web/assets/favicon/site.webmanifest", true);
+            //Minecraft Item Icons
             plugin.saveResource("web/assets/items/acacia_boat.png", true);
             plugin.saveResource("web/assets/items/acacia_button.png", true);
             plugin.saveResource("web/assets/items/acacia_chest_boat.png", true);
@@ -1437,73 +1448,6 @@ public class WebFileUtils {
             plugin.saveResource("web/assets/items/zombie_spawn_egg.png", true);
             plugin.saveResource("web/assets/items/zombie_villager_spawn_egg.png", true);
             plugin.saveResource("web/assets/items/zombified_piglin_spawn_egg.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/apple_ice_cream.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/apple_pie.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/bagel.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/beef_burger.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/beetroot_bread.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/black_forest_doughnut.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/boiled_egg.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/carrot_bread.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/carrot_pie.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/champorado.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/chicken_pot_pie.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/chocolate_doughnut.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/chocolate_ice_cream.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/coleslaw.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/cookbook.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/cornflower_tea.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/dandelion_tea.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/diamond_knife.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/fish_and_chips.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/fleshy_salad.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/fried_egg.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/fried_rice.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/fruit_salad.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/gilded_tea.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/golden_knife.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/green_tea.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/honey_cookie.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/iron_knife.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/leche_flan.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/melon_ice_cream.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/netherite_knife.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/nutritionbook.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/overfilled_rice_bowl.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/pie_crust.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/pork_sandwich.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/potato_bread.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/potato_salad.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/pumpkin_ice_cream.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/rice.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/rice_bowl.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/rose_tea.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/rotten_stew.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/sakura_tea.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/shepherds_pie.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/shepherds_salad.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/spruce_tea.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/stone_knife.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/sugar_cookie.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/sugar_doughnut.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/sushi.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/sweet_berry_cookie.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/sweet_berry_pie.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/sweet_berry_tea.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/sweet_roll.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/tea_leaves.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/teacup.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/vegetable_salad.png", true);
-            plugin.saveResource("web/assets/items/joshs-more-foods/wooden_knife.png", true);
-            plugin.saveResource("web/assets/favicon/android-chrome-72x72.png", true);
-            plugin.saveResource("web/assets/favicon/apple-touch-icon.png", true);
-            plugin.saveResource("web/assets/favicon/browserconfig.xml", true);
-            plugin.saveResource("web/assets/favicon/favicon-16x16.png", true);
-            plugin.saveResource("web/assets/favicon/favicon-32x32.png", true);
-            plugin.saveResource("web/assets/favicon/favicon.ico", true);
-            plugin.saveResource("web/assets/favicon/mstile-150x150.png", true);
-            plugin.saveResource("web/assets/favicon/safari-pinned-tab.svg", true);
-            plugin.saveResource("web/assets/favicon/site.webmanifest", true);
 
             logger.info("web files updated");
         }

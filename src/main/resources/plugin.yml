@@ -1,5 +1,5 @@
 name: MCDealer
-version: 1.1.0
+version: 1.2.5
 main: org.mcdealer.mcdealer.MCDealer
 api-version: '1.20'
 description: 'MCDealer hosts an internal web server to display Villagermarket''s shop data'
@@ -13,7 +13,7 @@ load: POSTWORLD
 commands:
   mcdealer:
     description: 'Manage MCDealer functionalities'
-    usage: /mcdealer <hideshop|showshop|listhidden|restart>
+    usage: /mcdealer <hideshop|showshop|listhidden|restart|refresh>
     permission: mcdealer.use
 
 permissions:

@@ -22,7 +22,7 @@ public class ShopHandler implements Listener {
 
     private final JavaPlugin plugin;
 
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer (ShopHandler)");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
 
     public ShopHandler(JavaPlugin plugin) {
         this.plugin = plugin;

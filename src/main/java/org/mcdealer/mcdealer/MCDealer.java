@@ -5,7 +5,6 @@ import net.md_5.bungee.api.chat.TextComponent;
 
 import org.jetbrains.annotations.NotNull;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Villager;
 import org.bukkit.command.Command;
@@ -15,19 +14,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import org.mcdealer.mcdealer.Utils.*;
 import org.mcdealer.mcdealer.Utils.DataManager.ResourceUpdater;
 import org.mcdealer.mcdealer.Utils.DataManager.ConfigUpdater;
-import org.mcdealer.mcdealer.Utils.JythonScriptRunner;
-import org.mcdealer.mcdealer.Utils.ShopHandler;
-import org.mcdealer.mcdealer.Utils.Translator;
 import org.mcdealer.mcdealer.Utils.DataManager.WebFileUtils;
 import org.mcdealer.mcdealer.Utils.HTTP.WebServerManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.mcdealer.mcdealer.Utils.ExternalIPFetcher.getExternalIP;
 
 public class MCDealer extends JavaPlugin {
 
@@ -42,8 +42,14 @@ public class MCDealer extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        // Version Check
+        VersionCheck versioncheck  = new VersionCheck();
+        versioncheck.getVersion();
+
         pluginEnabled = true;
         webFileUtils = new WebFileUtils(this);
+
         // Load config
         loadConfig();
 
@@ -59,12 +65,17 @@ public class MCDealer extends JavaPlugin {
         shopHandler = new ShopHandler(this);
         getServer().getPluginManager().registerEvents(shopHandler, this);
         webServerManager = new WebServerManager(this);
-
-        // Run Webserver
-        logger.info("Starting Webserver");
-        configUpdater = new ConfigUpdater(this);
-        configUpdater.webConfigUpdater();
-        webServerManager.jettyStart();
+        // WebServer or FTP
+        if (getConfig().getBoolean("ExternalHost.enabled", false)) {
+            logger.info("External Host enabled!");
+            logger.info("Internal web server is disabled!");
+        }else{
+            // Run Webserver
+            logger.info("Starting Webserver");
+            configUpdater = new ConfigUpdater(this);
+            configUpdater.webConfigUpdater();
+            webServerManager.jettyStart();
+        }
 
         // Register Commands
         registerCommands();
@@ -86,7 +97,7 @@ public class MCDealer extends JavaPlugin {
         logger.info("[MCDealer] by CptGummiball and Vollmondheuler disabled!");
     }
 
-    private void loadConfig() {
+    public void loadConfig() {
         // Load config for UpdateInterval
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
@@ -99,17 +110,17 @@ public class MCDealer extends JavaPlugin {
             @Override
             public void run() {
                 if (pluginEnabled) {
-                    try {
-                        loadConfig();
-                        configUpdater.webConfigUpdater();
-                        JythonScriptRunner.runPythonScript();
-                        logger.info("Shopdata updated!");
-                    } catch (Exception e) {
-                        logger.error("Scheduler failed!");
+                            try {
+                                loadConfig();
+                                configUpdater.webConfigUpdater();
+                                JythonScriptRunner.runPythonScript();
+                                logger.info("Shopdata updated!");
+                            } catch (Exception e) {
+                                logger.error("Scheduler failed!");
+                            }
+                        }
                     }
-                }
-            }
-        }.runTaskTimerAsynchronously(this, delayTicks, UpdateInterval);
+            }.runTaskTimerAsynchronously(this, delayTicks, UpdateInterval);
     }
 
     private class MCDealerCommand implements CommandExecutor, TabCompleter {
@@ -194,12 +205,20 @@ public class MCDealer extends JavaPlugin {
                         player.sendMessage(translator.translate("Commands.nopermission"));
                     }
                     break;
-                default:
-                    player.sendMessage(translator.translate("Commands.unknownarg") + args[0]);
-                    break;
                 case "link":
                     if (player.hasPermission("mcdealer.admin") || player.hasPermission("mcdealer.link")) {
-                        String serverIP = Bukkit.getServer().getIp();
+                        if (getConfig().getBoolean("ExternalHost.enabled", false)) {
+
+                            String url = getConfig().getString("ExternalHost.linktoweb", "No Link definded");
+
+                            String clickMessage = translator.translate("Commands.clickhere");
+
+                            TextComponent clickableUrl = new TextComponent(clickMessage);
+                            clickableUrl.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
+
+                            player.spigot().sendMessage(clickableUrl);
+                        }else{
+                        String serverIP = getExternalIP();
                         int webServerPort = getConfig().getInt("web-server-port");
 
                         String url = "http://" + serverIP + ":" + webServerPort;
@@ -210,14 +229,19 @@ public class MCDealer extends JavaPlugin {
                         clickableUrl.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
 
                         player.spigot().sendMessage(clickableUrl);
+                        }
                     } else {
                         player.sendMessage(translator.translate("Commands.nopermission"));
                     }
+                    break;
+                default:
+                    player.sendMessage(translator.translate("Commands.unknownarg") + args[0]);
                     break;
             }
 
             return true;
         }
+
         @Override
         public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String alias, String[] args) {
             List<String> completions = new ArrayList<>();
@@ -235,8 +259,6 @@ public class MCDealer extends JavaPlugin {
                     }
                 }
             }
-
-            // You can add more tab completion logic for additional arguments if needed
 
             return completions;
         }

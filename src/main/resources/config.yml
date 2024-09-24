@@ -1,16 +1,13 @@
 #MCDealer Plugin Settings
 
-
-#Port of the Web Server
+#Port of the Web Server (Default: 8080)
 #Must be an open port. Check with your server provider to find an open port. Most providers have port 8080 open
+# Internal web server will be deactivated when ExternalHost is enabled
 web-server-port: 8080
+
 #How often should the shop data be updated? (in ticks: 20T = 1 second || Default: 6000 = 5 minutes)
 #VillagerMarket updates data every 10 minutes by default
 UpdateInterval: 6000
-#Currency symbol that is displayed on the website
-currencySymbol: $
-#Position of the Currency Symbol (before/after)
-currencySymbolPosition: after
 #Default language of the website
 defaultLanguage: en
 #Language of the plugins internal messages (cn, de, en, es, fr, it, pl, pt, ua)
@@ -19,5 +16,5 @@ internal-language: en
 
 
 #Don't change anything below!
-configversion: 2
-webfilesversion: 3
+configversion: 6
+webfilesversion: 6

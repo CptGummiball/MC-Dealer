@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 
 public class JythonScriptRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger("MCDealer (JythonScriptRunner)");
+    private static final Logger logger = LoggerFactory.getLogger("MCDealer");
     public static void main(String[] args) {
         runPythonScript();
     }
@@ -22,17 +22,21 @@ public class JythonScriptRunner {
         PythonInterpreter interpreter = new PythonInterpreter();
 
         try {
-            // Pfade zu den Bibliotheken hinzufügen
+
             interpreter.exec("import sys");
             interpreter.exec("import os");
 
-            // Hier wird der Pfad zum JAR-Verzeichnis gesetzt
+
             interpreter.exec("jar_directory = os.path.dirname(os.path.abspath(sys.argv[0]))");
-            interpreter.exec("yaml_resource_path = '/yaml'");  // Ersetzen Sie '/yaml' durch den tatsächlichen Pfad
+            interpreter.exec("yaml_resource_path = '/yaml'");
             interpreter.exec("yaml_full_path = os.path.join(jar_directory, yaml_resource_path)");
             interpreter.exec("sys.path.append(yaml_full_path)");
 
-            // Laden Sie das Python-Skript aus der Ressourcen-Datei
+            interpreter.exec("nbtlib_resource_path = '/nbtlib'");
+            interpreter.exec("nbtlib_full_path = os.path.join(jar_directory, nbtlib_resource_path)");
+            interpreter.exec("sys.path.append(nbtlib_full_path)");
+
+
             InputStream inputStream = JythonScriptRunner.class.getResourceAsStream("/data-yml2json-jython.py");
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder scriptContent = new StringBuilder();
@@ -41,16 +45,16 @@ public class JythonScriptRunner {
                 scriptContent.append(line).append("\n");
             }
 
-            // Führen Sie das Python-Skript im Jython-Interpreter aus
+
             interpreter.exec(scriptContent.toString());
 
-            // Rufen Sie die Funktion "main" des Skripts auf, falls vorhanden
+
             interpreter.exec("if 'main' in globals():\n    main()");
 
         } catch (PyException | IOException e) {
             logger.error("Failed to run Python Script. Error details: {}", e.getMessage());
         } finally {
-            // Call cleanup() in the finally block to ensure resources are properly released
+
             interpreter.cleanup();
         }
     }
